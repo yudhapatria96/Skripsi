@@ -2,7 +2,8 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('news/', views.news),
-    path('cerita/', views.cerita),
+    path('jurnal/', views.jurnal),
+    path('berita/', views.berita),
+    path('<int:angka>/', views.angka),
     path('', views.index),
 ]

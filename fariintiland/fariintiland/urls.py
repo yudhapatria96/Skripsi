@@ -23,5 +23,6 @@ urlpatterns = [
     path('', views.index),
     path('blog/', include('blog.urls')),
     path('about/', include('about.urls')),
+
 ]
  

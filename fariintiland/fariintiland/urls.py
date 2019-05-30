@@ -24,6 +24,7 @@ urlpatterns = [
     path('', views.index, name= 'index'),
     path('blog/', include('blog.urls', namespace='blog')),
     path('about/', include('about.urls', namespace='about')),
+    path('inputdata/', include('input_data.urls', namespace='inputdata')),
 
 ]
  

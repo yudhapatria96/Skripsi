@@ -25,12 +25,8 @@
         
     {% endfor %}
 </ul>
-    {% for post in posts %}
-    <a href = "/blog/post/{{post.slug}}" title="">
-        <h1>{{post.title}}</h1>
-    </a>
-        <p>{{post.waktu_posting}}</p>
-        <p>{{post.body|truncatechars:200}}</p>
+    <h1>{{posts.title}}</h1>
+    <p>{{posts.waktu_posting}}</p>
+    <p>{{posts.body}}</p>
 
-    {% endfor %}
 {% endblock contents %}

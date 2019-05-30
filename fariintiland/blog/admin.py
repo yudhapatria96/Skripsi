@@ -4,4 +4,12 @@ from django.contrib import admin
 
 from . import models
 # from .models import Post
-admin.site.register(models.Post)
+
+class PostAdmin(admin.ModelAdmin):
+    readonly_fields = [
+                        'slug',
+                        'waktu_posting',
+                        'waktu_update',
+                        ]
+
+admin.site.register(models.Post, PostAdmin)

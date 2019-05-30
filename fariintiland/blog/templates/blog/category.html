@@ -12,6 +12,8 @@
 
 {% block contents %}
     {{content}}
+
+  
 <ul class= "nav">
 
             <li class="nav-item">
@@ -25,12 +27,14 @@
         
     {% endfor %}
 </ul>
+
     {% for post in posts %}
-    <a href = "/blog/post/{{post.slug}}" title="">
-        <h1>{{post.title}}</h1>
-    </a>
-        <p>{{post.waktu_posting}}</p>
-        <p>{{post.body|truncatechars:200}}</p>
+        <a href = "/blog/post/{{post.slug}}" title="">
+            <h1>{{post.title}}</h1>
+        </a>
+            <p>{{post.waktu_posting}}</p>
+            <p>{{post.body|truncatechars:200}}</p>
 
     {% endfor %}
+
 {% endblock contents %}

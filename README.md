@@ -52,3 +52,5 @@ Membuat Form dengan ContactForm Django
     nameObject = forms.contactForm()
 
 referensi lengkap FormsField: https://docs.djangoproject.com/en/2.2/ref/forms/fields/
+
+/home/yudha/Pictures/Screenshot from 2019-05-30 09-54-58.png

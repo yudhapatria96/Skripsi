@@ -1,20 +1,21 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <form method="POST">
-        {% csrf_token %}
-        <table>
-            {{data_form.as_table}}
-        </table>
-        
-        <button type ="Submit">Submit</button>
+{% extends 'base.html' %}
+{% load static %}
 
-    </form>
-</body>
-</html>
+
+{% block contents %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        {{data_form.e301_field.label_tag}}
+        {{data_form.e301_field}}
+    </div>
+   
+    
+    <button type ="Submit">Submit</button>
+
+</form>
+{% endblock contents %}
+
+   
+
+		

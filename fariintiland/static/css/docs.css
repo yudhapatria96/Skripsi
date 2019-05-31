@@ -1,0 +1,11 @@
+body {
+    min-height: 200vh;
+  }
+  
+  a {
+    cursor: pointer;
+  }
+
+hr.style2 {
+	border-top: 3px double #0f0f0f;
+}

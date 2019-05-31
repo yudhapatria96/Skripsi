@@ -4,10 +4,10 @@
 <head>
 	<title>{{title}}</title>
 
-    {% include "snippets/styles.html"%}
+		{% include "snippets/styles.html"%}
+		
 	{% block app_css %}
-	<link rel="stylesheet" type="text/css"
-		href="{% static "css/styles.css"%}"> 
+
 	{% endblock app_css %}
 
 
@@ -15,16 +15,16 @@
 <body>
 	
         {% include "snippets/navbar.html"%}
-
-	
-	<div class="jumbotron jumbotron-fluid">
-	  <div class="container text-white text-center">
-	   
-       {% block header %}
-
-       {% endblock header %}
-	  </div>
-	</div>
+				{% include "snippets/sidebar-menu.html" %}
+<!-- 	
+				<div class="jumbotron jumbotron-fluid">
+					<div class="container text-white text-center">
+					 
+						 {% block header %}
+			
+						 {% endblock header %}
+					</div>
+				</div> -->
 
 		<div class="container bg-light shadow mt-5" style="margin-top:-100px"
 		id="myBody" >

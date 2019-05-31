@@ -3,17 +3,56 @@
 
 
 {% block contents %}
-<form method="POST">
-    {% csrf_token %}
-    <div class="form-group">
-        {{data_form.e301_field.label_tag}}
-        {{data_form.e301_field}}
-    </div>
-   
-    
-    <button type ="Submit">Submit</button>
+<!-- <a class="nav-link" >Input Data</a></button> -->
+<a href="{% url "input_data:input"%}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Input Data</a>
+<br>
+<table class="table table-striped table-dark">
+<tr>
+        <th scope="col">Id Penjualan</th>
+        <th scope="col">Bulan Transaksi</th>
+        <th scope="col">Tahun Transaksi</th>
+        <th scope="col">Jumlah Client Hotel</th>
+        <th scope="col">Jumlah Client Mall</th>
+        <th scope="col">Jumlah Client Apartement</th>
+        <th scope="col">Jumlah C441</th>
+        <th scope="col">Jumlah C442</th>
+        <th scope="col">Jumlah C443</th>
+        <th scope="col">Jumlah C451</th>
+        <th scope="col">Jumlah C452</th>
+        <th scope="col">Jumlah C453</th>
+        <th scope="col">Jumlah C461</th>
+        <th scope="col">Jumlah C462</th>
+        <th scope="col">Jumlah C463</th>
+        <th scope="col">Jasa Pembersih Air</th>
+        <th scope="col">Jasa Pembersih Kerak Sillica</th>
+        <th scope="col">Jasa Pembersih Cooling Tower</th>
+        <th scope="col">Jasa Pembersih STP</th>
+    </tr>
 
-</form>
+    {% for post in posts %}
+    <tr> 
+        <td>{{ post.id_penjualan }}</td>
+        <td>{{ post.bulan_transaksi }}</td>
+        <td>{{ post.tahun_transaksi }}</td>
+        <td>{{ post.jumlah_hotel }}</td>
+        <td>{{ post.jumlah_mall }}</td>
+        <td>{{ post.jumlah_apartemen }}</td>
+        <td>{{ post.jumlah_C441 }}</td>
+        <td>{{ post.jumlah_C442 }}</td>
+        <td>{{ post.jumlah_C443 }}</td>
+        <td>{{ post.jumlah_C451 }}</td>
+        <td>{{ post.jumlah_C452 }}</td>
+        <td>{{ post.jumlah_C453 }}</td>
+        <td>{{ post.jumlah_C461 }}</td>
+        <td>{{ post.jumlah_C462 }}</td>
+        <td>{{ post.jumlah_C463 }}</td>
+        <td>{{ post.jasa_pembersih_air }}</td>
+        <td>{{ post.jasa_pembersih_kerak_sillica}}</td>
+        <td>{{ post.jasa_pembersih_cooling_tower}}</td>
+        <td>{{ post.jasa_pembersih_stp}}</td>
+    </tr>
+    {% endfor %}
+</table>
 {% endblock contents %}
 
    

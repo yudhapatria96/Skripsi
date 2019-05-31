@@ -1,0 +1,105 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block contents %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        {{data_form.tanggal_field.label_tag}}
+        {{data_form.tanggal_field}}
+       
+    </div>
+
+    <div class="form-group">
+            {{data_form.hotel_field.label_tag}}
+            {{data_form.hotel_field}}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.mall_field.label_tag}}
+            {{data_form.mall_field}}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.apartement_field.label_tag}}
+            {{data_form.apartement_field}}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.c441_field.label_tag}}
+            {{data_form.c441_field}}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.c442_field.label_tag}}
+            {{data_form.c442_field}}         
+    </div>
+
+    
+    <div class="form-group">
+            {{data_form.c443_field.label_tag}}
+            {{data_form.c443_field }}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.c451_field.label_tag}}
+            {{data_form.c451_field}}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.c452_field.label_tag}}
+            {{data_form.c452_field}}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.c453_field.label_tag}}
+            {{data_form.c453_field}}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.c461_field.label_tag}}
+            {{data_form.c461_field}}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.c462_field.label_tag}}
+            {{data_form.c462_field}}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.c463_field.label_tag}}
+            {{data_form.c463_field}}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.pembersih_air_field.label_tag}}
+            {{data_form.pembersih_air_field}}         
+    </div>
+    <div class="form-group">
+            {{data_form.pembersih_kerak_field.label_tag}}
+            {{data_form.pembersih_kerak_field}}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.pembesih_cooling_tower_field.label_tag}}
+            {{data_form.pembesih_cooling_tower_field}}         
+    </div>
+
+    <div class="form-group">
+            {{data_form.pembersih_stp_field.label_tag}}
+            {{data_form.pembersih_stp_field}}         
+    </div>
+
+    
+    
+   
+    
+    <button type ="Submit">Submit</button>
+
+</form>
+{% endblock contents %}
+
+   
+
+		

@@ -54,3 +54,7 @@ Membuat Form dengan ContactForm Django
 referensi lengkap FormsField: https://docs.djangoproject.com/en/2.2/ref/forms/fields/
 
 /home/yudha/Pictures/Screenshot from 2019-05-30 09-54-58.png
+
+Jika ada error
+
+https://stackoverflow.com/questions/30761867/mysql-error-the-maximum-column-size-is-767-bytes

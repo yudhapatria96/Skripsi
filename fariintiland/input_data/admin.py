@@ -1,6 +1,6 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import PostModel
+from .models import PenjualanModel
 
-admin.site.register(PostModel)
+admin.site.register(PenjualanModel)

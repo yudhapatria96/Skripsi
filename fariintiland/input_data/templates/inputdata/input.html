@@ -5,9 +5,9 @@
 {% block contents %}
 <form method="POST">
     {% csrf_token %}
-    <div class="form-group">
+    <!-- <div class="form-group">
         {{data_form.tanggal_field.label_tag}}
-        {{data_form.tanggal_field}}
+        {{data_form.bulan_transaksi}}
        
     </div>
 
@@ -91,7 +91,29 @@
             {{data_form.pembersih_stp_field}}         
     </div>
 
-    
+    <div class="form-group">
+        {{data_form.asam_sulfat_field.label_tag}}
+        {{data_form.asam_sulfat_field}}         
+    </div>
+
+    <div class="form-group">
+        {{data_form.molases_field.label_tag}}
+        {{data_form.molases_field}}         
+    </div>
+
+    <div class="form-group">
+        {{data_form.hcl_field.label_tag}}
+        {{data_form.hcl_field}}         
+    </div>
+
+    <div class="form-group">
+        {{data_form.abf_field.label_tag}}
+        {{data_form.abf_field}}         
+    </div> -->
+
+    <table>
+            {{contact_form.as_table}}
+    </table>
     
    
     

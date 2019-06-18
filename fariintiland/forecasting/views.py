@@ -57,14 +57,30 @@ def index(request):
     jumlah_hcl = []
     jumlah_abf = []
     semua = []
+    x = 0
+    x_kuadrat = 0
+    total_x = 0
+    b = 0 
+    a = 0
+    n = 0
+    years= PenjualanModel.objects.all().order_by('tahun_transaksi')
+    year_int = years[len(years) - 1].tahun_transaksi
+    index_tahun = 0
     if request.method == 'POST':
         bulan = request.POST['bulan_dan_tahun_prediksi_month'] 
         tahun = request.POST['bulan_dan_tahun_prediksi_year']   
         if(bulan != '0' and tahun != '0'):
-            print(thismonth[bulan])
+            index_tahun = ((int(tahun) - year_int - 1) * 12)
+            
+            si_x = index_tahun + (int(request.POST['bulan_dan_tahun_prediksi_month'] ))
+            
+            # print(thismonth[bulan])
             for posts in post:
                 # print(posts.jumlah_hotel)
                 # print(posts.jumlah_C441)
+                x += 1
+                x_kuadrat = x_kuadrat + (x * x)
+                total_x = total_x + x
                 jumlah_hotel.append(posts.jumlah_hotel)
                 jumlah_mall.append(posts.jumlah_mall)
                 jumlah_apartemen.append(posts.jumlah_apartemen)
@@ -85,19 +101,32 @@ def index(request):
                 jumlah_molases.append(posts.jumlah_molases)
                 jumlah_hcl.append(posts.jumlah_hcl)
                 jumlah_abf.append(posts.jumlah_abf)
+            n = x
+            # print(x_kuadrat)
+            # print(total_x)
+            # print(x)
                 
-    semua = [jumlah_hotel, jumlah_c441,jumlah_mall,jumlah_apartemen,jumlah_c441,jumlah_c442,
-    jumlah_c443,jumlah_c451,jumlah_c452,jumlah_c453,jumlah_c461,jumlah_c462,jumlah_c463,jasa_pembersih_air,
-    jasa_pembersih_kerak_sillica,
-    jasa_pembersih_cooling_tower,
-    jasa_pembersih_stp,
-    jumlah_asam_sulfat,
-    jumlah_molases,
-    jumlah_hcl,
-    jumlah_abf,
-    semua]
-    for x in semua:
-        for y in x :
-            print(y)
-
+            semua = [jumlah_hotel, jumlah_mall,jumlah_apartemen,jumlah_c441,jumlah_c442,
+            jumlah_c443,jumlah_c451,jumlah_c452,jumlah_c453,jumlah_c461,jumlah_c462,jumlah_c463,jasa_pembersih_air,
+            jasa_pembersih_kerak_sillica,
+            jasa_pembersih_cooling_tower,
+            jasa_pembersih_stp,
+            jumlah_asam_sulfat,
+            jumlah_molases,
+            jumlah_hcl,
+            jumlah_abf]
+            for satuan in semua:
+                x_y = 0
+                xy = 0
+                total_xy = 0
+                total_y = 0
+                for satudata in satuan :
+                    x_y += 1
+                    xy = x_y * satudata
+                    total_xy = total_xy + xy
+                    total_y = total_y + satudata
+                    b = ((n * total_xy)-(total_x * total_y)) / ((n * x_kuadrat) - (total_x * total_x))
+                    a = (total_y - (b * total_x))/n
+                    y = a + (b * si_x)
+                print(y)
     return render(request, 'forecasting/index.html',context)

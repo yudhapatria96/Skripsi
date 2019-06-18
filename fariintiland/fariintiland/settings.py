@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'blog',
     'about',
     'input_data',
+    'forecasting',
 ]
 
 MIDDLEWARE = [
@@ -81,7 +82,13 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'forecastingapp',
         'USER': 'root',
-        'PASSWORD': '1234',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': '3306',
+        # 'ENGINE': 'django.db.backends.mysql',
+        # 'NAME': 'forecastingapp',
+        # 'USER': 'root',
+        # 'PASSWORD': '1234',
     }
 }
 

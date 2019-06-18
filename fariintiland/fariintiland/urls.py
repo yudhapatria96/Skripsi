@@ -25,6 +25,7 @@ urlpatterns = [
     path('blog/', include('blog.urls', namespace='blog')),
     path('about/', include('about.urls', namespace='about')),
     path('inputdata/', include('input_data.urls', namespace='inputdata')),
+    path('forecasting/', include('forecasting.urls', namespace='forecasting')),
 
 ]
  

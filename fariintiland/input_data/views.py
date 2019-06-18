@@ -6,8 +6,8 @@ from . import models
 def index(request):
     post = models.PenjualanModel.objects.all()
     contact_form = forms.ContactForm()
-    for postss in post:
-        print(postss)
+    # for posts in post:
+    #     print(posts.bulan_transaksi)
     context = {
         'heading':'Contact',
         'data_form':contact_form,

@@ -4,8 +4,8 @@ from django.db import models
 
 class PenjualanModel(models.Model):
     id_penjualan                    = models.AutoField(primary_key = True)
-    bulan_transaksi                 =  models.CharField(max_length= 200,  null = False, unique= True)
-    tahun_transaksi                 = models.CharField(max_length= 200,  null = False, unique= False)
+    bulan_transaksi                 =  models.CharField(max_length= 200,  null = False, unique= False)
+    tahun_transaksi                 = models.IntegerField(null = False, default = 2010)
     jumlah_hotel                    = models.IntegerField( null = False, default= 0)
     jumlah_mall                     = models.IntegerField( null = False, default= 0)
     jumlah_apartemen                = models.IntegerField(   null= False, default= 0)

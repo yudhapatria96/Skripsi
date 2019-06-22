@@ -56,6 +56,7 @@ def index(request):
     jumlah_molases = []
     jumlah_hcl = []
     jumlah_abf = []
+    bulan_tertentu = []
     semua = []
     x = 0
     x_kuadrat = 0
@@ -63,15 +64,21 @@ def index(request):
     b = 0 
     a = 0
     n = 0
+    jumlah_bulan = 0
+    rata_rata_penjualan_bulan_tertentu = 0 
+    jumlah_penjualan_bulan_tertentu = 0
+    rata_rata_penjualan_total = 0
+    index_musiman = 0
     years= PenjualanModel.objects.all().order_by('tahun_transaksi')
     year_int = years[len(years) - 1].tahun_transaksi
     index_tahun = 0
     if request.method == 'POST':
         bulan = request.POST['bulan_dan_tahun_prediksi_month'] 
         tahun = request.POST['bulan_dan_tahun_prediksi_year']   
+        print(bulan)
+        print(tahun)
         if(bulan != '0' and tahun != '0'):
             index_tahun = ((int(tahun) - year_int - 1) * 12)
-            
             si_x = index_tahun + (int(request.POST['bulan_dan_tahun_prediksi_month'] ))
             
             # print(thismonth[bulan])
@@ -101,13 +108,18 @@ def index(request):
                 jumlah_molases.append(posts.jumlah_molases)
                 jumlah_hcl.append(posts.jumlah_hcl)
                 jumlah_abf.append(posts.jumlah_abf)
+                bulan_tertentu.append(posts.bulan_transaksi)
+                # if(thismonth[bulan] == posts.bulan_transaksi):
+                #     jumlah_bulan += 1       
             n = x
+            # print(jasa_pembersih_air)
             # print(x_kuadrat)
             # print(total_x)
             # print(x)
                 
             semua = [jumlah_hotel, jumlah_mall,jumlah_apartemen,jumlah_c441,jumlah_c442,
-            jumlah_c443,jumlah_c451,jumlah_c452,jumlah_c453,jumlah_c461,jumlah_c462,jumlah_c463,jasa_pembersih_air,
+            jumlah_c443,jumlah_c451,jumlah_c452,jumlah_c453,jumlah_c461,jumlah_c462,jumlah_c463,
+            jasa_pembersih_air,
             jasa_pembersih_kerak_sillica,
             jasa_pembersih_cooling_tower,
             jasa_pembersih_stp,
@@ -115,18 +127,35 @@ def index(request):
             jumlah_molases,
             jumlah_hcl,
             jumlah_abf]
+            hitung = 0
             for satuan in semua:
+                hitung+= 1
                 x_y = 0
                 xy = 0
                 total_xy = 0
                 total_y = 0
+                b = 0
+                a = 0
+                y = 0
                 for satudata in satuan :
+                    if(thismonth[bulan] == bulan_tertentu[x_y]):
+                       jumlah_bulan += 1 
+                       jumlah_penjualan_bulan_tertentu += satudata
                     x_y += 1
                     xy = x_y * satudata
                     total_xy = total_xy + xy
                     total_y = total_y + satudata
-                    b = ((n * total_xy)-(total_x * total_y)) / ((n * x_kuadrat) - (total_x * total_x))
-                    a = (total_y - (b * total_x))/n
-                    y = a + (b * si_x)
-                print(y)
+                 
+                b = ((n * total_xy)-(total_x * total_y)) / ((n * x_kuadrat) - (total_x * total_x))
+                a = (total_y - (b * total_x))/n
+                y = a + (b * (si_x + x_y))   
+                       
+                rata_rata_penjualan_bulan_tertentu = jumlah_penjualan_bulan_tertentu / jumlah_bulan
+                rata_rata_penjualan_total = total_y / x_y
+                
+                index_musiman = rata_rata_penjualan_bulan_tertentu / rata_rata_penjualan_total
+                y_index_musiman = y * index_musiman
+                print(y_index_musiman)
+                
+                
     return render(request, 'forecasting/index.html',context)

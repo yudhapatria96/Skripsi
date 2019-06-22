@@ -1,7 +1,12 @@
 {% extends 'base.html' %}
 {% load static %}
 
+<script>
+{% block jquery %}
 
+
+{% endblock %}
+</script>
 {% block contents %}
 <form method="POST">
     {% csrf_token %}

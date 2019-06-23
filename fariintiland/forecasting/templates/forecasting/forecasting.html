@@ -1,0 +1,178 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block jquery %}
+
+<script>
+
+// var endpoint = 'api/data/'
+// $.ajax({
+//     method: "GET",
+//     url: endpoint,
+//     success: function(data){
+//         labels = data.labels
+//         data_forecasting = data.data_prediksi
+
+        
+//     },
+//     error: function(error_data){
+//         console.log("error")
+//         console.log(error_data)
+//     }
+// })
+
+var labels = ["jumlah hotel", "jumlah mall", "jumlah apartemen", "C441 Terjual", "C442 Terjual", "C443 Terjual", "C451 Terjual", "C452 Terjual", "C453 Terjual", "C461 Terjual", "C462 Terjual", "C463 Terjual", "Jasa Pembersih Air", "Jasa Pembersih Kerak Sillica", "Jasa Pembersih Cooling Tower", "Jasa Pembersih STP", "Asam Sulfat Terpakai", "Molases Terpakai", "HCL Terpakai", "ABF Terpakai"]           
+var all_data = {{datas}}
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: ' {{labeling}} ',
+            data: all_data, 
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(235, 102, 112, 0.2)',
+                'rgba(44, 182, 125, 0.2)',
+                'rgba(211, 241, 89, 0.2)',
+                'rgba(71, 192, 112, 0.2)',
+                'rgba(141, 32, 125, 0.2)',
+                'rgba(235, 49, 34, 0.2)',
+                'rgba(105, 99, 52, 0.2)',
+                'rgba(51, 52, 25, 0.2)',
+                'rgba(105, 16, 46, 0.2)',
+                'rgba(75, 32, 12, 0.2)',
+                'rgba(45, 12, 25, 0.2)',
+                'rgba(10, 59, 21, 0.2)',
+                'rgba(31, 11, 12, 0.2)',
+                'rgba(51, 32, 45, 0.2)',
+                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(214, 199, 32, 1)',
+                'rgba(114, 162, 35, 1)',
+                'rgba(155, 146, 46, 1)',
+                'rgba(65, 52, 52, 1)',
+                'rgba(73, 52, 15, 1)',
+                'rgba(75, 49, 14, 1)',
+                'rgba(45, 119, 22, 1)',
+                'rgba(54, 122, 35, 1)',
+                'rgba(255, 216, 46, 1)',
+                'rgba(75, 12, 92, 1)',
+                'rgba(23, 12, 55, 1)',
+                'rgba(235, 159, 64, 1)',
+                'rgba(115, 99, 32, 1)',
+                'rgba(41, 22, 65, 1)',
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var all_data_lama = {{data_sebelumnya}}
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var myChart2 = new Chart(ctx2, {
+    type: 'bar',
+    data: {
+        labels: labels,
+        datasets: [{
+            label: '{{ labeling2 }}',
+            data: all_data_lama,
+            backgroundColor: [
+                'rgba(255, 99, 132, 0.2)',
+                'rgba(54, 162, 235, 0.2)',
+                'rgba(255, 206, 86, 0.2)',
+                'rgba(75, 192, 192, 0.2)',
+                'rgba(153, 102, 255, 0.2)',
+                'rgba(255, 159, 64, 0.2)',
+                'rgba(235, 102, 112, 0.2)',
+                'rgba(44, 182, 125, 0.2)',
+                'rgba(211, 241, 89, 0.2)',
+                'rgba(71, 192, 112, 0.2)',
+                'rgba(141, 32, 125, 0.2)',
+                'rgba(235, 49, 34, 0.2)',
+                'rgba(105, 99, 52, 0.2)',
+                'rgba(51, 52, 25, 0.2)',
+                'rgba(105, 16, 46, 0.2)',
+                'rgba(75, 32, 12, 0.2)',
+                'rgba(45, 12, 25, 0.2)',
+                'rgba(10, 59, 21, 0.2)',
+                'rgba(31, 11, 12, 0.2)',
+                'rgba(51, 32, 45, 0.2)',
+                
+            ],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+                'rgba(54, 162, 235, 1)',
+                'rgba(255, 206, 86, 1)',
+                'rgba(75, 192, 192, 1)',
+                'rgba(153, 102, 255, 1)',
+                'rgba(255, 159, 64, 1)',
+                'rgba(214, 199, 32, 1)',
+                'rgba(114, 162, 35, 1)',
+                'rgba(155, 146, 46, 1)',
+                'rgba(65, 52, 52, 1)',
+                'rgba(73, 52, 15, 1)',
+                'rgba(75, 49, 14, 1)',
+                'rgba(45, 119, 22, 1)',
+                'rgba(54, 122, 35, 1)',
+                'rgba(255, 216, 46, 1)',
+                'rgba(75, 12, 92, 1)',
+                'rgba(23, 12, 55, 1)',
+                'rgba(235, 159, 64, 1)',
+                'rgba(115, 99, 32, 1)',
+                'rgba(41, 22, 65, 1)',
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+
+</script>
+{% endblock jquery %}
+{% block contents %}
+
+<div class ='row'>
+    
+        <div class='col-sm-6'>
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <canvas id="myChart2" width="400" height="400"></canvas>
+        </div>      
+
+</div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+{% endblock contents %}

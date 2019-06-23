@@ -41,6 +41,8 @@ INSTALLED_APPS = [
     'about',
     'input_data',
     'forecasting',
+    'komparasi',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [

@@ -19,7 +19,6 @@ class MonthYearWidget(Widget):
         self.attrs = attrs or {}
         #pemanggilan tahun dari database
         years= PenjualanModel.objects.all().order_by('tahun_transaksi')
-        # print(years[len(years) - 1].tahun_transaksi)
         year_int = years[len(years) - 1].tahun_transaksi
         year_str = str(year_int)
         year_date = datetime.datetime.strptime(year_str, "%Y").date()

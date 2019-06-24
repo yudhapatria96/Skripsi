@@ -183,12 +183,17 @@ def resultForecasting(request):
 
         labeling = "Hasil Prediksi Penjualan pada bulan " +thismonth[bulan]+ " tahun " + tahun    
         labeling2 = "Hasil Penjualan pada bulan " + thismonth[bulan] + " tahun " + str(year_int)
+        tahunpredict = int(tahun)
+        tahunprediksii = [ year_int,tahunpredict]
+        
     context = {
         'heading':'Forecasting',
         'datas': hasilnya,
         'data_sebelumnya': data_all_tahun_sebelumnya,
         'labeling': labeling,
         'labeling2': labeling2,
+        'tahunprediksii': tahunprediksii,
+        
         # 'data_form':contact_form,
         # 'posts' : post,
 

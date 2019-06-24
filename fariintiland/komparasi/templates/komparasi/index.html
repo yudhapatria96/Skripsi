@@ -8,26 +8,27 @@
 
 {% block contents %}
 
-    {% csrf_token %}
-    <form action="/action_page.php"  method="POST">
+
+    <form action="{% url 'komparasi:hasilkomparasi' %}"  method="POST">
+            {% csrf_token %}
 <div class='row'>
     <div class='col-sm-2'> 
             <div class="select-wrap">
                     <label>Masukkan Bulan</label>
                     <select name="bulansatu" style="width: 100%;">
-                      <option value="0">---</option>
-                      <option value="1">Januari</option>
-                      <option value="2">Februari</option>
-                      <option value="3">Maret</option>
-                      <option value="4">April</option>
-                      <option value="5">Mei</option>
-                      <option value="6">Juni</option>
-                      <option value="7">Juli</option>
-                      <option value="8">Agustus</option>
-                      <option value="9">September</option>
-                      <option value="10">Oktober</option>
-                      <option value="11">November</option>
-                      <option value="12">Desember</option>
+                        <option value="0">---</option>
+                        <option value="januari">Januari</option>
+                        <option value="februari">Februari</option>
+                        <option value="maret">Maret</option>
+                        <option value="april">April</option>
+                        <option value="mei">Mei</option>
+                        <option value="juni">Juni</option>
+                        <option value="juli">Juli</option>
+                        <option value="agustus">Agustus</option>
+                        <option value="september">September</option>
+                        <option value="oktober">Oktober</option>
+                        <option value="november">November</option>
+                        <option value="desember">Desember</option>
 
                     </select>
                   </div>
@@ -52,18 +53,18 @@
                 <label>Masukkan Bulan</label>
                 <select name="bulandua" style="width: 100%;">
                         <option value="0">---</option>
-                        <option value="1">Januari</option>
-                        <option value="2">Februari</option>
-                        <option value="3">Maret</option>
-                        <option value="4">April</option>
-                        <option value="5">Mei</option>
-                        <option value="6">Juni</option>
-                        <option value="7">Juli</option>
-                        <option value="8">Agustus</option>
-                        <option value="9">September</option>
-                        <option value="10">Oktober</option>
-                        <option value="11">November</option>
-                        <option value="12">Desember</option>
+                        <option value="januari">Januari</option>
+                        <option value="februari">Februari</option>
+                        <option value="maret">Maret</option>
+                        <option value="april">April</option>
+                        <option value="mei">Mei</option>
+                        <option value="juni">Juni</option>
+                        <option value="juli">Juli</option>
+                        <option value="agustus">Agustus</option>
+                        <option value="september">September</option>
+                        <option value="oktober">Oktober</option>
+                        <option value="november">November</option>
+                        <option value="desember">Desember</option>
                 </select>
               </div>
         </div> 
@@ -82,7 +83,7 @@
     </div>
     <br>
     <br>
-        <button type="button" class="btn btn-success btn-block">Button 1</button>
+        <button type="Submit" class="btn btn-success btn-block">Komparasi Hasil Penjualan</button>
               
  
       </form>

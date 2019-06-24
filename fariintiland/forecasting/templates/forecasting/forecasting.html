@@ -1,7 +1,55 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block jquery %}
 
+{% block contents %}
+
+<div class ='row'>
+    
+        <div class='col-sm-6'>
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <canvas id="myChart2" width="400" height="400"></canvas>
+        </div> 
+          
+        
+</div>
+
+<br>
+<br>
+
+<div class = 'row'>
+        <div class='col-sm-4'>
+                <canvas id="myChart3" width="400" height="400"></canvas>
+        </div>  
+        <div class='col-sm-4'>
+                <canvas id="myChart4" width="400" height="400"></canvas>
+        </div> 
+        <div class='col-sm-4'>
+                <canvas id="myChart5" width="400" height="400"></canvas>
+        </div> 
+
+</div>
+
+<br>
+<br>
+
+<div class = 'row'>
+        <div class='col-sm-4'>
+                <canvas id="myChart6" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-4'>
+                <canvas id="myChart7" width="400" height="400"></canvas>
+        </div>  
+        <div class='col-sm-4'>
+                <canvas id="myChart8" width="400" height="400"></canvas>
+        </div>  
+</div>
+
+{% endblock contents %}
+
+{% block jquery %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <script>
 
 // var endpoint = 'api/data/'
@@ -22,6 +70,7 @@
 
 var labels = ["jumlah hotel", "jumlah mall", "jumlah apartemen", "C441 Terjual", "C442 Terjual", "C443 Terjual", "C451 Terjual", "C452 Terjual", "C453 Terjual", "C461 Terjual", "C462 Terjual", "C463 Terjual", "Jasa Pembersih Air", "Jasa Pembersih Kerak Sillica", "Jasa Pembersih Cooling Tower", "Jasa Pembersih STP", "Asam Sulfat Terpakai", "Molases Terpakai", "HCL Terpakai", "ABF Terpakai"]           
 var all_data = {{datas}}
+var tahun = {{tahunprediksii}}
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'bar',
@@ -159,20 +208,346 @@ var myChart2 = new Chart(ctx2, {
     }
 });
 
+var dataPelangganHotel =[all_data_lama[0], all_data[0]]
+var dataPelangganMall =[all_data[1], all_data_lama[1]]
+var dataPelangganApartemen = [all_data[2],all_data_lama[2] ]
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
 
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+var myChart3 = new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Pelanggan Hotel',
+            data: dataPelangganHotel,
+            backgroundColor: 'rgba(255,255,255, 0.1)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Pelanggan Mall',
+            data: dataPelangganMall,
+            backgroundColor: 'rgba(255,255,255, 0.1)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Pelanggan Apartemen',
+            data: dataPelangganApartemen,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var dataPelangganC441 =[all_data_lama[3], all_data[3]]
+var dataPelangganC442 =[all_data[4], all_data_lama[4]]
+var dataPelangganC443 = [all_data[5],all_data_lama[5] ]
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+
+var ctx4 = document.getElementById('myChart4').getContext('2d');
+var myChart4 = new Chart(ctx4, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Produk C441',
+            data: dataPelangganC441,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Produk C442',
+            data: dataPelangganC442,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C443',
+            data: dataPelangganC443,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var dataPelangganC451 =[all_data_lama[6], all_data[6]]
+var dataPelangganC452 =[all_data[7], all_data_lama[7]]
+var dataPelangganC453 = [all_data[8],all_data_lama[8] ]
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+
+var ctx5 = document.getElementById('myChart5').getContext('2d');
+var myChart5 = new Chart(ctx5, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Produk C451',
+            data: dataPelangganC451,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Produk C452',
+            data: dataPelangganC452,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C453',
+            data: dataPelangganC453,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var dataPelangganC461 =[all_data_lama[9], all_data[9]]
+var dataPelangganC462 =[all_data[10], all_data_lama[10]]
+var dataPelangganC463 = [all_data[11],all_data_lama[11] ]
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+
+var ctx6 = document.getElementById('myChart6').getContext('2d');
+var myChart6 = new Chart(ctx6, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Produk C461',
+            data: dataPelangganC461,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Produk C462',
+            data: dataPelangganC462,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C463',
+            data: dataPelangganC463,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var dataPelangganPembersihAir =[all_data_lama[12], all_data[12]]
+var dataPelangganPembersihKerak =[all_data[13], all_data_lama[13]]
+var dataPelangganPembersihCoolingTower = [all_data[14],all_data_lama[14] ]
+var dataPelangganPembersihSTP = [all_data[15],all_data_lama[15] ]
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+
+var ctx7 = document.getElementById('myChart7').getContext('2d');
+var myChart7 = new Chart(ctx7, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Jasa Pembersih Air',
+            data: dataPelangganPembersihAir,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',          
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih kerak',
+            data: dataPelangganPembersihKerak,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Jasa Pembersih Cooling Tower',
+            data: dataPelangganPembersihCoolingTower,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Jasa Pembersih STP',
+            data: dataPelangganPembersihSTP,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(32, 242, 25, 11)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var dataPelangganAsamSulfat =[all_data_lama[16], all_data[16]]
+var dataPelangganMolases =[all_data[17], all_data_lama[17]]
+var dataPelangganHCL = [all_data[18],all_data_lama[18] ]
+var dataPelangganABF = [all_data[19],all_data_lama[19] ]
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+
+var ctx8 = document.getElementById('myChart8').getContext('2d');
+var myChart8 = new Chart(ctx8, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Asam Sulfat Terpakai',
+            data: dataPelangganAsamSulfat,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',          
+            ],
+            borderWidth: 1
+        },{
+            label: 'Molases Terpakai',
+            data: dataPelangganMolases,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'HCL Terpakai',
+            data: dataPelangganHCL,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'ABF Terpakai',
+            data: dataPelangganABF,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(32, 242, 25, 11)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 </script>
 {% endblock jquery %}
-{% block contents %}
-
-<div class ='row'>
-    
-        <div class='col-sm-6'>
-            <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
-        <div class='col-sm-6'>
-            <canvas id="myChart2" width="400" height="400"></canvas>
-        </div>      
-
-</div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
-{% endblock contents %}

@@ -6,8 +6,8 @@ class PenjualanModel(models.Model):
     id_penjualan                    = models.AutoField(primary_key = True)
     bulan_transaksi                 =  models.CharField(max_length= 200,  null = False, unique= False)
     tahun_transaksi                 = models.IntegerField(null = False, default = 2010)
-    jumlah_hotel                    = models.IntegerField( null = False, default= 0)
-    jumlah_mall                     = models.IntegerField( null = False, default= 0)
+    jumlah_hotel                    = models.IntegerField(   null = False, default= 0)
+    jumlah_mall                     = models.IntegerField(   null = False, default= 0)
     jumlah_apartemen                = models.IntegerField(   null= False, default= 0)
     jumlah_C441                     = models.IntegerField(   null= False, default= 0)
     jumlah_C442                     = models.IntegerField(   null= False, default= 0)
@@ -26,6 +26,7 @@ class PenjualanModel(models.Model):
     jumlah_molases                  = models.IntegerField(   null= False, default= 0)
     jumlah_hcl                      = models.IntegerField(   null= False, default= 0)
     jumlah_abf                      = models.IntegerField(   null= False, default= 0)
+    pendapatan                      = models.IntegerField(   null= False, default= 0)
     create_time                     = models.DateTimeField(auto_now_add=True)
     update_time                     = models.DateTimeField(auto_now=True)
 

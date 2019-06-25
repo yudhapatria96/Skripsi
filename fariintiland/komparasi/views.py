@@ -40,6 +40,8 @@ def hasilKomparasi(request):
         dataBahanDua = []
         labeling1 = ""
         labeling2 = ""
+        pendapatansatu = 0
+        pendapatandua = 0
         if bulansatu != "0" and tahunsatu != "0" and bulandua !="0" and tahundua != "0":
             try:
                 datasatu            = PenjualanModel.objects.get(bulan_transaksi = bulansatu, tahun_transaksi = tahunsatu)
@@ -55,7 +57,7 @@ def hasilKomparasi(request):
                 dataC6Satu         = [datasatu.jumlah_C461, datasatu.jumlah_C462, datasatu.jumlah_C463]
                 dataJasaSatu        = [datasatu.jasa_pembersih_air, datasatu.jasa_pembersih_kerak_sillica, datasatu.jasa_pembersih_cooling_tower, datasatu.jasa_pembersih_stp, datasatu.jumlah_asam_sulfat]
                 dataBahanSatu       = [datasatu.jumlah_asam_sulfat, datasatu.jumlah_molases, datasatu.jumlah_hcl, datasatu.jumlah_abf ]
-
+                pendapatansatu = datasatu.pendapatan
             except ObjectDoesNotExist:
                 datatahunsatu = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
@@ -73,6 +75,7 @@ def hasilKomparasi(request):
                 dataC46Dua          = [datadua.jumlah_C461, datadua.jumlah_C462, datadua.jumlah_C463]
                 dataJasaDua         = [datadua.jasa_pembersih_air, datadua.jasa_pembersih_kerak_sillica, datadua.jasa_pembersih_cooling_tower, datadua.jasa_pembersih_stp]
                 dataBahanDua        =  [datadua.jumlah_asam_sulfat, datadua.jumlah_molases, datadua.jumlah_hcl, datadua.jumlah_abf]
+                pendapatandua       = datadua.pendapatan
             except ObjectDoesNotExist:
                 datatahundua = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
             
@@ -99,6 +102,8 @@ def hasilKomparasi(request):
         'dataC46Dua'      :dataC46Dua,      
         'dataJasaDua'     :dataJasaDua,     
         'dataBahanDua'    :dataBahanDua,  
+        'pendapatansatu'  :pendapatansatu,
+        'pendapatandua'   :pendapatandua
     } 
   
                 

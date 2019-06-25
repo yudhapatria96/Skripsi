@@ -31,6 +31,7 @@ def hitung_forecasting(post, index_tahun, si_x, thismonth, bulan):
     jumlah_molases = []
     jumlah_hcl = []
     jumlah_abf = []
+    pendapatan = []
     bulan_tertentu = []
     semua = []
     x = 0
@@ -71,6 +72,7 @@ def hitung_forecasting(post, index_tahun, si_x, thismonth, bulan):
         jumlah_molases.append(posts.jumlah_molases)
         jumlah_hcl.append(posts.jumlah_hcl)
         jumlah_abf.append(posts.jumlah_abf)
+        pendapatan.append(posts.pendapatan)
         bulan_tertentu.append(posts.bulan_transaksi)
         # if(thismonth[bulan] == posts.bulan_transaksi):
         #     jumlah_bulan += 1       
@@ -89,7 +91,7 @@ def hitung_forecasting(post, index_tahun, si_x, thismonth, bulan):
     jumlah_asam_sulfat,
     jumlah_molases,
     jumlah_hcl,
-    jumlah_abf]
+    jumlah_abf, pendapatan]
     hitung = 0
     for satuan in semua:
         hitung+= 1
@@ -121,6 +123,7 @@ def hitung_forecasting(post, index_tahun, si_x, thismonth, bulan):
     
     return(y_index_musiman)
 
+    
 def index(request):
     post = PenjualanModel.objects.all()
  
@@ -153,12 +156,17 @@ def resultForecasting(request):
         '11' : "november",
         '12' : "desember"
     }
-    years= PenjualanModel.objects.all().order_by('tahun_transaksi')
-    year_int = years[len(years) - 1].tahun_transaksi
+    try:
+        years= PenjualanModel.objects.all().order_by('tahun_transaksi')
+        year_int = years[len(years) - 1].tahun_transaksi
+    except ObjectDoesNotExist:
+        year_int = 0
     index_tahun = 0
     y_index_musiman = []
     labels = []
     hasilnya = 0
+    pendapatanpredict = 0
+    pendapatanasli = 0
     data_tahun_sebelumnya = []
     data_all_tahun_sebelumnya = []
     if request.method == 'POST':
@@ -168,6 +176,8 @@ def resultForecasting(request):
             index_tahun = ((int(tahun) - year_int - 1) * 12)
             si_x = index_tahun + (int(request.POST['bulan_dan_tahun_prediksi_month'] ))
             hasilnya=(hitung_forecasting(post, index_tahun, si_x, thismonth, bulan))
+            pendapatanpredict = hasilnya[-1]
+            del hasilnya[-1]
         else:
             return redirect('forecasting:index')
         try:
@@ -177,7 +187,9 @@ def resultForecasting(request):
             data_tahun_sebelumnya.jumlah_C452, data_tahun_sebelumnya.jumlah_C453, data_tahun_sebelumnya.jumlah_C461, data_tahun_sebelumnya.jumlah_C462, 
             data_tahun_sebelumnya.jumlah_C463, data_tahun_sebelumnya.jasa_pembersih_air, data_tahun_sebelumnya.jasa_pembersih_kerak_sillica,
             data_tahun_sebelumnya.jasa_pembersih_cooling_tower, data_tahun_sebelumnya.jasa_pembersih_stp, data_tahun_sebelumnya.jumlah_asam_sulfat,
-            data_tahun_sebelumnya.jumlah_molases, data_tahun_sebelumnya.jumlah_hcl, data_tahun_sebelumnya.jumlah_abf]
+            data_tahun_sebelumnya.jumlah_molases, data_tahun_sebelumnya.jumlah_hcl, data_tahun_sebelumnya.jumlah_abf, data_tahun_sebelumnya.pendapatan]
+            pendapatanasli = data_all_tahun_sebelumnya[-1]
+            del data_all_tahun_sebelumnya[-1]
         except ObjectDoesNotExist:
             data_tahun_sebelumnya = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
@@ -193,7 +205,8 @@ def resultForecasting(request):
         'labeling': labeling,
         'labeling2': labeling2,
         'tahunprediksii': tahunprediksii,
-        
+        'pendapatanasli': pendapatanasli,
+        'pendapatanpredict': pendapatanpredict,
         # 'data_form':contact_form,
         # 'posts' : post,
 

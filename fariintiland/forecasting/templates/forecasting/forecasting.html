@@ -19,13 +19,16 @@
 <br>
 
 <div class = 'row'>
-        <div class='col-sm-4'>
+        <div class='col-sm-3'>
+                <canvas id="myChart9" width="400" height="400"></canvas>
+        </div>  
+        <div class='col-sm-3'>
                 <canvas id="myChart3" width="400" height="400"></canvas>
         </div>  
-        <div class='col-sm-4'>
+        <div class='col-sm-3'>
                 <canvas id="myChart4" width="400" height="400"></canvas>
         </div> 
-        <div class='col-sm-4'>
+        <div class='col-sm-3'>
                 <canvas id="myChart5" width="400" height="400"></canvas>
         </div> 
 
@@ -535,6 +538,33 @@ var myChart8 = new Chart(ctx8, {
                 'rgba(32, 242, 25, 11)'
                
                 
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx9 = document.getElementById('myChart9').getContext('2d');
+var datapendapatan = [{{pendapatanasli}}, {{pendapatanpredict}}]
+var myChart9 = new Chart(ctx9, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Pendapatan',
+            data: datapendapatan,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',          
             ],
             borderWidth: 1
         }]

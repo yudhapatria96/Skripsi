@@ -28,6 +28,7 @@ class ContactForm(forms.ModelForm):
 'jumlah_molases',
 'jumlah_hcl',
 'jumlah_abf',
+'pendapatan',
     ]
 #     widget ={
 #     tanggal_field = forms.DateField(

@@ -5,6 +5,8 @@
 {% block contents %}
 <!-- <a class="nav-link" >Input Data</a></button> -->
 <a href="{% url "input_data:input"%}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Input Data</a>
+<a href="{% url "input_data:inputcsv"%}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Input Data CSV</a>
+
 <br>
 <table class="table table-striped table-dark">
     <thead>
@@ -33,6 +35,7 @@
         <th scope="col">Jumlah Molases</th>
         <th scope="col">Jumlah HCL</th>
         <th scope="col">Jumlah ABF</th>
+        <th scope="col">Pendapatan</th>
         <th scope="col">Action</th>
     </tr>
     </thead>
@@ -64,6 +67,8 @@
         <td>{{ post.jumlah_molases}}</td>
         <td>{{ post.jumlah_hcl}}</td>
         <td>{{ post.jumlah_abf}}</td>
+        <td>Rp. {{ post.pendapatan}}</td>
+
         <td><a class="btn btn-danger" href="{% url 'input_data:delete' post.id_penjualan %}" title="">Delete</a>
             <a class="btn btn-warning" href="{% url 'input_data:update' post.id_penjualan %}" title="">Edit</a></td>
     </tr>

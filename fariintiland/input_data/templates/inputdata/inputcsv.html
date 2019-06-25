@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+
+{% block contents %}
+    <!-- {% if messages %}
+        {% for message in messages %}
+            <div>
+                <strong>{{message|safe}}</strong>
+            </div>
+        {% endfor %}
+    
+    {% endif %} -->
+    {% if messages %}
+    <div class='row'>
+        <div class='col-sm-6 col-sm-offset-3'>
+        {% for message in messages %}
+            <p {% if message.tags == "success" %} class="alert alert-success" {% else %} class="alert alert-danger" {% endif %}>{{ message }}</p>
+
+            {% endfor %}
+    </div>
+    </div>
+    {% else %}
+    <p class="alert alert-info">{{order}}</p>
+    <img src="/static/input_data/img/formatcsv.png" class="img-fluid" alt="Responsive image">
+    <p class="alert alert-warning">{{order2}}</p>
+    {% endif %}
+    <br>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <label>Update a file </label>
+        <input type="file" name="file">
+        <p>Only accepts CSV files</p>
+        <button type="submit">Upload</button>
+    </form>
+    
+{% endblock contents %}

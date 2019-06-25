@@ -19,29 +19,36 @@
 </div>
 <br>
 <br>
-<div class ='row'>
-        <div class='col-sm-4'>
-                <canvas id="myChartC44satu" width="100" height="100"></canvas>
-        </div> 
-        <div class='col-sm-4'>
-                
-        </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChartC44Dua" width="100" height="100"></canvas>
-        </div> 
+<div class = 'row'>
+        <div class='col-sm-3'>
+                <canvas id="myChart9" width="400" height="400"></canvas>
+        </div>  
+        <div class='col-sm-3'>
+                <canvas id="myChart3" width="400" height="400"></canvas>
+        </div>  
+        <div class='col-sm-3'>
+                <canvas id="myChart7" width="400" height="400"></canvas>
+        </div>  
+        <div class='col-sm-3'>
+                <canvas id="myChart8" width="400" height="400"></canvas>
+        </div>
+
 </div>
+
 <br>
 <br>
-<div class ='row'>
+
+<div class = 'row'>
         <div class='col-sm-4'>
-                <canvas id="myChartC45satu" width="100" height="100"></canvas>
+                <canvas id="myChart4" width="400" height="400"></canvas>
         </div> 
         <div class='col-sm-4'>
-                
+                <canvas id="myChart5" width="400" height="400"></canvas>
         </div> 
         <div class='col-sm-4'>
-                <canvas id="myChartC45Dua" width="100" height="100"></canvas>
-        </div> 
+                <canvas id="myChart6" width="400" height="400"></canvas>
+        </div>
+         
 </div>
 {% endblock contents %}
 
@@ -188,107 +195,372 @@ var myChart2 = new Chart(ctx2, {
     }
 });
 
-var labelC44Satu = ['C441', 'C442', 'C443']
-var dataC44Satu = {{dataC44Satu}}
-var ctx3 = document.getElementById('myChartC44satu').getContext('2d');
-var myCharC44satu = new Chart(ctx3, {
-    type: 'pie',
+var dataPelangganHotel =[all_data_satu[0], all_data_dua[0]]
+var dataPelangganMall =[all_data_satu[1], all_data_dua[1]]
+var dataPelangganApartemen = [all_data_satu[2],all_data_dua[2] ]
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+var tahun = ['2017', '2018']
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+var myChart3 = new Chart(ctx3, {
+    type: 'line',
     data: {
-        labels: labelC44Satu,
+        labels: tahun,
         datasets: [{
-            label: 'tes',
-            data: dataC44Satu,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',            
-            ],
+            label: 'Pelanggan Hotel',
+            data: dataPelangganHotel,
+            backgroundColor: 'rgba(255,255,255, 0.1)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Pelanggan Mall',
+            data: dataPelangganMall,
+            backgroundColor: 'rgba(255,255,255, 0.1)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Pelanggan Apartemen',
+            data: dataPelangganApartemen,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
                 
             ],
             borderWidth: 1
         }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     }
 });
 
-var labelC44Dua = ['C441', 'C442', 'C443']
-var dataC44Dua = {{dataC44Dua}}
-var ctx4 = document.getElementById('myChartC44Dua').getContext('2d');
-var myCharC44Dua = new Chart(ctx4, {
-    type: 'pie',
+var dataPelangganC441 =[all_data_satu[3], all_data_dua[3]]
+var dataPelangganC442 =[all_data_satu[4], all_data_dua[4]]
+var dataPelangganC443 = [all_data_satu[5],all_data_dua[5] ]
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+
+var ctx4 = document.getElementById('myChart4').getContext('2d');
+var myChart4 = new Chart(ctx4, {
+    type: 'line',
     data: {
-        labels: labelC44Dua,
+        labels: tahun,
         datasets: [{
-            label: 'tes',
-            data: dataC44Dua,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',            
-            ],
+            label: 'Produk C441',
+            data: dataPelangganC441,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Produk C442',
+            data: dataPelangganC442,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C443',
+            data: dataPelangganC443,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
                 
             ],
             borderWidth: 1
         }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     }
 });
 
-var labelC45Satu = ['C451', 'C452', 'C453']
-var dataC45Satu = {{dataC45Satu}}
-var ctx5 = document.getElementById('myChartC45satu').getContext('2d');
-var myCharC45satu = new Chart(ctx5, {
-    type: 'doughnut',
+var dataPelangganC451 =[all_data_satu[6], all_data_dua[6]]
+var dataPelangganC452 =[all_data_satu[7], all_data_dua[7]]
+var dataPelangganC453 = [all_data_satu[8],all_data_dua[8] ]
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+
+var ctx5 = document.getElementById('myChart5').getContext('2d');
+var myChart5 = new Chart(ctx5, {
+    type: 'line',
     data: {
-        labels: labelC45Satu,
+        labels: tahun,
         datasets: [{
-            label: 'tes',
-            data: dataC45Satu,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',            
-            ],
+            label: 'Produk C451',
+            data: dataPelangganC451,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Produk C452',
+            data: dataPelangganC452,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C453',
+            data: dataPelangganC453,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
                 
             ],
             borderWidth: 1
         }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     }
 });
 
-var labelC45Dua = ['C451', 'C452', 'C453']
-var dataC45Dua = {{dataC45Dua}}
-var ctx6 = document.getElementById('myChartC45Dua').getContext('2d');
-var myCharC45Dua = new Chart(ctx6, {
-    type: 'doughnut',
+var dataPelangganC461 =[all_data_satu[9], all_data_dua[9]]
+var dataPelangganC462 =[all_data_satu[10], all_data_dua[10]]
+var dataPelangganC463 = [all_data_satu[11],all_data_dua[11]]
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+
+var ctx6 = document.getElementById('myChart6').getContext('2d');
+var myChart6 = new Chart(ctx6, {
+    type: 'line',
     data: {
-        labels: labelC45Dua,
+        labels: tahun,
         datasets: [{
-            label: 'tes',
-            data: dataC45Dua,
-            backgroundColor: [
-                'rgba(255, 99, 132, 0.2)',
-                'rgba(54, 162, 235, 0.2)',
-                'rgba(255, 206, 86, 0.2)',            
-            ],
+            label: 'Produk C461',
+            data: dataPelangganC461,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-                'rgba(54, 162, 235, 1)',
-                'rgba(255, 206, 86, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Produk C462',
+            data: dataPelangganC462,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C463',
+            data: dataPelangganC463,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
                 
             ],
             borderWidth: 1
         }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var dataPelangganPembersihAir =[all_data_satu[12], all_data_dua[12]]
+var dataPelangganPembersihKerak =[all_data_satu[13], all_data_dua[13]]
+var dataPelangganPembersihCoolingTower = [all_data_satu[14],all_data_dua[14] ]
+var dataPelangganPembersihSTP = [all_data_satu[15],all_data_dua[15] ]
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+
+var ctx7 = document.getElementById('myChart7').getContext('2d');
+var myChart7 = new Chart(ctx7, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Jasa Pembersih Air',
+            data: dataPelangganPembersihAir,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',          
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih kerak',
+            data: dataPelangganPembersihKerak,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Jasa Pembersih Cooling Tower',
+            data: dataPelangganPembersihCoolingTower,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Jasa Pembersih STP',
+            data: dataPelangganPembersihSTP,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(32, 242, 25, 11)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var dataPelangganAsamSulfat =[all_data_satu[16], all_data_dua[16]]
+var dataPelangganMolases =[all_data_satu[17], all_data_dua[17]]
+var dataPelangganHCL = [all_data_satu[18],all_data_dua[18] ]
+var dataPelangganABF = [all_data_satu[19],all_data_dua[19] ]
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+
+var ctx8 = document.getElementById('myChart8').getContext('2d');
+var myChart8 = new Chart(ctx8, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Asam Sulfat Terpakai',
+            data: dataPelangganAsamSulfat,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',          
+            ],
+            borderWidth: 1
+        },{
+            label: 'Molases Terpakai',
+            data: dataPelangganMolases,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'HCL Terpakai',
+            data: dataPelangganHCL,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'ABF Terpakai',
+            data: dataPelangganABF,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(32, 242, 25, 11)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx9 = document.getElementById('myChart9').getContext('2d');
+var datapendapatan = [{{pendapatansatu}}, {{pendapatandua}}]
+var myChart9 = new Chart(ctx9, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Pendapatan',
+            data: datapendapatan,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',          
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     }
 });
 

@@ -5,6 +5,8 @@ from django.utils.dates import MONTHS
 import datetime
 import re
 from input_data.models import PenjualanModel
+from django.core.exceptions import ObjectDoesNotExist
+
 RE_DATE = re.compile(r'(\d{4})-(\d\d?)-(\d\d?)$')
 
 
@@ -17,13 +19,19 @@ class MonthYearWidget(Widget):
     
     def __init__(self, attrs=None):
         self.attrs = attrs or {}
-        #pemanggilan tahun dari database
-        years= PenjualanModel.objects.all().order_by('tahun_transaksi')
-        year_int = years[len(years) - 1].tahun_transaksi
-        year_str = str(year_int)
-        year_date = datetime.datetime.strptime(year_str, "%Y").date()
-        this_year = year_date.year
+        #pemanggilan tahun dari databaset
+        try:
+            years= PenjualanModel.objects.all().order_by('tahun_transaksi')
+            if len(years) != 0:
+                year_int = years[len(years) - 1].tahun_transaksi
+                year_str = str(year_int)
+                year_date = datetime.datetime.strptime(year_str, "%Y").date()
+                this_year = year_date.year
+            else:
+                this_year = 2000
         # untuk ganti range tahun
+        except ObjectDoesNotExist:
+            this_year = 2015
         self.years = range(this_year + 1, this_year + 11)
         super(MonthYearWidget, self).__init__(attrs=attrs)
 

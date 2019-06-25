@@ -1,0 +1,41 @@
+.site-form{
+    margin-top: 60px;
+    border: 1px solid;
+    padding: 20px;
+    
+}
+
+.site-form input, .site-form textarea{
+    display: inline;
+    margin: 20px 5px 0 10px;
+    padding: 10px;
+   
+
+}
+
+.helptext, .helptext ul{
+    margin: 0 auto 20px;
+    color: #112211;
+    font-size: 0.9em;
+    display: block;
+}
+
+.errorlist li {
+    padding: 10px;
+    list-style: none;
+    border: 1px solid #ff5722;
+    color: #ff5722;
+    margin: 10px 0;
+}
+
+.errorlist{
+    padding: 0;
+}
+
+.site-form input[type="submit"]{
+    background: #00dba0;
+    border: #fff;
+    font-size: 1.2em;
+    border-radius: 4px;
+    margin: 10px 0;
+}

@@ -1,3 +1,405 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block contents %}
+
+<div class ='row'>
+
+       
+        <div class='col-sm-12'>
+            <canvas id="myChart1" width="400" height="400"></canvas>
+        </div>
+        
+    
+</div>
+
+<br>
+<br>
+<br>
+<div class ='row'>
+    
+        <div class='col-sm-6'>
+            <canvas id="myChart2" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <canvas id="myChart3" width="400" height="400"></canvas>
+        </div> 
+          
+        
+</div>
+<br>
+<br>
+<br>
+<div class ='row'>
+    
+        <div class='col-sm-6'>
+            <canvas id="myChart4" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-6'>
+            <canvas id="myChart5" width="400" height="400"></canvas>
+        </div> 
+          
+        
+</div>
+
+{% endblock contents %}
+
+{% block jquery %}
+<script>
+var pendapatan = {{pendapatan}}
+var bulan  = ['januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember']
+var ctx1 = document.getElementById('myChart1').getContext('2d');
+var myChart1 = new Chart(ctx1, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: '{{labeling}}',
+            data: pendapatan,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Rupiah'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var produk1 = {{jumlah_c441}}
+var produk2 = {{jumlah_c442}}
+var produk3 = {{jumlah_c443}}
+var produk4 = {{jumlah_c451}}
+var produk5 = {{jumlah_c452}}
+var produk6 = {{jumlah_c453}}
+var produk7 = {{jumlah_c461}}
+var produk8 = {{jumlah_c462}}
+var produk9 = {{jumlah_c463}}
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var myChart2 = new Chart(ctx2, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'C441',
+            data: produk1,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C442',
+            data: produk2,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 33, 21, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C443',
+            data: produk3,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(125, 214, 321, 4)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C451',
+            data: produk4,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(1, 255, 132, 4)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C452',
+            data: produk5,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(24, 142, 241, 5)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C453',
+            data: produk6,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(213, 132, 4, 5)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C461',
+            data: produk7,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(42, 133, 42, 12)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C462',
+            data: produk8,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(145,121, 172, 211)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C463',
+            data: produk9,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(142, 133, 64, 76)',
+               
+                
+            ],
+            borderWidth: 1
+        },
+        ]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var client1 = {{jumlah_hotel}}
+var client2 = {{jumlah_mall}}
+var client3 = {{jumlah_apartemen}}
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+var myChart3 = new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jumlah Client Hotel',
+            data: client1,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(33, 244, 132, 3)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jumlah Client Mall',
+            data: client2,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(64, 31, 244, 6)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jumlah Client Apartemen',
+            data: client3,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(167, 111, 211, 6)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var jasa1 = {{jasa_pembersih_air}}
+var jasa2 = {{jasa_pembersih_kerak_sillica}}
+var jasa3 = {{jasa_pembersih_cooling_tower}}
+var jasa4 = {{jasa_pembersih_stp}}
+var ctx4 = document.getElementById('myChart4').getContext('2d');
+var myChart4 = new Chart(ctx4, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jasa Pembersih Air',
+            data: jasa1,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(33, 244, 132, 3)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih Kerak Sillica',
+            data: jasa2,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(64, 31, 244, 6)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih Cooling Tower',
+            data: jasa3,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(167, 111, 211, 6)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih STP',
+            data: jasa4,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(152, 31, 1, 7)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var bahan1 = {{jumlah_asam_sulfat}}
+var bahan2 = {{jumlah_molases}}
+var bahan3 = {{jumlah_hcl}}
+var bahan4 = {{jumlah_abf}}
+var ctx5 = document.getElementById('myChart5').getContext('2d');
+var myChart5 = new Chart(ctx5, {
+    type: 'line',
+    
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Asam Sulfat Terpakai',
+            data: bahan1,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(33, 244, 132, 3)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Molases Terpakai',
+            data: bahan2,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(64, 31, 244, 6)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'HCL Terpakai',
+            data: bahan3,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(167, 111, 211, 6)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'ABF Terpakai',
+            data: bahan4,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(152, 31, 1, 7)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
 
 
+{% endblock jquery %}

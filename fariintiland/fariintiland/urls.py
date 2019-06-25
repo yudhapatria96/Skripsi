@@ -27,6 +27,7 @@ urlpatterns = [
     path('inputdata/', include('input_data.urls', namespace='inputdata')),
     path('forecasting/', include('forecasting.urls', namespace='forecasting')),
     path('komparasi/', include('komparasi.urls', namespace='komparasi')),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
 
 ]
  

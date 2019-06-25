@@ -50,6 +50,30 @@
         </div>
          
 </div>
+<div class = 'row'>
+        <table class="table table-striped table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Selisih Presentase Penjualan </th>
+                  
+                </tr>
+                </thead>
+            
+                <tbody>
+                {% for key, value in infodata.items %}
+                <tr> 
+                    <td>{{forloop.counter}}</td> 
+                    <td>{{ key }}</td>
+                    <td>{{ value }}%</td>
+                    <!-- <td>{{ post.bulan_transaksi }}</td> -->
+            
+               </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+</div>
 {% endblock contents %}
 
 {% block jquery %}
@@ -200,7 +224,8 @@ var dataPelangganMall =[all_data_satu[1], all_data_dua[1]]
 var dataPelangganApartemen = [all_data_satu[2],all_data_dua[2] ]
 var tahunLama = '{{ labeling2 }}'
 var tahunPrediksi = '{{ labeling }}'
-var tahun = ['2017', '2018']
+var tahun = {{tahunall}}
+
 var ctx3 = document.getElementById('myChart3').getContext('2d');
 var myChart3 = new Chart(ctx3, {
     type: 'line',

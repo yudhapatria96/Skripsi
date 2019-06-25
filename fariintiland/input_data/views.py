@@ -6,6 +6,9 @@ from django.contrib.auth.decorators import permission_required
 from . import forms
 from . import models
 from django.db import IntegrityError
+from django.contrib.auth.decorators import login_required
+
+@login_required(login_url="/accounts/login/")
 def index(request):
     post = models.PenjualanModel.objects.all()
     contact_form = forms.ContactForm()
@@ -20,6 +23,7 @@ def index(request):
 
     return render(request, 'inputdata/index.html',context)
 
+@login_required(login_url="/accounts/login/")
 def create(request):
     contact_form = forms.ContactForm(request.POST or None)
     if request.method == 'POST':
@@ -83,6 +87,7 @@ def update(request, update_id):
     return render(request, 'inputdata/input.html', context)
 
 # @permission_required('admin.can_add_log_entry')
+@login_required(login_url="/accounts/login/")
 def inputcsv(request):
   
     prompt = {

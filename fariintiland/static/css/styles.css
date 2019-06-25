@@ -98,3 +98,16 @@ body {
 	border-color: transparent;
 	box-shadow: 0 0 0 3px rgba(255, 255, 255, .25);
   }
+
+.site-form{
+    margin-top: 60px;
+    border: 1px solid;
+    padding: 20px;
+}
+
+.site-form input, .site-form textarea{
+    display: block;
+    margin: 20px 0 0 0;
+    padding: 10px;
+
+}

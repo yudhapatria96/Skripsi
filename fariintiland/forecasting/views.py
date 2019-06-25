@@ -1,10 +1,10 @@
 from django.shortcuts import render, redirect
 from input_data.models import PenjualanModel
-from .models import ForecastingPenjualanModel
 from . import forms
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.core.exceptions import ObjectDoesNotExist
+from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 # from . import forms
@@ -123,7 +123,7 @@ def hitung_forecasting(post, index_tahun, si_x, thismonth, bulan):
     
     return(y_index_musiman)
 
-    
+@login_required(login_url="/accounts/login/")   
 def index(request):
     post = PenjualanModel.objects.all()
  
@@ -139,37 +139,46 @@ def index(request):
                 
     return render(request, 'forecasting/index.html',context)
 
+@login_required(login_url="/accounts/login/")
 def resultForecasting(request):
-    post = PenjualanModel.objects.all()
-    hasilnya = 0
-    thismonth= {
-        '1' : "januari",
-        '2' : "februari",
-        '3' : "maret",
-        '4' : "april",
-        '5' : "mei",
-        '6' : "juni",
-        '7' : "juli",
-        '8' : "agustus",
-        '9' : "september",
-        '10' : "oktober",
-        '11' : "november",
-        '12' : "desember"
-    }
-    try:
-        years= PenjualanModel.objects.all().order_by('tahun_transaksi')
-        year_int = years[len(years) - 1].tahun_transaksi
-    except ObjectDoesNotExist:
-        year_int = 0
-    index_tahun = 0
-    y_index_musiman = []
-    labels = []
-    hasilnya = 0
-    pendapatanpredict = 0
-    pendapatanasli = 0
-    data_tahun_sebelumnya = []
-    data_all_tahun_sebelumnya = []
+    
     if request.method == 'POST':
+        post = PenjualanModel.objects.all()
+        hasilnya = 0
+        thismonth= {
+            '1' : "januari",
+            '2' : "februari",
+            '3' : "maret",
+            '4' : "april",
+            '5' : "mei",
+            '6' : "juni",
+            '7' : "juli",
+            '8' : "agustus",
+            '9' : "september",
+            '10' : "oktober",
+            '11' : "november",
+            '12' : "desember"
+        }
+        try:
+            years= PenjualanModel.objects.all().order_by('tahun_transaksi')
+            year_int = years[len(years) - 1].tahun_transaksi
+        except ObjectDoesNotExist:
+            year_int = 0
+        index_tahun = 0
+        y_index_musiman = []
+        labels = []
+        hasilnya = []
+        pendapatanpredict = 0
+        pendapatanasli = 0
+        data_tahun_sebelumnya = []
+        data_all_tahun_sebelumnya = []
+        panjangdata = 0
+        presentasidata = []
+        selisihdata = 0
+        infodata = {}
+        hitungmape= []
+        y = 0
+        z= 0
         bulan = request.POST['bulan_dan_tahun_prediksi_month'] 
         tahun = request.POST['bulan_dan_tahun_prediksi_year']   
         if(bulan != '0' and tahun != '0'):
@@ -177,7 +186,8 @@ def resultForecasting(request):
             si_x = index_tahun + (int(request.POST['bulan_dan_tahun_prediksi_month'] ))
             hasilnya=(hitung_forecasting(post, index_tahun, si_x, thismonth, bulan))
             pendapatanpredict = hasilnya[-1]
-            del hasilnya[-1]
+            #terakhir ngitung mape
+            
         else:
             return redirect('forecasting:index')
         try:
@@ -189,16 +199,25 @@ def resultForecasting(request):
             data_tahun_sebelumnya.jasa_pembersih_cooling_tower, data_tahun_sebelumnya.jasa_pembersih_stp, data_tahun_sebelumnya.jumlah_asam_sulfat,
             data_tahun_sebelumnya.jumlah_molases, data_tahun_sebelumnya.jumlah_hcl, data_tahun_sebelumnya.jumlah_abf, data_tahun_sebelumnya.pendapatan]
             pendapatanasli = data_all_tahun_sebelumnya[-1]
-            del data_all_tahun_sebelumnya[-1]
+            
         except ObjectDoesNotExist:
             data_tahun_sebelumnya = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
+        if len(hasilnya) != 0 :
+            for y in range(len(hasilnya)-1):
+                selisihdata = round((hasilnya[y] - data_all_tahun_sebelumnya[y])/data_all_tahun_sebelumnya[y], 3)
+                presentasidata.append(selisihdata)
         labeling = "Hasil Prediksi Penjualan pada bulan " +thismonth[bulan]+ " tahun " + tahun    
         labeling2 = "Hasil Penjualan pada bulan " + thismonth[bulan] + " tahun " + str(year_int)
         tahunpredict = int(tahun)
         tahunprediksii = [ year_int,tahunpredict]
+        del hasilnya[-1]
+        del data_all_tahun_sebelumnya[-1]    
         
-    context = {
+        informasidata = ["jumlah client hotel", "jumlah client mall", "jumlah client apartemen", "C441 Terjual", "C442 Terjual", "C443 Terjual", "C451 Terjual", "C452 Terjual", "C453 Terjual", "C461 Terjual", "C462 Terjual", "C463 Terjual", "Jasa Pembersih Air", "Jasa Pembersih Kerak Sillica", "Jasa Pembersih Cooling Tower", "Jasa Pembersih STP", "Asam Sulfat Terpakai", "Molases Terpakai", "HCL Terpakai", "ABF Terpakai", "pendapatan"]           
+        infodata = dict([informasidata[z], presentasidata[z]] for z in range(len(informasidata)-1))
+        
+        context = {
         'heading':'Forecasting',
         'datas': hasilnya,
         'data_sebelumnya': data_all_tahun_sebelumnya,
@@ -207,10 +226,14 @@ def resultForecasting(request):
         'tahunprediksii': tahunprediksii,
         'pendapatanasli': pendapatanasli,
         'pendapatanpredict': pendapatanpredict,
+        'infodata': infodata,
         # 'data_form':contact_form,
         # 'posts' : post,
 
-    }
+         }
+    else:
+       return redirect('forecasting:index')
+    
     return render(request, 'forecasting/forecasting.html', context)
 
 # class ListForecasting(APIView):

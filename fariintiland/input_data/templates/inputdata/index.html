@@ -1,13 +1,21 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% block app_css %}
+<link rel="stylesheet" type="text/css"
+		href="{% static 'input_data/css/styles.css' %}"> 
+{% endblock app_css %}
 
 {% block contents %}
+<div class = 'row'>
 <!-- <a class="nav-link" >Input Data</a></button> -->
+
 <a href="{% url "input_data:input"%}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Input Data</a>
+
+
+
 <a href="{% url "input_data:inputcsv"%}" class="btn btn-secondary btn-lg active" role="button" aria-pressed="true">Input Data CSV</a>
 
-<br>
+
 <table class="table table-striped table-dark">
     <thead>
     <tr>
@@ -75,6 +83,7 @@
     {% endfor %}
     </tbody>
 </table>
+</div>
 {% endblock contents %}
 
    

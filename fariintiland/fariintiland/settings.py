@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'input_data',
     'forecasting',
     'komparasi',
+    'accounts',
     'rest_framework',
 ]
 

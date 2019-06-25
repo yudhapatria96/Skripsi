@@ -49,6 +49,34 @@
         </div>  
 </div>
 
+<br>
+<br>
+
+<div class = 'row'>
+        <table class="table table-striped table-dark">
+                <thead>
+                <tr>
+                    <th scope="col">No</th>
+                    <th scope="col">Data</th>
+                    <th scope="col">Persentase Penjualan Setelah Prediksi</th>
+                  
+                </tr>
+                </thead>
+            
+                <tbody>
+                {% for key, value in infodata.items %}
+                <tr> 
+                    <td>{{forloop.counter}}</td> 
+                    <td>{{ key }}</td>
+                    <td>{{ value }}%</td>
+                    <!-- <td>{{ post.bulan_transaksi }}</td> -->
+            
+               </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+</div>
+
 {% endblock contents %}
 
 {% block jquery %}
@@ -212,8 +240,8 @@ var myChart2 = new Chart(ctx2, {
 });
 
 var dataPelangganHotel =[all_data_lama[0], all_data[0]]
-var dataPelangganMall =[all_data[1], all_data_lama[1]]
-var dataPelangganApartemen = [all_data[2],all_data_lama[2] ]
+var dataPelangganMall =[ all_data_lama[1], all_data[1]]
+var dataPelangganApartemen = [all_data_lama[2], all_data[2] ]
 var tahunLama = '{{ labeling2 }}'
 var tahunPrediksi = '{{ labeling }}'
 
@@ -266,8 +294,8 @@ var myChart3 = new Chart(ctx3, {
 });
 
 var dataPelangganC441 =[all_data_lama[3], all_data[3]]
-var dataPelangganC442 =[all_data[4], all_data_lama[4]]
-var dataPelangganC443 = [all_data[5],all_data_lama[5] ]
+var dataPelangganC442 =[all_data_lama[4],all_data[4] ]
+var dataPelangganC443 =[all_data_lama[5],all_data[5] ]
 var tahunLama = '{{ labeling2 }}'
 var tahunPrediksi = '{{ labeling }}'
 
@@ -320,8 +348,8 @@ var myChart4 = new Chart(ctx4, {
 });
 
 var dataPelangganC451 =[all_data_lama[6], all_data[6]]
-var dataPelangganC452 =[all_data[7], all_data_lama[7]]
-var dataPelangganC453 = [all_data[8],all_data_lama[8] ]
+var dataPelangganC452 =[all_data_lama[7],all_data[7] ]
+var dataPelangganC453 =[all_data_lama[8],all_data[8] ]
 var tahunLama = '{{ labeling2 }}'
 var tahunPrediksi = '{{ labeling }}'
 
@@ -374,8 +402,8 @@ var myChart5 = new Chart(ctx5, {
 });
 
 var dataPelangganC461 =[all_data_lama[9], all_data[9]]
-var dataPelangganC462 =[all_data[10], all_data_lama[10]]
-var dataPelangganC463 = [all_data[11],all_data_lama[11] ]
+var dataPelangganC462 =[all_data_lama[10],all_data[10] ]
+var dataPelangganC463 =[all_data_lama[11],all_data[11] ]
 var tahunLama = '{{ labeling2 }}'
 var tahunPrediksi = '{{ labeling }}'
 
@@ -428,9 +456,9 @@ var myChart6 = new Chart(ctx6, {
 });
 
 var dataPelangganPembersihAir =[all_data_lama[12], all_data[12]]
-var dataPelangganPembersihKerak =[all_data[13], all_data_lama[13]]
-var dataPelangganPembersihCoolingTower = [all_data[14],all_data_lama[14] ]
-var dataPelangganPembersihSTP = [all_data[15],all_data_lama[15] ]
+var dataPelangganPembersihKerak =[all_data_lama[13],all_data[13] ]
+var dataPelangganPembersihCoolingTower = [all_data_lama[14], all_data[14] ]
+var dataPelangganPembersihSTP = [all_data_lama[15], all_data[15] ]
 var tahunLama = '{{ labeling2 }}'
 var tahunPrediksi = '{{ labeling }}'
 
@@ -491,9 +519,9 @@ var myChart7 = new Chart(ctx7, {
 });
 
 var dataPelangganAsamSulfat =[all_data_lama[16], all_data[16]]
-var dataPelangganMolases =[all_data[17], all_data_lama[17]]
-var dataPelangganHCL = [all_data[18],all_data_lama[18] ]
-var dataPelangganABF = [all_data[19],all_data_lama[19] ]
+var dataPelangganMolases =[all_data_lama[17], all_data[17] ]
+var dataPelangganHCL = [   all_data_lama[18], all_data[18]     ]
+var dataPelangganABF =    [all_data_lama[19], all_data[19]     ]
 var tahunLama = '{{ labeling2 }}'
 var tahunPrediksi = '{{ labeling }}'
 

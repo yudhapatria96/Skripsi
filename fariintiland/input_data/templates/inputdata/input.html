@@ -1,11 +1,26 @@
 {% extends 'base.html' %}
 {% load static %}
-
+{% load crispy_forms_tags %}
 
 {% block contents %}
 <form method="POST">
     {% csrf_token %}
-    <!-- <div class="form-group">
+   
+
+   
+            {{contact_form|crispy}}
+    
+    
+   
+    
+    <button type ="Submit">Submit</button>
+
+</form>
+{% endblock contents %}
+
+   
+
+		 <!-- <div class="form-group">
         {{data_form.tanggal_field.label_tag}}
         {{data_form.bulan_transaksi}}
        
@@ -110,18 +125,3 @@
         {{data_form.abf_field.label_tag}}
         {{data_form.abf_field}}         
     </div> -->
-
-    <table>
-            {{contact_form.as_table}}
-    </table>
-    
-   
-    
-    <button type ="Submit">Submit</button>
-
-</form>
-{% endblock contents %}
-
-   
-
-		

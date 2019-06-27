@@ -31,7 +31,7 @@ def create(request):
             contact_form.save()
 
 
-        return redirect('input_data:index')
+            return redirect('input_data:index')
         # models.PenjualanModel.objects.create(
         #     bulan_transaksi = request.POST['tanggal_field_month'],
         #     tahun_transaksi = request.POST['tanggal_field_year'],

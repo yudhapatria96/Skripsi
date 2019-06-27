@@ -1,10 +1,11 @@
 from django import forms
-
-from . import models
+from . import widgets
+from .models import PenjualanModel
 class ContactForm(forms.ModelForm):
   class Meta:
-    model = models.PenjualanModel
+    model = PenjualanModel
     TAHUN= range(2000, 2050, 1)
+    
     fields = [
 'bulan_transaksi',        
 'tahun_transaksi',
@@ -30,11 +31,10 @@ class ContactForm(forms.ModelForm):
 'jumlah_abf',
 'pendapatan',
     ]
-    widgets = {
-            'bulan_transaksi': forms.DateInput(format=('%d-%m-%Y'), 
-                                             attrs={'class':'myDateClass', 
-                                            'placeholder':'Select a date'})
+    help_texts = {
+            'Jumlah hotel': ('Some useful help text.'),
         }
+  
 #     widget ={
 #     tanggal_field = forms.DateField(
 #         label = "Tanggal_Transaksi",

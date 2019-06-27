@@ -2,10 +2,16 @@
 {% load static %}
 
 {% block contents %}
-<form action="{% url 'forecasting:resultforecasting' %}" method="POST">
-    {% csrf_token %}
-{{ dating_form }}
-<button type ="Submit">Submit</button>
-</form>
+
+<div class="card bg-success text-white">
+        <div class="card-body">
+                <form action="{% url 'forecasting:resultforecasting' %}" method="POST">
+                        {% csrf_token %}
+                    {{ dating_form }}
+                    <button type ="Submit">Submit</button>
+                    </form>
+        </div>
+      </div>
+
 
 {% endblock contents %}

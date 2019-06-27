@@ -553,7 +553,7 @@ def resultForecasting(request):
             si_y = index_tahun + (int(request.POST['bulan_dan_tahun_prediksi_month'] )) - 1
             hasilnya=(hitung_forecasting(post, index_tahun, si_x, thismonth, bulan))
             hasilsebelumnya=(hitung_forecasting(post, index_tahun, si_x, thismonth, bulan))
-            tahuntahunsebelumnya = int(tahun) - 1
+            tahuntahunsebelumnya = year_int
             testhasilmape = hitung_forecasting_tahun_sebelumnya(post, index_tahun, si_x, tahuntahunsebelumnya)
             pendapatanpredict = hasilnya[-1]
             #terakhir ngitung mape
@@ -603,7 +603,7 @@ def resultForecasting(request):
         'pendapatanasli': pendapatanasli,
         'pendapatanpredict': pendapatanpredict,
         'infodata': infodata,
-        
+        'tahunterakhir': year_int,
         # 'data_form':contact_form,
         # 'posts' : post,
 

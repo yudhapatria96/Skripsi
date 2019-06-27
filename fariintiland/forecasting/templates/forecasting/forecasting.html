@@ -59,7 +59,8 @@
                     <th scope="col">No</th>
                     <th scope="col">Data</th>
                     <th scope="col">Persentase Penjualan Setelah Prediksi</th>
-                  
+                    <th scope="col">Rata-Rata Persentase Kesalahan Prediksi Tahun Sebelumnya</th>
+
                 </tr>
                 </thead>
             
@@ -68,11 +69,12 @@
                 <tr> 
                     <td>{{forloop.counter}}</td> 
                     <td>{{ key }}</td>
-                    <td>{{ value }}%</td>
-                    <!-- <td>{{ post.bulan_transaksi }}</td> -->
-            
+                    {% for values in value %}
+                    <td>{{ values }}%</td>
+                    {% endfor %}
                </tr>
                 {% endfor %}
+               
                 </tbody>
             </table>
 </div>

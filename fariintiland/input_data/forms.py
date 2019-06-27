@@ -30,6 +30,11 @@ class ContactForm(forms.ModelForm):
 'jumlah_abf',
 'pendapatan',
     ]
+    widgets = {
+            'bulan_transaksi': forms.DateInput(format=('%d-%m-%Y'), 
+                                             attrs={'class':'myDateClass', 
+                                            'placeholder':'Select a date'})
+        }
 #     widget ={
 #     tanggal_field = forms.DateField(
 #         label = "Tanggal_Transaksi",

@@ -1,0 +1,1063 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block app_css %}
+
+{% endblock app_css %}
+
+{% block contents %}
+
+<div class = 'row'>
+        <div class='col-sm-12'>
+                <canvas id="myChart21" width="400" height="400"></canvas>
+        </div>  
+</div>
+<br>
+<br>
+<div class ='row'>
+    
+        <div class='col-sm-4'>
+            <canvas id="myChart" width="400" height="400"></canvas>
+        </div>
+        <div class='col-sm-4'>
+                <canvas id="myChart2" width="400" height="400"></canvas>
+            </div>
+        <div class='col-sm-4'>
+            <canvas id="myChart3" width="400" height="400"></canvas>
+        </div>         
+</div>
+
+
+<br>
+<br>
+
+<div class = 'row'>
+        <div class='col-sm-4'>
+                <canvas id="myChart4" width="400" height="400"></canvas>
+        </div> 
+        <div class='col-sm-4'>
+                <canvas id="myChart5" width="400" height="400"></canvas>
+        </div> 
+        <div class='col-sm-4'>
+                <canvas id="myChart6" width="400" height="400"></canvas>
+        </div>
+         
+</div>
+
+<br>
+<br>
+
+<div class = 'row'>
+        <div class='col-sm-4'>
+                <canvas id="myChart7" width="400" height="400"></canvas>
+        </div> 
+        <div class='col-sm-4'>
+                <canvas id="myChart8" width="400" height="400"></canvas>
+        </div> 
+        <div class='col-sm-4'>
+                <canvas id="myChart9" width="400" height="400"></canvas>
+        </div>
+         
+</div>
+
+<br>
+<br>
+
+<div class = 'row'>
+        <div class='col-sm-4'>
+                <canvas id="myChart10" width="400" height="400"></canvas>
+        </div> 
+        <div class='col-sm-4'>
+                <canvas id="myChart11" width="400" height="400"></canvas>
+        </div> 
+        <div class='col-sm-4'>
+                <canvas id="myChart12" width="400" height="400"></canvas>
+        </div>
+         
+</div>
+
+<br>
+<br>
+
+<div class = 'row'>
+        <div class='col-sm-4'>
+                <canvas id="myChart13" width="400" height="400"></canvas>
+        </div> 
+        <div class='col-sm-4'>
+                <canvas id="myChart14" width="400" height="400"></canvas>
+        </div> 
+        <div class='col-sm-4'>
+                <canvas id="myChart15" width="400" height="400"></canvas>
+        </div>
+         
+</div>
+
+<br>
+<br>
+
+<div class = 'row'>
+        <div class='col-sm-4'>
+                <canvas id="myChart16" width="400" height="400"></canvas>
+        </div> 
+        <div class='col-sm-4'>
+                <canvas id="myChart17" width="400" height="400"></canvas>
+        </div> 
+        <div class='col-sm-4'>
+                <canvas id="myChart18" width="400" height="400"></canvas>
+        </div>
+         
+</div>
+<br>
+<br>
+<div class = 'row'>
+        <div class='col-sm-4'>
+                <canvas id="myChart19" width="400" height="400"></canvas>
+        </div>  
+        <div class='col-sm-4'>
+        </div>  
+        <div class='col-sm-4'>  
+                <canvas id="myChart20" width="400" height="400"></canvas>
+
+        </div>  
+       
+        
+</div>
+
+<label>Tabel Selisih Persentase Penjualan Tahun {{tahunsatu}} dan {{tahundua}}</label>
+<div class = 'row'>
+    <table class="table table-striped table-dark">
+            <thead>
+            <tr>
+                <th scope="col">No</th>
+                <th scope="col">Data</th>
+                <th scope="col">Januari</th>
+                <th scope="col">Februari</th>
+                <th scope="col">Maret</th>
+                <th scope="col">April</th>
+                <th scope="col">Mei</th>
+                <th scope="col">Juni</th>
+                <th scope="col">Juli</th>
+                <th scope="col">Agustus</th>
+                <th scope="col">September</th>
+                <th scope="col">Oktober</th>
+                <th scope="col">November</th>
+                <th scope="col">Desember</th>
+
+            </tr>
+            </thead>
+        
+            <tbody>
+            {% for key, value in infodata.items %}
+            <tr> 
+                <td>{{forloop.counter}}</td> 
+                <td>{{ key }}</td>
+                {% for values in value %}
+                    <td>{{ values }}%</td>
+                {% endfor %}
+                <!-- <td>{{ post.bulan_transaksi }}</td> -->
+        
+           </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+</div>
+<label>Note: tanda -(minus) pada tabel mengartikan bahwa terjadi penurunan pada penjualan tersebut</label>
+
+{% endblock contents %}
+{% block jquery %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script>
+bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktomber', 'November', 'Desember']
+var tahun = {{tahunall}}
+var datasatu = {{semuasatu}}
+var datadua = {{semuadua}}
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Pelanggan Hotel Tahun ' + tahun[0],
+            data: datasatu[0],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Pelanggan Hotel Tahun ' + tahun[1],
+            data: datadua[0],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                   
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var myChart2 = new Chart(ctx2, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Pelanggan Mall Tahun ' + tahun[0],
+            data: datasatu[1],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Pelanggan Mall Tahun ' + tahun[1],
+            data: datadua[1],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+var myChart3 = new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Pelanggan Apartemen Tahun ' + tahun[0],
+            data: datasatu[2],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Pelanggan Apartemen Tahun ' + tahun[1],
+            data: datadua[2],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx4 = document.getElementById('myChart4').getContext('2d');
+var myChart4 = new Chart(ctx4, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Penjaulan C441 Tahun ' + tahun[0],
+            data: datasatu[3],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Penjaulan C441 Tahun ' + tahun[1],
+            data: datadua[3],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                  
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx5 = document.getElementById('myChart5').getContext('2d');
+var myChart5 = new Chart(ctx5, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Penjaulan C442 Tahun ' + tahun[0],
+            data: datasatu[4],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Penjaulan C442 Tahun ' + tahun[1],
+            data: datadua[4],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx6 = document.getElementById('myChart6').getContext('2d');
+var myChart6 = new Chart(ctx6, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Penjaulan C443 Tahun ' + tahun[0],
+            data: datasatu[5],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Penjaulan C443 Tahun ' + tahun[1],
+            data: datadua[5],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+var ctx7 = document.getElementById('myChart7').getContext('2d');
+var myChart7 = new Chart(ctx7, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Penjaulan C451 Tahun ' + tahun[0],
+            data: datasatu[6],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Penjaulan C451 Tahun ' + tahun[1],
+            data: datadua[6],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                  
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx8 = document.getElementById('myChart8').getContext('2d');
+var myChart8 = new Chart(ctx8, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Penjaulan C452 Tahun ' + tahun[0],
+            data: datasatu[7],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Penjaulan C452 Tahun ' + tahun[1],
+            data: datadua[7],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx9 = document.getElementById('myChart9').getContext('2d');
+var myChart9 = new Chart(ctx9, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Penjaulan C453 Tahun ' + tahun[0],
+            data: datasatu[8],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Penjaulan C453 Tahun ' + tahun[1],
+            data: datadua[8],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx10 = document.getElementById('myChart10').getContext('2d');
+var myChart10 = new Chart(ctx10, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Penjaulan C461 Tahun ' + tahun[0],
+            data: datasatu[9],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Penjaulan C461 Tahun ' + tahun[1],
+            data: datadua[9],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx11 = document.getElementById('myChart11').getContext('2d');
+var myChart11= new Chart(ctx11, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Penjaulan C462 Tahun ' + tahun[0],
+            data: datasatu[10],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Penjaulan C462 Tahun ' + tahun[1],
+            data: datadua[10],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                  
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx12 = document.getElementById('myChart12').getContext('2d');
+var myChart12 = new Chart(ctx12, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Penjaulan C463 Tahun ' + tahun[0],
+            data: datasatu[11],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Penjaulan C463 Tahun ' + tahun[1],
+            data: datadua[11],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx13 = document.getElementById('myChart13').getContext('2d');
+var myChart13 = new Chart(ctx13, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jasa Pembersih Air Tahun ' + tahun[0],
+            data: datasatu[12],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih Air Tahun ' + tahun[1],
+            data: datadua[12],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx14 = document.getElementById('myChart14').getContext('2d');
+var myChart14= new Chart(ctx14, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jasa Pembersih Kerak Sillica Tahun ' + tahun[0],
+            data: datasatu[13],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih Kerak Sillica Tahun ' + tahun[1],
+            data: datadua[13],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx15 = document.getElementById('myChart15').getContext('2d');
+var myChart15 = new Chart(ctx15, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jasa Pembersih Cooling Tower Tahun ' + tahun[0],
+            data: datasatu[14],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih Cooling Tower Tahun ' + tahun[1],
+            data: datadua[14],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                   
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+var ctx16 = document.getElementById('myChart16').getContext('2d');
+var myChart16 = new Chart(ctx16, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jasa Pembersih STP Tahun ' + tahun[0],
+            data: datasatu[15],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih STP Tahun ' + tahun[1],
+            data: datadua[15],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx17 = document.getElementById('myChart17').getContext('2d');
+var myChart17 = new Chart(ctx17, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jumlah Asam Sulfat Tahun ' + tahun[0],
+            data: datasatu[16],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jumlah Asam Sulfat Tahun ' + tahun[1],
+            data: datadua[16],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                   
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx18 = document.getElementById('myChart18').getContext('2d');
+var myChart18= new Chart(ctx18, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jumlah Molases Tahun ' + tahun[0],
+            data: datasatu[17],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jumlah Molases Tahun ' + tahun[1],
+            data: datadua[17],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                   
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx19 = document.getElementById('myChart19').getContext('2d');
+var myChart19 = new Chart(ctx19, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jumlah HCL Tahun ' + tahun[0],
+            data: datasatu[18],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jumlah HCL Tahun ' + tahun[1],
+            data: datadua[18],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+var ctx20 = document.getElementById('myChart20').getContext('2d');
+var myChart20 = new Chart(ctx20, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jumlah ABF Tahun ' + tahun[0],
+            data: datasatu[19],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jumlah ABF Tahun ' + tahun[1],
+            data: datadua[19],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx21 = document.getElementById('myChart21').getContext('2d');
+var myChart21 = new Chart(ctx21, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Pendapatan Tahun ' + tahun[0],
+            data: datasatu[20],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Pendapatan Tahun ' + tahun[1],
+            data: datadua[20],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Rupiah'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+{% endblock jquery %}

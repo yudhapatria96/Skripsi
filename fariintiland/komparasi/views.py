@@ -20,6 +20,21 @@ def index(request):
     return render(request, 'komparasi/index.html',context)
 
 @login_required(login_url="/accounts/login/")
+def indextahun(request):
+
+    post_tahun = PenjualanModel.objects.values_list('tahun_transaksi', flat=True).distinct()
+
+    
+    context = {
+        'heading':'Forecasting',
+        'tahun': post_tahun,
+        
+    } 
+  
+                
+    return render(request, 'komparasi/indextahun.html',context)
+
+@login_required(login_url="/accounts/login/")
 def hasilKomparasi(request):
 
     if request.method == 'POST':
@@ -90,6 +105,7 @@ def hasilKomparasi(request):
             if len(datatahunsatu) !=0:
                 for y in range(len(datatahunsatu)-1):
                     selisihdata = round((datatahundua[y] - datatahunsatu[y])/datatahunsatu[y], 3)
+                    selisihdata = selisihdata * 100
                     dataall.append(selisihdata)
             del datatahunsatu[-1]
             del datatahundua[-1]
@@ -128,3 +144,195 @@ def hasilKomparasi(request):
         return redirect('komparasi:index')
                 
     return render(request, 'komparasi/komparasi.html',context)
+
+@login_required(login_url="/accounts/login/")
+def hasilKomparasiTahun(request):
+
+    if request.method == 'POST':
+        tahunsatu = request.POST['tahunsatu']  
+        tahundua = request.POST['tahundua']
+        datatahunsatu = []
+        datatahundua  = []
+        dataPelangganSatu = []
+        dataPelangganDua = []
+        dataC44Satu = []
+        dataC44Dua = []
+        dataC45Satu = []
+        dataC45Dua = []
+        dataC46Satu = []
+        dataC46Dua = []
+        dataJasaSatu = []
+        dataJasaDua = []
+        dataBahanSatu = []
+        dataBahanDua = []
+        tahunall = []
+        labeling1 = ""
+        labeling2 = ""
+        pendapatansatu = 0
+        pendapatandua = 0
+        dataall = []
+        selisihdata = 0
+        y= 0
+        jumlah_hotel = []
+        jumlah_mall = []
+        jumlah_apartemen = []
+        jumlah_c441 = []
+        jumlah_c442 = []
+        jumlah_c443 = []
+        jumlah_c451 = []
+        jumlah_c452 = []
+        jumlah_c453 = []
+        jumlah_c461 = []
+        jumlah_c462 = []
+        jumlah_c463 = []
+        jasa_pembersih_air = []
+        jasa_pembersih_kerak_sillica = []
+        jasa_pembersih_cooling_tower = []
+        jasa_pembersih_stp = []
+        jumlah_asam_sulfat = []
+        jumlah_molases = []
+        jumlah_hcl = []
+        jumlah_abf = []
+        pendapatan = []
+        bulan_tertentu = []
+        semua = []   
+        semuasatu = []
+        semuasatusatu = []
+        semuadua = []
+        semuaduadua = []     
+        semuaselisihdata = []    
+        if  tahunsatu != "0"  and tahundua != "0":
+            try:
+                datasatu = PenjualanModel.objects.filter(tahun_transaksi = tahunsatu)
+                
+                for posts in datasatu:
+                    jumlah_hotel.append(posts.jumlah_hotel)
+                    jumlah_mall.append(posts.jumlah_mall)
+                    jumlah_apartemen.append(posts.jumlah_apartemen)
+                    jumlah_c441.append(posts.jumlah_C441)
+                    jumlah_c442.append(posts.jumlah_C442)
+                    jumlah_c443.append(posts.jumlah_C443)
+                    jumlah_c451.append(posts.jumlah_C451)
+                    jumlah_c452.append(posts.jumlah_C452)
+                    jumlah_c453.append(posts.jumlah_C453)
+                    jumlah_c461.append(posts.jumlah_C461)
+                    jumlah_c462.append(posts.jumlah_C462)
+                    jumlah_c463.append(posts.jumlah_C463)
+                    jasa_pembersih_air.append(posts.jasa_pembersih_air)
+                    jasa_pembersih_kerak_sillica.append(posts.jasa_pembersih_kerak_sillica)  
+                    jasa_pembersih_cooling_tower.append(posts.jasa_pembersih_cooling_tower)
+                    jasa_pembersih_stp.append(posts.jasa_pembersih_stp)
+                    jumlah_asam_sulfat.append(posts.jumlah_asam_sulfat)
+                    jumlah_molases.append(posts.jumlah_molases)
+                    jumlah_hcl.append(posts.jumlah_hcl)
+                    jumlah_abf.append(posts.jumlah_abf)
+                    pendapatan.append(posts.pendapatan)
+                    bulan_tertentu.append(posts.bulan_transaksi)     
+                semuasatu = [jumlah_hotel, jumlah_mall,jumlah_apartemen,jumlah_c441,jumlah_c442,
+                jumlah_c443,jumlah_c451,jumlah_c452,jumlah_c453,jumlah_c461,jumlah_c462,jumlah_c463,
+                jasa_pembersih_air,
+                jasa_pembersih_kerak_sillica,
+                jasa_pembersih_cooling_tower,
+                jasa_pembersih_stp,
+                jumlah_asam_sulfat,
+                jumlah_molases,
+                jumlah_hcl,
+                jumlah_abf, pendapatan]
+                      
+                
+                print(semuasatusatu) 
+                    # tahunall=[int(tahunsatu),int(tahundua)]
+            except ObjectDoesNotExist:
+                datatahunsatu = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+            try:
+                datadua             = PenjualanModel.objects.filter(tahun_transaksi = tahundua)
+                jumlah_hotel = []
+                jumlah_mall = []
+                jumlah_apartemen = []
+                jumlah_c441 = []
+                jumlah_c442 = []
+                jumlah_c443 = []
+                jumlah_c451 = []
+                jumlah_c452 = []
+                jumlah_c453 = []
+                jumlah_c461 = []
+                jumlah_c462 = []
+                jumlah_c463 = []
+                jasa_pembersih_air = []
+                jasa_pembersih_kerak_sillica = []
+                jasa_pembersih_cooling_tower = []
+                jasa_pembersih_stp = []
+                jumlah_asam_sulfat = []
+                jumlah_molases = []
+                jumlah_hcl = []
+                jumlah_abf = []
+                pendapatan = []
+                for posts in datadua:
+                    jumlah_hotel.append(posts.jumlah_hotel)
+                    jumlah_mall.append(posts.jumlah_mall)
+                    jumlah_apartemen.append(posts.jumlah_apartemen)
+                    jumlah_c441.append(posts.jumlah_C441)
+                    jumlah_c442.append(posts.jumlah_C442)
+                    jumlah_c443.append(posts.jumlah_C443)
+                    jumlah_c451.append(posts.jumlah_C451)
+                    jumlah_c452.append(posts.jumlah_C452)
+                    jumlah_c453.append(posts.jumlah_C453)
+                    jumlah_c461.append(posts.jumlah_C461)
+                    jumlah_c462.append(posts.jumlah_C462)
+                    jumlah_c463.append(posts.jumlah_C463)
+                    jasa_pembersih_air.append(posts.jasa_pembersih_air)
+                    jasa_pembersih_kerak_sillica.append(posts.jasa_pembersih_kerak_sillica)  
+                    jasa_pembersih_cooling_tower.append(posts.jasa_pembersih_cooling_tower)
+                    jasa_pembersih_stp.append(posts.jasa_pembersih_stp)
+                    jumlah_asam_sulfat.append(posts.jumlah_asam_sulfat)
+                    jumlah_molases.append(posts.jumlah_molases)
+                    jumlah_hcl.append(posts.jumlah_hcl)
+                    jumlah_abf.append(posts.jumlah_abf)
+                    pendapatan.append(posts.pendapatan)
+                    bulan_tertentu.append(posts.bulan_transaksi)   
+                semuadua = [jumlah_hotel, jumlah_mall,jumlah_apartemen,jumlah_c441,jumlah_c442,
+                jumlah_c443,jumlah_c451,jumlah_c452,jumlah_c453,jumlah_c461,jumlah_c462,jumlah_c463,
+                jasa_pembersih_air,
+                jasa_pembersih_kerak_sillica,
+                jasa_pembersih_cooling_tower,
+                jasa_pembersih_stp,
+                jumlah_asam_sulfat,
+                jumlah_molases,
+                jumlah_hcl,
+                jumlah_abf, pendapatan]    
+                    
+            except ObjectDoesNotExist:
+                datatahundua = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+            
+            tahunall=[int(tahunsatu),int(tahundua)]
+        else:
+            return redirect('komparasi:index')
+        y = 0
+        z = 0
+        if len(semuasatu) != 0 and len(semuadua) != 0:
+                for y in range(len(semuasatu)-1):
+                    semuasatusatu = semuasatu[y]
+                    semuaduadua  = semuadua[y]
+                    selisihdata = []
+                    selisih = []
+                    for z in range(len(semuasatusatu)):
+                        selisihdata= (round(((semuaduadua[z] - semuasatusatu[z])/semuasatusatu[z]), 3 ))
+                        selisihdata = round(selisihdata * 100 , 3)
+                        selisih.append(selisihdata)
+                    semuaselisihdata.append(selisih)
+                informasidata = ["jumlah client hotel", "jumlah client mall", "jumlah client apartemen", "C441 Terjual", "C442 Terjual", "C443 Terjual", "C451 Terjual", "C452 Terjual", "C453 Terjual", "C461 Terjual", "C462 Terjual", "C463 Terjual", "Jasa Pembersih Air", "Jasa Pembersih Kerak Sillica", "Jasa Pembersih Cooling Tower", "Jasa Pembersih STP", "Asam Sulfat Terpakai", "Molases Terpakai", "HCL Terpakai", "ABF Terpakai", "pendapatan"]           
+                infodata = dict([informasidata[z], semuaselisihdata[z]] for z in range(len(informasidata)-1))        
+        # print(semua[0])
+        context = {
+            'semuasatu': semuasatu,
+            'semuadua': semuadua,
+            'tahunall': tahunall,
+            'infodata': infodata,
+            'tahunsatu' : int(tahunsatu),
+            'tahundua' : int(tahundua),
+        } 
+    else:
+        return redirect('komparasi:index')
+                
+    return render(request, 'komparasi/komparasitahun.html',context)

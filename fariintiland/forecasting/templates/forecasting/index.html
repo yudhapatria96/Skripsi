@@ -1,9 +1,13 @@
 {% extends 'base.html' %}
 {% load static %}
+{% block app_css %}
+<link rel="stylesheet" type="text/css"
+		href="{% static "forecasting/css/styles.css"%}"> 
+{% endblock app_css %}
 
 {% block contents %}
 
-<div class="card bg-success text-white">
+<div class="card text-white">
         <div class="card-body">
                 <form action="{% url 'forecasting:resultforecasting' %}" method="POST">
                         {% csrf_token %}

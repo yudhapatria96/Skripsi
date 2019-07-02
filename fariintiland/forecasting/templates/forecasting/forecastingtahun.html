@@ -1,197 +1,116 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block app_css %}
-
-{% endblock app_css %}
-
 {% block contents %}
-
-<div class = 'row'>
-        <div class='col-sm-12'>
-                <canvas id="myChart21" width="400" height="400"></canvas>
-        </div>  
-</div>
-<br>
-<br>
 <div class ='row'>
     
-        <div class='col-sm-4'>
-            <canvas id="myChart" width="400" height="400"></canvas>
+        <div class='col-sm-12'>
+            <canvas id="myChart21" width="400" height="400"></canvas>
         </div>
+        <!-- <div class='col-sm-6'>
+            <canvas id="myChart2" width="400" height="400"></canvas>
+        </div>  -->
+          
+        <br>
+<br>
+
+
+</div>
+<div class = 'row'>
+        <div class='col-sm-4'>
+                <canvas id="myChart" width="400" height="400"></canvas>
+        </div>  
         <div class='col-sm-4'>
                 <canvas id="myChart2" width="400" height="400"></canvas>
+        </div>  
+        <div class='col-sm-4'>
+                <canvas id="myChart3" width="400" height="400"></canvas>
+        </div> 
+    </div>
+    <div class = 'row'>
+            <div class='col-sm-4'>
+                    <canvas id="myChart4" width="400" height="400"></canvas>
+            </div>  
+            <div class='col-sm-4'>
+                    <canvas id="myChart5" width="400" height="400"></canvas>
+            </div>  
+            <div class='col-sm-4'>
+                    <canvas id="myChart6" width="400" height="400"></canvas>
+            </div> 
+        </div>
+        <div class = 'row'>
+                <div class='col-sm-4'>
+                        <canvas id="myChart7" width="400" height="400"></canvas>
+                </div>  
+                <div class='col-sm-4'>
+                        <canvas id="myChart8" width="400" height="400"></canvas>
+                </div>  
+                <div class='col-sm-4'>
+                        <canvas id="myChart9" width="400" height="400"></canvas>
+                </div> 
             </div>
-        <div class='col-sm-4'>
-            <canvas id="myChart3" width="400" height="400"></canvas>
-        </div>         
-</div>
-
-
-<br>
-<br>
-
-<div class = 'row'>
-        <div class='col-sm-4'>
-                <canvas id="myChart4" width="400" height="400"></canvas>
-        </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart5" width="400" height="400"></canvas>
-        </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart6" width="400" height="400"></canvas>
-        </div>
-         
-</div>
-
-<br>
-<br>
-
-<div class = 'row'>
-        <div class='col-sm-4'>
-                <canvas id="myChart7" width="400" height="400"></canvas>
-        </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart8" width="400" height="400"></canvas>
-        </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart9" width="400" height="400"></canvas>
-        </div>
-         
-</div>
-
-<br>
-<br>
-
-<div class = 'row'>
-        <div class='col-sm-4'>
-                <canvas id="myChart10" width="400" height="400"></canvas>
-        </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart11" width="400" height="400"></canvas>
-        </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart12" width="400" height="400"></canvas>
-        </div>
-         
-</div>
-
-<br>
-<br>
-
-<div class = 'row'>
-        <div class='col-sm-4'>
-                <canvas id="myChart13" width="400" height="400"></canvas>
-        </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart14" width="400" height="400"></canvas>
-        </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart15" width="400" height="400"></canvas>
-        </div>
-         
-</div>
-
-<br>
-<br>
-
-<div class = 'row'>
-        <div class='col-sm-4'>
-                <canvas id="myChart16" width="400" height="400"></canvas>
-        </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart17" width="400" height="400"></canvas>
-        </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart18" width="400" height="400"></canvas>
-        </div>
-         
-</div>
-<br>
-<br>
-<div class = 'row'>
-        <div class='col-sm-4'>
-                <canvas id="myChart19" width="400" height="400"></canvas>
-        </div>  
-        <div class='col-sm-4'>
-        </div>  
-        <div class='col-sm-4'>  
-                <canvas id="myChart20" width="400" height="400"></canvas>
-
-        </div>  
-       
-        
-</div>
-
-<label>Tabel Selisih Persentase Penjualan Tahun {{tahunsatu}} dan {{tahundua}}</label>
-<div class = 'row'>
-    <table class="table table-striped table-dark">
-            <thead>
-            <tr>
-                <th scope="col">No</th>
-                <th scope="col">Data</th>
-                <th scope="col">Januari</th>
-                <th scope="col">Februari</th>
-                <th scope="col">Maret</th>
-                <th scope="col">April</th>
-                <th scope="col">Mei</th>
-                <th scope="col">Juni</th>
-                <th scope="col">Juli</th>
-                <th scope="col">Agustus</th>
-                <th scope="col">September</th>
-                <th scope="col">Oktober</th>
-                <th scope="col">November</th>
-                <th scope="col">Desember</th>
-
-            </tr>
-            </thead>
-        
-            <tbody>
-            {% for key, value in infodata.items %}
-            <tr> 
-                <td>{{forloop.counter}}</td> 
-                <td>{{ key }}</td>
-                {% for values in value %}
-                    <td>{{ values }}%</td>
-                {% endfor %}
-                <!-- <td>{{ post.bulan_transaksi }}</td> -->
-        
-           </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-</div>
-<label>Note: tanda -(minus) pada tabel mengartikan bahwa terjadi penurunan pada penjualan tersebut</label>
-
+            <div class = 'row'>
+                    <div class='col-sm-4'>
+                            <canvas id="myChart10" width="400" height="400"></canvas>
+                    </div>  
+                    <div class='col-sm-4'>
+                            <canvas id="myChart11" width="400" height="400"></canvas>
+                    </div>  
+                    <div class='col-sm-4'>
+                            <canvas id="myChart12" width="400" height="400"></canvas>
+                    </div> 
+                </div>
+                <div class = 'row'>
+                        <div class='col-sm-4'>
+                                <canvas id="myChart13" width="400" height="400"></canvas>
+                        </div>  
+                        <div class='col-sm-4'>
+                                <canvas id="myChart14" width="400" height="400"></canvas>
+                        </div>  
+                        <div class='col-sm-4'>
+                                <canvas id="myChart15" width="400" height="400"></canvas>
+                        </div> 
+                    </div>
+                    <div class = 'row'>
+                            <div class='col-sm-4'>
+                                    <canvas id="myChart16" width="400" height="400"></canvas>
+                            </div>  
+                            <div class='col-sm-4'>
+                                    <canvas id="myChart17" width="400" height="400"></canvas>
+                            </div>  
+                            <div class='col-sm-4'>
+                                    <canvas id="myChart18" width="400" height="400"></canvas>
+                            </div> 
+                        </div>
+                        <div class = 'row'>
+                                <div class='col-sm-4'>
+                                        <canvas id="myChart19" width="400" height="400"></canvas>
+                                </div>  
+                                <div class='col-sm-4'>
+                                </div>  
+                                <div class='col-sm-4'>
+                                        <canvas id="myChart20" width="400" height="400"></canvas>
+                                </div> 
+                            </div>
 {% endblock contents %}
+
 {% block jquery %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <script>
 bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktomber', 'November', 'Desember']
-var tahun = {{tahunall}}
-var datasatu = {{semuasatu}}
-var datadua = {{semuadua}}
+var tahun = {{tahun}}
+var datasatu = {{hasilprediksi}}
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Pelanggan Hotel Tahun ' + tahun[0],
+            label: 'Prediksi Pelanggan Hotel Tahun ' + tahun,
             data: datasatu[0],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Pelanggan Hotel Tahun ' + tahun[1],
-            data: datadua[0],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -216,21 +135,11 @@ var myChart2 = new Chart(ctx2, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Pelanggan Mall Tahun ' + tahun[0],
+            label: 'Prediksi Pelanggan Mall Tahun ' + tahun,
             data: datasatu[1],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Pelanggan Mall Tahun ' + tahun[1],
-            data: datadua[1],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -255,21 +164,11 @@ var myChart3 = new Chart(ctx3, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Pelanggan Apartemen Tahun ' + tahun[0],
+            label: 'Prediksi Pelanggan Apartemen Tahun ' + tahun,
             data: datasatu[2],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Pelanggan Apartemen Tahun ' + tahun[1],
-            data: datadua[2],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -294,21 +193,11 @@ var myChart4 = new Chart(ctx4, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Penjualan C441 Tahun ' + tahun[0],
+            label: 'Prediksi Penjualan C441 Tahun ' + tahun,
             data: datasatu[3],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Penjualan C441 Tahun ' + tahun[1],
-            data: datadua[3],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -337,21 +226,11 @@ var myChart5 = new Chart(ctx5, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Penjualan C442 Tahun ' + tahun[0],
+            label: 'Prediksi Penjualan C442 Tahun ' + tahun,
             data: datasatu[4],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Penjualan C442 Tahun ' + tahun[1],
-            data: datadua[4],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -380,21 +259,11 @@ var myChart6 = new Chart(ctx6, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Penjualan C443 Tahun ' + tahun[0],
+            label: 'Prediksi Penjualan C443 Tahun ' + tahun,
             data: datasatu[5],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Penjualan C443 Tahun ' + tahun[1],
-            data: datadua[5],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -422,21 +291,11 @@ var myChart7 = new Chart(ctx7, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Penjualan C451 Tahun ' + tahun[0],
+            label: 'Prediksi Penjualan C451 Tahun ' + tahun,
             data: datasatu[6],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Penjualan C451 Tahun ' + tahun[1],
-            data: datadua[6],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -465,21 +324,11 @@ var myChart8 = new Chart(ctx8, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Penjualan C452 Tahun ' + tahun[0],
+            label: 'Prediksi Penjualan C452 Tahun ' + tahun,
             data: datasatu[7],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Penjualan C452 Tahun ' + tahun[1],
-            data: datadua[7],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -508,21 +357,11 @@ var myChart9 = new Chart(ctx9, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Penjualan C453 Tahun ' + tahun[0],
+            label: 'Prediksi Penjualan C453 Tahun ' + tahun,
             data: datasatu[8],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Penjualan C453 Tahun ' + tahun[1],
-            data: datadua[8],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -551,21 +390,11 @@ var myChart10 = new Chart(ctx10, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Penjualan C461 Tahun ' + tahun[0],
+            label: 'Prediksi Penjualan C461 Tahun ' + tahun,
             data: datasatu[9],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Penjualan C461 Tahun ' + tahun[1],
-            data: datadua[9],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -594,21 +423,11 @@ var myChart11= new Chart(ctx11, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Penjualan C462 Tahun ' + tahun[0],
+            label: 'Prediksi Penjualan C462 Tahun ' + tahun,
             data: datasatu[10],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Penjualan C462 Tahun ' + tahun[1],
-            data: datadua[10],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -637,21 +456,11 @@ var myChart12 = new Chart(ctx12, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Penjualan C463 Tahun ' + tahun[0],
+            label: 'Prediksi Penjualan C463 Tahun ' + tahun,
             data: datasatu[11],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Penjualan C463 Tahun ' + tahun[1],
-            data: datadua[11],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -680,21 +489,11 @@ var myChart13 = new Chart(ctx13, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Jasa Pembersih Air Tahun ' + tahun[0],
+            label: 'Prediksi Jasa Pembersih Air Tahun ' + tahun,
             data: datasatu[12],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Jasa Pembersih Air Tahun ' + tahun[1],
-            data: datadua[12],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -723,21 +522,11 @@ var myChart14= new Chart(ctx14, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Jasa Pembersih Kerak Sillica Tahun ' + tahun[0],
+            label: 'Prediksi Jasa Pembersih Kerak Sillica Tahun ' + tahun,
             data: datasatu[13],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Jasa Pembersih Kerak Sillica Tahun ' + tahun[1],
-            data: datadua[13],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -766,21 +555,11 @@ var myChart15 = new Chart(ctx15, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Jasa Pembersih Cooling Tower Tahun ' + tahun[0],
+            label: 'Prediksi Jasa Pembersih Cooling Tower Tahun ' + tahun,
             data: datasatu[14],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Jasa Pembersih Cooling Tower Tahun ' + tahun[1],
-            data: datadua[14],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -808,21 +587,11 @@ var myChart16 = new Chart(ctx16, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Jasa Pembersih STP Tahun ' + tahun[0],
+            label: 'Prediksi Jasa Pembersih STP Tahun ' + tahun,
             data: datasatu[15],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Jasa Pembersih STP Tahun ' + tahun[1],
-            data: datadua[15],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -851,21 +620,11 @@ var myChart17 = new Chart(ctx17, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Jumlah Asam Sulfat Tahun ' + tahun[0],
+            label: 'Prediksi Jumlah Asam Sulfat Tahun ' + tahun,
             data: datasatu[16],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Jumlah Asam Sulfat Tahun ' + tahun[1],
-            data: datadua[16],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -894,21 +653,11 @@ var myChart18= new Chart(ctx18, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Jumlah Molases Tahun ' + tahun[0],
+            label: 'Prediksi Jumlah Molases Tahun ' + tahun,
             data: datasatu[17],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Jumlah Molases Tahun ' + tahun[1],
-            data: datadua[17],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -937,21 +686,11 @@ var myChart19 = new Chart(ctx19, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Jumlah HCL Tahun ' + tahun[0],
+            label: 'Prediksi Jumlah HCL Tahun ' + tahun,
             data: datasatu[18],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Jumlah HCL Tahun ' + tahun[1],
-            data: datadua[18],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -979,21 +718,11 @@ var myChart20 = new Chart(ctx20, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Jumlah ABF Tahun ' + tahun[0],
+            label: 'Prediksi Jumlah ABF Tahun ' + tahun,
             data: datasatu[19],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Jumlah ABF Tahun ' + tahun[1],
-            data: datadua[19],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],
@@ -1022,21 +751,11 @@ var myChart21 = new Chart(ctx21, {
     data: {
         labels: bulan,
         datasets: [{
-            label: 'Pendapatan Tahun ' + tahun[0],
+            label: 'Prediksi Pendapatan Tahun ' + tahun,
             data: datasatu[20],
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Pendapatan Tahun ' + tahun[1],
-            data: datadua[20],
-            backgroundColor: 'rgba(255,255,255, 0)',
-            borderColor: [
-                'rgba(54, 162, 235, 1)'
                
                 
             ],

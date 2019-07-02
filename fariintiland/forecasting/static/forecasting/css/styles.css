@@ -1,3 +1,20 @@
 .card{
     background-color: #30353b;
+    
+}
+
+.btn{
+    color: white;
+    background-color: rgb(71, 71, 85);
+}
+.textedited{
+    margin-top:8px;
+}
+
+.select-wrap{
+    margin-top: 8px;
+}
+.labelmargin{
+    margin-left: 24px;
+    font-size:16px;
 }

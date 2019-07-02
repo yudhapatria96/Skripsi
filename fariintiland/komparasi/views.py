@@ -151,26 +151,9 @@ def hasilKomparasiTahun(request):
     if request.method == 'POST':
         tahunsatu = request.POST['tahunsatu']  
         tahundua = request.POST['tahundua']
-        datatahunsatu = []
-        datatahundua  = []
-        dataPelangganSatu = []
-        dataPelangganDua = []
-        dataC44Satu = []
-        dataC44Dua = []
-        dataC45Satu = []
-        dataC45Dua = []
-        dataC46Satu = []
-        dataC46Dua = []
-        dataJasaSatu = []
-        dataJasaDua = []
-        dataBahanSatu = []
-        dataBahanDua = []
+       
         tahunall = []
-        labeling1 = ""
-        labeling2 = ""
-        pendapatansatu = 0
-        pendapatandua = 0
-        dataall = []
+       
         selisihdata = 0
         y= 0
         jumlah_hotel = []

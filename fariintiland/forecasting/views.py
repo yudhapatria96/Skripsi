@@ -178,7 +178,7 @@ def hitung_data_tahun_sebelumnya(tahuntahunsebelumnya):
         jumlah_hcl,
         jumlah_abf, pendapatan]
     return(semua)
-def hitung_forecasting_tahun_sebelumnya(post, index_tahun, si_x, tahuntahunsebelumnya):
+def hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya):
     jumlah_hotel = []
     jumlah_mall = []
     jumlah_apartemen = []
@@ -448,7 +448,7 @@ def hitung_forecasting_tahun_sebelumnya(post, index_tahun, si_x, tahuntahunsebel
         total_data_y_all.append(total_data_y)
         total_data_y = []
         
-    for data_array in range(len(total_data_y_all)-1):
+    for data_array in range(len(total_data_y_all)):
         data_satu_y = total_data_y_all[data_array]
         data_satu_index_musim = rata_rata_penjualan_bulan_urut_total[data_array]
         
@@ -459,19 +459,21 @@ def hitung_forecasting_tahun_sebelumnya(post, index_tahun, si_x, tahuntahunsebel
         y_index_musiman_all.append(y_index_musiman_produk)
         
         y_index_musiman_produk = []
+    print(len(y_index_musiman_all))
     data_tahun_tahun_sebelumnya = hitung_data_tahun_sebelumnya(tahuntahunsebelumnya)
-    
-    for data_mape_array in range(len(data_tahun_tahun_sebelumnya)-1):
+    data_mape_array = 0
+    for data_mape_array in range(len(data_tahun_tahun_sebelumnya)):
         data_index_satu = y_index_musiman_all[data_mape_array]
         data_tahun_sebelumnya_satu = data_tahun_tahun_sebelumnya[data_mape_array]
         total_mape = 0
-        for data_mape_in_array in range(len(data_index_satu)-1):
+        data_mape = []
+
+        for data_mape_in_array in range(len(data_index_satu)):
             mape = ((data_index_satu[data_mape_in_array] - data_tahun_sebelumnya_satu [data_mape_in_array])/ data_tahun_sebelumnya_satu[data_mape_in_array])
             data_mape.append(abs(mape))
         for datainmape in data_mape:
             total_mape += datainmape
         hasil_mape = (total_mape / 12) * 100
-        data_mape = []
         hasil_keselurahan_mape.append(hasil_mape)
     return(hasil_keselurahan_mape)
 
@@ -697,7 +699,7 @@ def index(request):
     post = PenjualanModel.objects.all()
     post_tahun = PenjualanModel.objects.values_list('tahun_transaksi', flat=True).distinct()
     tahuntambahan = 1
-    tahunterakhir = post_tahun[len(post_tahun)-1] +1
+    tahunterakhir = post_tahun[len(post_tahun)-1] 
     tahun = []
     for tahuntambahan in range(10):
         tahun.append(tahunterakhir+tahuntambahan)
@@ -756,6 +758,7 @@ def resultForecasting(request):
         allhasilmape =[]
         hasilakhirmape = 0
         testhasilmape = []
+        pesan = ""
         y = 0
         z= 0
         bulan = request.POST['bulan_dan_tahun_prediksi_month'] 
@@ -766,8 +769,16 @@ def resultForecasting(request):
             si_y = index_tahun + (int(request.POST['bulan_dan_tahun_prediksi_month'] )) - 1
             hasilnya=(hitung_forecasting(post, index_tahun, si_x, thismonth, bulan))
             hasilsebelumnya=(hitung_forecasting(post, index_tahun, si_x, thismonth, bulan))
-            # tahuntahunsebelumnya = year_int
-            # testhasilmape = hitung_forecasting_tahun_sebelumnya(post, index_tahun, si_x, tahuntahunsebelumnya)
+            if int(tahun) == year_int:
+                tahuntahunsebelumnya = year_int
+                testhasilmape = hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya)
+                for hasil in testhasilmape :
+                    hasilakhirmape = hasilakhirmape + hasil
+                   
+                hasilakhirmape = round((hasilakhirmape / len(testhasilmape)),3)
+                pesan = "Persentase Error(MAPE) Pada Tahun "+tahun+ " adalah " + str(hasilakhirmape)+"%"
+            else:
+                pesan = "Belum Ada Data Asli Pada tahun "+tahun + " Sehingga Tidak Memiliki Persentase Error(MAPE)"
             pendapatanpredict = hasilnya[-1]
             #terakhir ngitung mape
             
@@ -817,6 +828,7 @@ def resultForecasting(request):
         'pendapatanpredict': pendapatanpredict,
         # 'infodata': infodata,
         'tahunterakhir': year_int,
+        'pesan': pesan,
         # 'data_form':contact_form,
         # 'posts' : post,
 
@@ -840,10 +852,23 @@ def resultForecastingTahun(request):
         post = PenjualanModel.objects.all()
         index_tahun = ((int(tahun) - year_int - 1) * 12)
         hasilprediksi = hitung_forecasting_tahun(post, index_tahun)
+        hasilakhirmape = 0
+        pesan = ""
+        if int(tahun) == year_int:
+                tahuntahunsebelumnya = year_int
+                testhasilmape = hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya)
+                for hasil in testhasilmape :
+                    hasilakhirmape = hasilakhirmape + hasil
+                   
+                hasilakhirmape = round((hasilakhirmape / len(testhasilmape)),3)
+                pesan = "Persentase Error(MAPE) Pada Tahun "+tahun+ " adalah " + str(hasilakhirmape)+"%"
+        else:
+                pesan = "Belum Ada Data Asli Pada tahun "+tahun + " Sehingga Tidak Memiliki Persentase Error(MAPE)"
     context = {
         'heading':'Forecasting',
         'hasilprediksi': hasilprediksi,
         'tahun': int(tahun),
+        'pesan': pesan,
     }
 
 

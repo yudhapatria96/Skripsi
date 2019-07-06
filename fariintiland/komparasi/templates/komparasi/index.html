@@ -11,10 +11,11 @@
 
     <form action="{% url 'komparasi:hasilkomparasi' %}"  method="POST">
             {% csrf_token %}
+<div class="card text-white">
 <div class='row'>
     <div class='col-sm-2'> 
             <div class="select-wrap">
-                    <label>Masukkan Bulan</label>
+                    <label class='labelmargin'>Masukkan Bulan</label>
                     <select name="bulansatu" style="width: 100%;">
                         <option value="0">---</option>
                         <option value="januari">Januari</option>
@@ -35,7 +36,7 @@
         </div> 
   <div class='col-sm-2'> 
         <div class="select-wrap">
-                <label>Masukkan Tahun</label>
+                <label class='labelmargin'>Masukkan Tahun</label>
                 <select name="tahunsatu" style="width: 100%;">
                         <option value="0">---</option>
                     {% for satuTahun in tahun %}
@@ -46,11 +47,11 @@
         </div> 
 
 <div class='col-sm-4'> 
-    <label>    Komparasikan Data Hasil Penjualan Bulanan/Tahun    </label>
+    <label class='labeltext'>    Komparasikan Data Hasil Penjualan Bulanan/Tahun    </label>
     </div> 
  <div class='col-sm-2'> 
         <div class="select-wrap">
-                <label>Masukkan Bulan</label>
+                <label class='labelmargin'>Masukkan Bulan</label>
                 <select name="bulandua" style="width: 100%;">
                         <option value="0">---</option>
                         <option value="januari">Januari</option>
@@ -70,7 +71,7 @@
         </div> 
  <div class='col-sm-2'> 
         <div class="select-wrap">
-                <label>Masukkan Tahun</label>
+                <label class='labelmargin'>Masukkan Tahun</label>
                 <select name="tahundua" style="width: 100%;">
                         <option value="0">---</option>
                         {% for satuTahun in tahun %}
@@ -81,10 +82,11 @@
         </div>            
      
     </div>
+
     <br>
     <br>
         <button type="Submit" class="btn-block">Komparasi Hasil Penjualan</button>
-              
+    </div>             
  
       </form>
 {% endblock contents %}

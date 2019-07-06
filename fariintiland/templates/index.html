@@ -18,36 +18,112 @@
 <br>
 <div class ='row'>
     
-        <div class='col-sm-6'>
-            <canvas id="myChart2" width="400" height="400"></canvas>
+        <div class='col-sm-4'>
+            <canvas id="myChart2" width="400" height="300"></canvas>
         </div>
-        <div class='col-sm-6'>
-            <canvas id="myChart3" width="400" height="400"></canvas>
+        <div class='col-sm-4'>
+            <canvas id="myChart3" width="400" height="300"></canvas>
         </div> 
           
-        
+        <div class='col-sm-4'>
+            <canvas id="myChart4" width="400" height="300"></canvas>
+        </div>
 </div>
-<br>
 <br>
 <br>
 <div class ='row'>
     
-        <div class='col-sm-6'>
-            <canvas id="myChart4" width="400" height="400"></canvas>
-        </div>
-        <div class='col-sm-6'>
-            <canvas id="myChart5" width="400" height="400"></canvas>
+        
+        <div class='col-sm-4'>
+            <canvas id="myChart5" width="400" height="300"></canvas>
         </div> 
-          
+        <div class='col-sm-4'>
+            <canvas id="myChart6" width="400" height="300"></canvas>
+        </div>
+        <div class='col-sm-4'>
+            <canvas id="myChart7" width="400" height="300"></canvas>
+        </div>   
         
 </div>
+<br>
+<br>
+
+<div class ='row'>
+    
+    <div class='col-sm-4'>
+        <canvas id="myChart8" width="400" height="300"></canvas>
+    </div>
+    <div class='col-sm-4'>
+        <canvas id="myChart9" width="400" height="300"></canvas>
+    </div> 
+      
+    <div class='col-sm-4'>
+        <canvas id="myChart10" width="400" height="300"></canvas>
+    </div>
+</div>
+<br>
+<br>
+<div class ='row'>
+    
+    
+    <div class='col-sm-4'>
+        <canvas id="myChart11" width="400" height="300"></canvas>
+    </div> 
+    <div class='col-sm-4'>
+        <canvas id="myChart12" width="400" height="300"></canvas>
+    </div>
+    <div class='col-sm-4'>
+        <canvas id="myChart13" width="400" height="300"></canvas>
+    </div> 
+</div>
+<br>
+<br>
+<div class ='row'>
+    
+    
+    
+    <div class='col-sm-3'>
+        <canvas id="myChart14" width="400" height="200"></canvas>
+    </div>
+    <div class='col-sm-3'>
+        <canvas id="myChart15" width="400" height="200"></canvas>
+    </div> 
+    <div class='col-sm-3'>
+        <canvas id="myChart16" width="400" height="200"></canvas>
+    </div>
+    <div class='col-sm-3'>
+        <canvas id="myChart17" width="400" height="200"></canvas>
+    </div>
+</div>
+
+<br>
+<br>
+
+<div class ='row'>
+    
+    <div class='col-sm-3'>
+        <canvas id="myChart18" width="400" height="200"></canvas>
+    </div>
+    <div class='col-sm-3'>
+        <canvas id="myChart19" width="400" height="200"></canvas>
+    </div> 
+    <div class='col-sm-3'>
+        <canvas id="myChart20" width="400" height="200"></canvas>
+    </div>
+    <div class='col-sm-3'>
+        <canvas id="myChart21" width="400" height="200"></canvas>
+    </div> 
+    
+</div>
+
 
 {% endblock contents %}
 
 {% block jquery %}
 <script>
 var pendapatan = {{pendapatan}}
-var bulan  = ['januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember']
+var pendapatan_prediksi = {{pendapatan_prediksi}}
+var bulan  = {{tahun}}
 var ctx1 = document.getElementById('myChart1').getContext('2d');
 var myChart1 = new Chart(ctx1, {
     type: 'line',
@@ -56,14 +132,25 @@ var myChart1 = new Chart(ctx1, {
         datasets: [{
             label: '{{labeling}}',
             data: pendapatan,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
                
                 
             ],
             borderWidth: 1
-        }]
+        },{
+            label: 'Hasil Prediksi',
+            data: pendapatan_prediksi,
+            backgroundColor: ['rgba(11,55,45, 0)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }
+        ]
     },
     options: {
         responsive: true,
@@ -91,6 +178,15 @@ var produk6 = {{jumlah_c453}}
 var produk7 = {{jumlah_c461}}
 var produk8 = {{jumlah_c462}}
 var produk9 = {{jumlah_c463}}
+var produk1_prediksi = {{jumlah_c441_prediksi}}
+var produk2_prediksi = {{jumlah_c442_prediksi}}
+var produk3_prediksi = {{jumlah_c443_prediksi}}
+var produk4_prediksi = {{jumlah_c451_prediksi}}
+var produk5_prediksi = {{jumlah_c452_prediksi}}
+var produk6_prediksi = {{jumlah_c453_prediksi}}
+var produk7_prediksi = {{jumlah_c461_prediksi}}
+var produk8_prediksi = {{jumlah_c462_prediksi}}
+var produk9_prediksi = {{jumlah_c463_prediksi}}
 var ctx2 = document.getElementById('myChart2').getContext('2d');
 var myChart2 = new Chart(ctx2, {
     type: 'line',
@@ -99,94 +195,25 @@ var myChart2 = new Chart(ctx2, {
         datasets: [{
             label: 'C441',
             data: produk1,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
                
                 
             ],
             borderWidth: 1
-        },{
-            label: 'C442',
-            data: produk2,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
-            borderColor: [
-                'rgba(14, 33, 21, 1)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'C443',
-            data: produk3,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
-            borderColor: [
-                'rgba(125, 214, 321, 4)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'C451',
-            data: produk4,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
-            borderColor: [
-                'rgba(1, 255, 132, 4)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'C452',
-            data: produk5,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
-            borderColor: [
-                'rgba(24, 142, 241, 5)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'C453',
-            data: produk6,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
-            borderColor: [
-                'rgba(213, 132, 4, 5)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'C461',
-            data: produk7,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
-            borderColor: [
-                'rgba(42, 133, 42, 12)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'C462',
-            data: produk8,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
-            borderColor: [
-                'rgba(145,121, 172, 211)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'C463',
-            data: produk9,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
-            borderColor: [
-                'rgba(142, 133, 64, 76)',
-               
-                
-            ],
-            borderWidth: 1
         },
+        {
+            label: 'C441 Prediksi',
+            data: produk1_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }
         ]
     },
     options: {
@@ -206,11 +233,365 @@ var myChart2 = new Chart(ctx2, {
     }
 });
 
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+var myChart3 = new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'C442',
+            data: produk2,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 33, 21, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C442_prediksi',
+            data: produk2_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx4 = document.getElementById('myChart4').getContext('2d');
+var myChart4 = new Chart(ctx4, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'C443',
+            data: produk3,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(125, 214, 321, 4)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C443 Prediksi',
+            data: produk3_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx5 = document.getElementById('myChart5').getContext('2d');
+var myChart5 = new Chart(ctx5, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'C451',
+            data: produk4,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(1, 255, 132, 4)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C451 Prediksi',
+            data: produk4_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx6 = document.getElementById('myChart6').getContext('2d');
+var myChart6 = new Chart(ctx6, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'C452',
+            data: produk5,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(24, 142, 241, 5)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C452 Prediksi',
+            data: produk5_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx7 = document.getElementById('myChart7').getContext('2d');
+var myChart7 = new Chart(ctx7, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'C453',
+            data: produk6,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(213, 132, 4, 5)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C453 Prediksi',
+            data: produk6_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx8 = document.getElementById('myChart8').getContext('2d');
+var myChart8 = new Chart(ctx8, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'C461',
+            data: produk7,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(42, 133, 42, 12)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C461 Prediksi',
+            data: produk7_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx9 = document.getElementById('myChart9').getContext('2d');
+var myChart9 = new Chart(ctx9, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'C462',
+            data: produk8,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(145,121, 172, 211)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C462 Prediksi',
+            data: produk8_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx10 = document.getElementById('myChart10').getContext('2d');
+var myChart10 = new Chart(ctx10, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'C463',
+            data: produk9,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(142, 133, 64, 76)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'C463 Prediksi',
+            data: produk9_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
 var client1 = {{jumlah_hotel}}
 var client2 = {{jumlah_mall}}
 var client3 = {{jumlah_apartemen}}
-var ctx3 = document.getElementById('myChart3').getContext('2d');
-var myChart3 = new Chart(ctx3, {
+var client1_prediksi = {{jumlah_hotel_prediksi}}
+var client2_prediksi = {{jumlah_mall_prediksi}}
+var client3_prediksi = {{jumlah_apartemen_prediksi}}
+var ctx11 = document.getElementById('myChart11').getContext('2d');
+var myChart11 = new Chart(ctx11, {
     type: 'line',
     data: {
         labels: bulan,
@@ -225,6 +606,40 @@ var myChart3 = new Chart(ctx3, {
             ],
             borderWidth: 1
         },{
+            label: 'Jumlah Client Hotel Prediksi',
+            data: client1_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx12 = document.getElementById('myChart12').getContext('2d');
+var myChart12 = new Chart(ctx12, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
             label: 'Jumlah Client Mall',
             data: client2,
             backgroundColor: ['rgba(255,255,255, 0.1)'],
@@ -235,11 +650,55 @@ var myChart3 = new Chart(ctx3, {
             ],
             borderWidth: 1
         },{
+            label: 'Jumlah Client Mall Prediksi',
+            data: client2_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx13 = document.getElementById('myChart13').getContext('2d');
+var myChart13 = new Chart(ctx13, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
             label: 'Jumlah Client Apartemen',
             data: client3,
             backgroundColor: ['rgba(255,255,255, 0.1)'],
             borderColor: [
                 'rgba(167, 111, 211, 6)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jumlah Client Apartemen Prediksi',
+            data: client3_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
                
                 
             ],
@@ -267,8 +726,12 @@ var jasa1 = {{jasa_pembersih_air}}
 var jasa2 = {{jasa_pembersih_kerak_sillica}}
 var jasa3 = {{jasa_pembersih_cooling_tower}}
 var jasa4 = {{jasa_pembersih_stp}}
-var ctx4 = document.getElementById('myChart4').getContext('2d');
-var myChart4 = new Chart(ctx4, {
+var jasa1_prediksi = {{jasa_pembersih_air_prediksi}}
+var jasa2_prediksi = {{jasa_pembersih_kerak_sillica_prediksi}}
+var jasa3_prediksi = {{jasa_pembersih_cooling_tower_prediksi}}
+var jasa4_prediksi = {{jasa_pembersih_stp_prediksi}}
+var ctx14 = document.getElementById('myChart14').getContext('2d');
+var myChart14 = new Chart(ctx14, {
     type: 'line',
     data: {
         labels: bulan,
@@ -283,31 +746,11 @@ var myChart4 = new Chart(ctx4, {
             ],
             borderWidth: 1
         },{
-            label: 'Jasa Pembersih Kerak Sillica',
-            data: jasa2,
+            label: 'Jasa Pembersih Air Prediksi',
+            data: jasa1_prediksi,
             backgroundColor: ['rgba(255,255,255, 0.1)'],
             borderColor: [
-                'rgba(64, 31, 244, 6)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Jasa Pembersih Cooling Tower',
-            data: jasa3,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
-            borderColor: [
-                'rgba(167, 111, 211, 6)',
-               
-                
-            ],
-            borderWidth: 1
-        },{
-            label: 'Jasa Pembersih STP',
-            data: jasa4,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
-            borderColor: [
-                'rgba(152, 31, 1, 7)',
+                'rgba(14, 99, 132, 1)',
                
                 
             ],
@@ -331,12 +774,149 @@ var myChart4 = new Chart(ctx4, {
     }
 });
 
+var ctx15 = document.getElementById('myChart15').getContext('2d');
+var myChart15 = new Chart(ctx15, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jasa Pembersih Kerak Sillica',
+            data: jasa2,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(64, 31, 244, 6)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih Kerak Sillica Prediksi',
+            data: jasa2_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx16 = document.getElementById('myChart16').getContext('2d');
+var myChart16 = new Chart(ctx16, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jasa Pembersih Cooling Tower',
+            data: jasa3,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(167, 111, 211, 6)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih Cooling Tower Prediksi',
+            data: jasa3_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx17 = document.getElementById('myChart17').getContext('2d');
+var myChart17 = new Chart(ctx17, {
+    type: 'line',
+    data: {
+        labels: bulan,
+        datasets: [{
+            label: 'Jasa Pembersih STP',
+            data: jasa4,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(152, 31, 1, 7)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih STP Prediksi',
+            data: jasa4_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+
 var bahan1 = {{jumlah_asam_sulfat}}
 var bahan2 = {{jumlah_molases}}
 var bahan3 = {{jumlah_hcl}}
 var bahan4 = {{jumlah_abf}}
-var ctx5 = document.getElementById('myChart5').getContext('2d');
-var myChart5 = new Chart(ctx5, {
+var bahan1_prediksi = {{jumlah_asam_sulfat_prediksi}}
+var bahan2_prediksi = {{jumlah_molases_prediksi}}
+var bahan3_prediksi = {{jumlah_hcl_prediksi}}
+var bahan4_prediksi = {{jumlah_abf_prediksi}}
+var ctx18 = document.getElementById('myChart18').getContext('2d');
+var myChart18 = new Chart(ctx18, {
     type: 'line',
     
     data: {
@@ -352,6 +932,41 @@ var myChart5 = new Chart(ctx5, {
             ],
             borderWidth: 1
         },{
+            label: 'Prediksi Asam Sulfat Terpakai',
+            data: bahan1_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx19 = document.getElementById('myChart19').getContext('2d');
+var myChart19 = new Chart(ctx19, {
+    type: 'line',
+    
+    data: {
+        labels: bulan,
+        datasets: [{
             label: 'Molases Terpakai',
             data: bahan2,
             backgroundColor: ['rgba(255,255,255, 0.1)'],
@@ -362,6 +977,40 @@ var myChart5 = new Chart(ctx5, {
             ],
             borderWidth: 1
         },{
+            label: 'Prediksi Molases Terpakai',
+            data: bahan2_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+var ctx20 = document.getElementById('myChart20').getContext('2d');
+var myChart20 = new Chart(ctx20, {
+    type: 'line',
+    
+    data: {
+        labels: bulan,
+        datasets: [{
             label: 'HCL Terpakai',
             data: bahan3,
             backgroundColor: ['rgba(255,255,255, 0.1)'],
@@ -372,11 +1021,56 @@ var myChart5 = new Chart(ctx5, {
             ],
             borderWidth: 1
         },{
+            label: 'Prediksi HCL Terpakai',
+            data: bahan3_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+        labelString: 'Kilogram'
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx21 = document.getElementById('myChart21').getContext('2d');
+var myChart21 = new Chart(ctx21, {
+    type: 'line',
+    
+    data: {
+        labels: bulan,
+        datasets: [{
             label: 'ABF Terpakai',
             data: bahan4,
             backgroundColor: ['rgba(255,255,255, 0.1)'],
             borderColor: [
                 'rgba(152, 31, 1, 7)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Prediksi ABF Terpakai',
+            data: bahan4_prediksi,
+            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            borderColor: [
+                'rgba(14, 99, 132, 1)',
                
                 
             ],

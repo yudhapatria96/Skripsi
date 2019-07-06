@@ -1,5 +1,26 @@
 .btn-block{
-    background-color:  #30353b;
-    color: #fff;
+    color: white;
+    background-color: rgb(71, 71, 85);
     height: 40px;
+}
+
+.card{
+    background-color: #30353b;
+    padding: 8px; 
+}
+
+.labelmargin{
+    margin-left: 18px;
+    font-size:15px;
+}
+
+.labeltext{
+    font-size:15px;
+    margin-left:4px;
+}
+
+
+.labeltext2{
+    font-size:15px;
+    margin-left:22px;
 }

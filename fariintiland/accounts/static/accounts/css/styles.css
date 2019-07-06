@@ -33,8 +33,9 @@
 }
 
 .site-form input[type="submit"]{
-    background: #00dba0;
+    background: #343a40;
     border: #fff;
+    color: white;
     font-size: 1.2em;
     border-radius: 4px;
     margin: 10px 0;

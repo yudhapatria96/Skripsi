@@ -9,27 +9,28 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
         <ul class="navbar-nav">
-            <li class="nav-item">
-                <a class="nav-link" href="{% url "input_data:index"%}">Laporan Penjualan</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link"  href="{% url "forecasting:index"%}">Peramalan Penjualan</a>
-            </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link"  href="{% url "komparasi:index"%}">Komparasi Hasil Penjualan</a>
-            </li> -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Komparasi</a>
-                <div class="dropdown-menu">
-                    <a class="dropdown-item"  href="{% url "komparasi:index"%}">Komparasi Berdasarkan Bulan</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item"  href="{% url "komparasi:indextahun"%}">Komparasi Berdasarkan Tahun</a>
-                </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{% url "about:index"%}">About</a>
-            </li>
             {% if user.is_authenticated %}
+            
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "input_data:index"%}">Laporan Penjualan</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link"  href="{% url "forecasting:index"%}">Peramalan Penjualan</a>
+                </li>
+                <!-- <li class="nav-item">
+                    <a class="nav-link"  href="{% url "komparasi:index"%}">Komparasi Hasil Penjualan</a>
+                </li> -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Komparasi</a>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item"  href="{% url "komparasi:index"%}">Komparasi Berdasarkan Bulan</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"  href="{% url "komparasi:indextahun"%}">Komparasi Berdasarkan Tahun</a>
+                    </div>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url "about:index"%}">About</a>
+                </li>
                 <li class="nav-item">
                     <!-- <form class="logout-link" action="{% url 'accounts:logout'%}" method="post">
                         {% csrf_token %}

@@ -111,7 +111,6 @@ def hasilKomparasi(request):
             del datatahundua[-1]
             informasidata = ["jumlah client hotel", "jumlah client mall", "jumlah client apartemen", "C441 Terjual", "C442 Terjual", "C443 Terjual", "C451 Terjual", "C452 Terjual", "C453 Terjual", "C461 Terjual", "C462 Terjual", "C463 Terjual", "Jasa Pembersih Air", "Jasa Pembersih Kerak Sillica", "Jasa Pembersih Cooling Tower", "Jasa Pembersih STP", "Asam Sulfat Terpakai", "Molases Terpakai", "HCL Terpakai", "ABF Terpakai", "pendapatan"]           
             infodata = dict([informasidata[z], dataall[z]] for z in range(len(informasidata)-1))
-            print(infodata)
             labeling1  = "Hasil Penjualan pada bulan " +bulansatu+ " tahun " + tahunsatu    
             labeling2 = "Hasil Penjualan pada bulan " + bulandua + " tahun " + tahundua
         else:
@@ -223,7 +222,6 @@ def hasilKomparasiTahun(request):
                 jumlah_abf, pendapatan]
                       
                 
-                print(semuasatusatu) 
                     # tahunall=[int(tahunsatu),int(tahundua)]
             except ObjectDoesNotExist:
                 datatahunsatu = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
@@ -306,7 +304,6 @@ def hasilKomparasiTahun(request):
                     semuaselisihdata.append(selisih)
                 informasidata = ["jumlah client hotel", "jumlah client mall", "jumlah client apartemen", "C441 Terjual", "C442 Terjual", "C443 Terjual", "C451 Terjual", "C452 Terjual", "C453 Terjual", "C461 Terjual", "C462 Terjual", "C463 Terjual", "Jasa Pembersih Air", "Jasa Pembersih Kerak Sillica", "Jasa Pembersih Cooling Tower", "Jasa Pembersih STP", "Asam Sulfat Terpakai", "Molases Terpakai", "HCL Terpakai", "ABF Terpakai", "pendapatan"]           
                 infodata = dict([informasidata[z], semuaselisihdata[z]] for z in range(len(informasidata)-1))        
-        # print(semua[0])
         context = {
             'semuasatu': semuasatu,
             'semuadua': semuadua,

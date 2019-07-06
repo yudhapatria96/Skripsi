@@ -11,12 +11,13 @@
 
     <form action="{% url 'komparasi:hasilkomparasitahun' %}"  method="POST">
             {% csrf_token %}
+<div class="card text-white">
 <div class='row'>
     <div class='col-sm-2'> 
     </div> 
   <div class='col-sm-2'> 
         <div class="select-wrap">
-                <label>Masukkan Tahun</label>
+                <label class='labelmargin'>Masukkan Tahun</label>
                 <select name="tahunsatu" style="width: 100%;">
                         <option value="0">---</option>
                     {% for satuTahun in tahun %}
@@ -27,12 +28,12 @@
         </div> 
 
 <div class='col-sm-4'> 
-    <label>    Komparasikan Data Hasil Penjualan Tahunan    </label>
+    <label class='labeltext2'>    Komparasikan Data Hasil Penjualan Tahunan    </label>
     </div> 
  
  <div class='col-sm-2'> 
         <div class="select-wrap">
-                <label>Masukkan Tahun</label>
+                <label class='labelmargin'>Masukkan Tahun</label>
                 <select name="tahundua" style="width: 100%;">
                         <option value="0">---</option>
                         {% for satuTahun in tahun %}
@@ -46,7 +47,7 @@
     <br>
     <br>
         <button type="Submit" class="btn-block">Komparasi Hasil Penjualan</button>
-              
+    </div>               
  
       </form>
 {% endblock contents %}

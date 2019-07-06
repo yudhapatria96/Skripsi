@@ -459,7 +459,6 @@ def hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya
         y_index_musiman_all.append(y_index_musiman_produk)
         
         y_index_musiman_produk = []
-    print(len(y_index_musiman_all))
     data_tahun_tahun_sebelumnya = hitung_data_tahun_sebelumnya(tahuntahunsebelumnya)
     data_mape_array = 0
     for data_mape_array in range(len(data_tahun_tahun_sebelumnya)):
@@ -684,7 +683,7 @@ def hitung_forecasting_tahun(post, si_x):
         for xx in range(12):
             xx+=1
             hitung_x = si_x + xx
-            y = a + (b * (hitung_x + x_y))
+            y = a + (b * (hitung_x ))
             # print((hitung_x + x_y))
             # print(hitung_x + x_y)
             y = round(y * index_musim_satuan[xzz])
@@ -849,7 +848,7 @@ def resultForecastingTahun(request):
         except ObjectDoesNotExist:
             year_int = 0
         tahun = request.POST['tahun']  
-        post = PenjualanModel.objects.all()
+        post = PenjualanModel.objects.all().order_by('tahun_transaksi')
         index_tahun = ((int(tahun) - year_int - 1) * 12)
         hasilprediksi = hitung_forecasting_tahun(post, index_tahun)
         hasilakhirmape = 0

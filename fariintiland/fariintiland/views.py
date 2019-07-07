@@ -290,7 +290,7 @@ def index(request):
     labeling = ""
     hitung = 0
     try:
-        years= PenjualanModel.objects.all().order_by('tahun_transaksi')
+        years= PenjualanModel.objects.all().order_by('tahun_transaksi','bulan_transaksi')
         post_tahun = PenjualanModel.objects.values_list('tahun_transaksi', flat=True).order_by('tahun_transaksi').distinct()
         tahun = list(post_tahun)
         year_int = years[len(years) - 1].tahun_transaksi
@@ -307,7 +307,7 @@ def index(request):
             hitung+=1
             tahunsekarang = posts.tahun_transaksi
             if tahunsekarang != hitungbulan:
-                index_tahun = ((int(tahunsekarang) - tahunawal - 1) * 12)
+                index_tahun = ((int(hitungbulan) - tahunawal) * 12)
                 hasilprediksi = hitung_forecasting_tahun(years, index_tahun)
                 jumlah_hotel_prediksi.append(hasilprediksi[0])
                 jumlah_mall_prediksi.append(hasilprediksi[1])
@@ -417,6 +417,9 @@ def index(request):
         jumlah_hcl_all.append(sum(jumlah_hcl))
         jumlah_abf_all.append(sum(jumlah_abf))
         pendapatan_all.append(sum(pendapatan))
+
+        index_tahun = ((int(hitungbulan) - tahunawal) * 12)
+        hasilprediksi = hitung_forecasting_tahun(years, index_tahun)
         jumlah_hotel_prediksi.append(hasilprediksi[0])
         jumlah_mall_prediksi.append(hasilprediksi[1])
         jumlah_apartemen_prediksi.append(hasilprediksi[2])
@@ -439,7 +442,7 @@ def index(request):
         jumlah_abf_prediksi.append(hasilprediksi[19])
         pendapatan_prediksi.append(hasilprediksi[20])
     except ObjectDoesNotExist:
-        print("")
+        print("error")
 
 
     

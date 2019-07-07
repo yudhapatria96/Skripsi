@@ -1,6 +1,5 @@
 from django.shortcuts import render, redirect
 from input_data.models import PenjualanModel
-from . import forms
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.core.exceptions import ObjectDoesNotExist
@@ -108,13 +107,15 @@ def hitung_forecasting(post, index_tahun, si_x, thismonth, bulan):
          
         b = ((n * total_xy)-(total_x * total_y)) / ((n * x_kuadrat) - (total_x * total_x))
         a = (total_y - (b * total_x))/n
-        y = a + (b * (si_x + x_y))
+        y = a + (b * (si_x ))
+        print(a)
+        print(b)
         rata_rata_penjualan_bulan_tertentu = jumlah_penjualan_bulan_tertentu / jumlah_bulan
         rata_rata_penjualan_total = total_y / x_y
         
         index_musiman = rata_rata_penjualan_bulan_tertentu / rata_rata_penjualan_total
         y_index_musiman.append(round(y * index_musiman))
-    
+
     return(y_index_musiman)
 
 def hitung_data_tahun_sebelumnya(tahuntahunsebelumnya):
@@ -684,12 +685,13 @@ def hitung_forecasting_tahun(post, si_x):
             xx+=1
             hitung_x = si_x + xx
             y = a + (b * (hitung_x ))
+            print(a)
+            print(b)
             # print((hitung_x + x_y))
             # print(hitung_x + x_y)
             y = round(y * index_musim_satuan[xzz])
             # print(index_musim_satuan[xzz])
             xzz+=1
-            
             semua_data.append(y)
         semua_semua_data.append(semua_data)
     return(semua_semua_data)
@@ -703,12 +705,10 @@ def index(request):
     for tahuntambahan in range(10):
         tahun.append(tahunterakhir+tahuntambahan)
     tahun.reverse()
-    dating_form = forms.DatingForm()
   
 
     context = {
         'heading':'Forecasting',
-        'dating_form': dating_form,
         'tahun': tahun,
     } 
   
@@ -719,7 +719,7 @@ def index(request):
 def resultForecasting(request):
     
     if request.method == 'POST':
-        post = PenjualanModel.objects.all()
+        post = PenjualanModel.objects.all().order_by('tahun_transaksi', 'bulan_transaksi')
         hasilnya = 0
         thismonth= {
             '1' : "januari",
@@ -741,33 +741,20 @@ def resultForecasting(request):
         except ObjectDoesNotExist:
             year_int = 0
         index_tahun = 0
-        y_index_musiman = []
-        labels = []
         hasilnya = []
         pendapatanpredict = 0
         pendapatanasli = 0
         data_tahun_sebelumnya = []
         data_all_tahun_sebelumnya = []
-        panjangdata = 0
-        presentasidata = []
-        selisihdata = 0
-        infodata = {}
-        hasilsebelumnya = []
-        hitungmape= []
-        allhasilmape =[]
         hasilakhirmape = 0
         testhasilmape = []
         pesan = ""
-        y = 0
-        z= 0
         bulan = request.POST['bulan_dan_tahun_prediksi_month'] 
         tahun = request.POST['bulan_dan_tahun_prediksi_year']   
         if(bulan != '0' and tahun != '0'):
-            index_tahun = ((int(tahun) - year_int - 1) * 12)
+            index_tahun = ((int(tahun) - years[0].tahun_transaksi) * 12)
             si_x = index_tahun + (int(request.POST['bulan_dan_tahun_prediksi_month'] ))
-            si_y = index_tahun + (int(request.POST['bulan_dan_tahun_prediksi_month'] )) - 1
             hasilnya=(hitung_forecasting(post, index_tahun, si_x, thismonth, bulan))
-            hasilsebelumnya=(hitung_forecasting(post, index_tahun, si_x, thismonth, bulan))
             if int(tahun) == year_int:
                 tahuntahunsebelumnya = year_int
                 testhasilmape = hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya)
@@ -843,13 +830,13 @@ def resultForecastingTahun(request):
     hasilprediksi = []
     if request.method == 'POST':
         try:
-            years= PenjualanModel.objects.all().order_by('tahun_transaksi')
+            years= PenjualanModel.objects.all().order_by('tahun_transaksi','bulan_transaksi')
             year_int = years[len(years) - 1].tahun_transaksi
         except ObjectDoesNotExist:
             year_int = 0
         tahun = request.POST['tahun']  
         post = PenjualanModel.objects.all().order_by('tahun_transaksi')
-        index_tahun = ((int(tahun) - year_int - 1) * 12)
+        index_tahun = ((int(tahun) - years[0].tahun_transaksi) * 12) 
         hasilprediksi = hitung_forecasting_tahun(post, index_tahun)
         hasilakhirmape = 0
         pesan = ""

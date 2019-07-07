@@ -1,5 +1,4 @@
 from django import forms
-from . import widgets
 from .models import PenjualanModel
 class ContactForm(forms.ModelForm):
   class Meta:

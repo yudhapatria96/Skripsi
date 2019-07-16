@@ -1,0 +1,370 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block contents %}
+<div class ='row'>
+        <div class='col-sm-2'></div>
+        <div class='col-sm-8'>
+<H3 style='margin-left: 42px;'>Hasil Komparasi {{satusatu}} dan {{duadua}}</H3>
+</div></div>
+<br>
+<br>
+<div class ='row'>
+    <div class='col-sm-2'></div>
+    <div class='col-sm-8'>
+    <canvas id="myChart" style="display:none;"  width="400" height="300"></canvas>
+    <canvas id="myChart2" style="display:none;"  width="400" height="300"></canvas>
+    <canvas id="myChart3" style="display:none;"  width="400" height="300"></canvas>
+    <canvas id="myChart4" style="display:none;"  width="400" height="300"></canvas>
+    <canvas id="myChart5" style="display:none;"  width="400" height="300"></canvas>
+
+</div>
+        <!-- {% if angka == 2 %}
+        <div class='col-sm-8'>
+            <canvas id="myChart" style="display:block;" width="400" height="300"></canvas>
+        </div>
+        {% endif %}
+        {% if angka == 1 %}
+        <div class='col-sm-8'>
+            <canvas id="myChart2"  width="400" height="300"></canvas>
+        </div>
+        {% endif %} -->
+</div>
+
+
+
+{% endblock contents %}
+
+{% block jquery %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+<script>
+var angka = {{angka}}
+if(angka === 1){
+    var x = document.getElementById("myChart2");
+    x.style.display = "block";
+}
+if(angka === 2){
+    var x = document.getElementById("myChart");
+    x.style.display = "block";
+}
+
+if(angka === 3){
+    var x = document.getElementById("myChart3");
+    x.style.display = "block";
+}
+
+if(angka === 4){
+    var x = document.getElementById("myChart4");
+    x.style.display = "block";
+}
+
+if(angka === 5){
+    var x = document.getElementById("myChart5");
+    x.style.display = "block";
+}
+var dataproduksatu = {{dataindexsatu}} 
+var dataprodukdua = {{dataindexdua}}
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+var tahun = ['{{satusatu}}', '{{duadua}}']
+
+var ctx = document.getElementById('myChart').getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Produk C441',
+            data: [dataproduksatu[0], dataprodukdua[0]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Produk C442',
+            data: [dataproduksatu[1], dataprodukdua[1]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C443',
+            data: [dataproduksatu[2], dataprodukdua[2]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C451',
+            data: [dataproduksatu[3], dataprodukdua[3]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(34, 142, 45, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C452',
+            data: [dataproduksatu[4], dataprodukdua[4]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(254, 142, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C453',
+            data: [dataproduksatu[5], dataprodukdua[5]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(254, 142, 235, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C461',
+            data: [dataproduksatu[6], dataprodukdua[6]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(34, 242, 135, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C462',
+            data: [dataproduksatu[7], dataprodukdua[7]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(94, 142, 194, 8)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Produk C463',
+            data: [dataproduksatu[8], dataprodukdua[8]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(154, 142, 135, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                scaleLabel: {
+        display: true,
+      },
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx2 = document.getElementById('myChart2').getContext('2d');
+var myChart2 = new Chart(ctx2, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Client Hotel',
+            data: [dataproduksatu[0], dataprodukdua[0]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Client Mall',
+            data: [dataproduksatu[1], dataprodukdua[1]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Client Apartement',
+            data: [dataproduksatu[2], dataprodukdua[2]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx3 = document.getElementById('myChart3').getContext('2d');
+var myChart3 = new Chart(ctx3, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Jasa Pembersih Air',
+            data: [dataproduksatu[0], dataprodukdua[0]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',          
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih kerak',
+            data: [dataproduksatu[1], dataprodukdua[1]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Jasa Pembersih Cooling Tower',
+            data: [dataproduksatu[2], dataprodukdua[2]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'Jasa Pembersih STP',
+            data: [dataproduksatu[3], dataprodukdua[3]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(32, 242, 25, 11)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx4 = document.getElementById('myChart4').getContext('2d');
+var myChart4 = new Chart(ctx4, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Asam Sulfat Terpakai',
+            data: [dataproduksatu[0], dataprodukdua[0]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',          
+            ],
+            borderWidth: 1
+        },{
+            label: 'Molases Terpakai',
+            data: [dataproduksatu[1], dataprodukdua[1]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(54, 162, 235, 1)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'HCL Terpakai',
+            data: [dataproduksatu[2], dataprodukdua[2]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(154, 42, 35, 4)'
+               
+                
+            ],
+            borderWidth: 1
+        },{ 
+            label: 'ABF Terpakai',
+            data: [dataproduksatu[3], dataprodukdua[3]],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(32, 242, 25, 11)'
+               
+                
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+
+var ctx5 = document.getElementById('myChart5').getContext('2d');
+var myChart5 = new Chart(ctx5, {
+    type: 'line',
+    data: {
+        labels: tahun,
+        datasets: [{
+            label: 'Pendapatan',
+            data: [dataproduksatu, dataprodukdua],
+            backgroundColor: ['rgba(255,255,255, 0)'],
+            borderColor: [
+                'rgba(255, 99, 132, 1)',          
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script>
+
+{% endblock jquery %}

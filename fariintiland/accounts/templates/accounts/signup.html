@@ -10,5 +10,6 @@
     {% csrf_token %}
     {{ form }}
     <input type="submit" value="Signup">
+    <a href="{% url "accounts:login" %}" role="button" class="btn btn-info">Kembali</a>
 </form>
 {% endblock contents %}

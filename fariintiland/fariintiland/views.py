@@ -224,6 +224,7 @@ def hitung_forecasting_tahun(post, si_x):
     return(semua_semua_data)
 @login_required(login_url="/accounts/login/") 
 def index(request):
+  
     jumlah_hotel = []
     jumlah_mall = []
     jumlah_apartemen = []
@@ -287,22 +288,24 @@ def index(request):
     jumlah_hcl_prediksi = []
     jumlah_abf_prediksi = []
     pendapatan_prediksi = []
+    labeling2 = ""
     labeling = ""
     hitung = 0
+    yearss = 0
+    juduldashboard = ""
     try:
         years= PenjualanModel.objects.all().order_by('tahun_transaksi','bulan_transaksi')
         post_tahun = PenjualanModel.objects.values_list('tahun_transaksi', flat=True).order_by('tahun_transaksi').distinct()
         tahun = list(post_tahun)
         year_int = years[len(years) - 1].tahun_transaksi
-        labeling="Pendapatan di Tahun " + str(year_int)
+        yearss = years[0].tahun_transaksi
+        labeling2="dari Tahun " + str(yearss) + " - " + str(year_int)
+
         x = 0
         tahunawal = tahun[0]
         hitungbulan = tahun[x]
         tahunsekarang = 0
-    except ObjectDoesNotExist:
-        year_int = 0
-    
-    try:
+        juduldashboard = "Keseluruhan Data dan Hasil Prediksi dari Tahun " + str(yearss) + " Sampai Tahun " + str(year_int)
         for posts in years:
             hitung+=1
             tahunsekarang = posts.tahun_transaksi
@@ -441,13 +444,14 @@ def index(request):
         jumlah_hcl_prediksi.append(hasilprediksi[18])
         jumlah_abf_prediksi.append(hasilprediksi[19])
         pendapatan_prediksi.append(hasilprediksi[20])
-    except ObjectDoesNotExist:
-        print("error")
 
+    except Exception as e:
+        print(e)
 
     
     context = {
         'title' : 'Home',
+        'juduldashboard': juduldashboard,
         'jumlah_hotel':  jumlah_hotel_all,
         'jumlah_mall': jumlah_mall_all,
         'jumlah_apartemen': jumlah_apartemen_all,
@@ -492,6 +496,7 @@ def index(request):
         'jumlah_hcl_prediksi':        jumlah_hcl_prediksi,
         'jumlah_abf_prediksi':        jumlah_abf_prediksi,
         'pendapatan_prediksi':        pendapatan_prediksi,
+        'labeling2': labeling2,
     }
     return render(request, 'index.html', context)
 

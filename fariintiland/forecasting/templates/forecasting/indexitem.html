@@ -1,0 +1,390 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block app_css %}
+<link rel="stylesheet" type="text/css"
+		href="{% static "forecasting/css/styles.css"%}"> 
+{% endblock app_css %}
+
+{% block contents %}
+<div class ='row'>
+        <div class='col-sm-2'>
+        </div>
+    
+        <div class='col-sm-8'>
+                <H3 class='marginlabel'>Halaman Peramalan Berdasarkan Tahun</H3>
+            </div>
+        
+    
+</div>
+<br>
+<br>
+<div class='row'>
+        <div class='col-sm-4'>
+                <div class="card text-white">
+                  <div class="card-body">
+                          <div class='row'>
+                                 
+                         
+          
+          
+                                          <label class='labelmargin'>Prediksi Keseluruhan Data</label>    
+                             
+          
+          
+                                
+                                          <br>
+                                  
+                          </div>
+                                  <form action="{% url 'forecasting:resultforecastingtahun' %}"  method="POST">
+                                                  {% csrf_token %}
+                                      <div class='row'>
+                                          <div class='col-sm-6'> 
+                                                          <label class='textedited'>Masukkan Tahun</label>
+          
+                                          </div> 
+                                        <div class='col-sm-5'> 
+                                              <div class="select-wrap">
+                                                      <select name="tahun" style="width: 100%;">
+                                                              <option value="0">Pilih Tahun</option>
+                                                          {% for satuTahun in tahun %}
+                                                              <option value={{satuTahun}}>{{satuTahun}}</option>
+                                                          {% endfor %}
+                                                      </select>
+                                                    </div>
+                                              </div> 
+                                              <div class='col-sm-2'></div>    
+                                         
+                                        </div>
+                                        <br>
+                                              <div class='row'>
+                                                    <div class='col-sm-8'></div>       
+                                                    <button type="Submit" class="btn btnedited">Prediksi</button>
+                                                </div>         
+                                 
+                                            </form>
+                  </div>
+          </div></div>
+
+<div class='col-sm-4'>
+      <div class="card text-white">
+        <div class="card-body">
+                <div class='row'>
+                        
+               
+
+               
+
+                                <label class='labelmargin'>Prediksi Produk</label>    
+                   
+
+
+                       
+                            
+                        
+                </div>
+                        <form action="{% url 'forecasting:resultforecastingtahunitem' %}"  method="POST">
+                                        {% csrf_token %}
+                            <div class='row'>
+                                <div class='col-sm-6'> 
+                                                <label class='textedited'>Masukkan Tahun</label>
+
+                                </div> 
+                              <div class='col-sm-5'> 
+                                    <div class="select-wrap">
+                                            <select name="tahun" style="width: 100%;">
+                                                    <option value="0">Pilih Tahun</option>
+                                                {% for satuTahun in tahun %}
+                                                    <option value={{satuTahun}}>{{satuTahun}}</option>
+                                                {% endfor %}
+                                            </select>
+                                          </div>
+                                    </div> 
+                                   <br>
+                                   <br>
+                                    <div class='col-sm-6'> 
+                                            <label class='textedited'>Masukkan Produk</label>
+                                            </div>
+                                    <div class='col-sm-5'>
+                                            
+                                    <div class="select-wrap">
+                                            <select name="produk" style="width: 100%;">
+                                                    <option value="0">Pilih Produk</option>
+                                                    <option value="4">C441</option>
+                                                    <option value="5">C442</option>
+                                                    <option value="6">C443</option>
+                                                    <option value="7">C451</option>
+                                                    <option value="8">C452</option>
+                                                    <option value="9">C453</option>
+                                                    <option value="10">C461</option>
+                                                    <option value="11">C462</option>
+                                                    <option value="12">C463</option>
+                    
+                                                </select>
+                                          </div>
+                                        </div>
+                                        <div class='col-sm-4'></div>
+                                    
+                                    </div>         
+                                <div class='col-sm-4'></div>
+                                <br>
+                               <div class='row'>
+                                <div class='col-sm-8'></div>       
+                                <button type="Submit" class="btn btnedited">Prediksi</button>
+                            </div>
+                            </div>        
+                        </div>
+                                  </form>
+        </div>
+        
+<div class='col-sm-4'>
+        <div class="card text-white">
+          <div class="card-body">
+                  <div class='row'>
+                          
+                 
+  
+                 
+  
+                                  <label class='labelmargin'>Prediksi Jasa</label>    
+                     
+  
+  
+                  </div>
+                          <form action="{% url 'forecasting:resultforecastingtahunitem' %}"  method="POST">
+                                          {% csrf_token %}
+                              <div class='row'>
+                                  <div class='col-sm-6'> 
+                                                  <label class='textedited'>Masukkan Tahun</label>
+  
+                                  </div> 
+                                <div class='col-sm-5'> 
+                                      <div class="select-wrap">
+                                              <select name="tahun" style="width: 100%;">
+                                                      <option value="0">Pilih Tahun</option>
+                                                  {% for satuTahun in tahun %}
+                                                      <option value={{satuTahun}}>{{satuTahun}}</option>
+                                                  {% endfor %}
+                                              </select>
+                                            </div>
+                                      </div> 
+                                     <br>
+                                     <br>
+                                      <div class='col-sm-6'> 
+                                              <label class='textedited'>Masukkan Jasa</label>
+                                              </div>
+                                      <div class='col-sm-5'>
+                                              
+                                      <div class="select-wrap">
+                                             
+                                            <select name="produk" style="width: 100%;">
+                                                    <option value="0">Pilih Jasa</option>
+                                                    <option value="13">Jasa Pembersih Air</option>
+                                                    <option value="14">Jasa Pembersih Kerak Sillica</option>
+                                                    <option value="15">Jasa Pembersih Cooling Tower</option>
+                                                    <option value="16">Jasa Pembersih STP</option>
+                    
+                                                </select>
+                                            </div>
+                                          </div>
+                                          <div class='col-sm-4'></div>
+                                      
+                                      </div>         
+                                  <div class='col-sm-4'></div>
+                                  <br>
+                                 <div class='row'>
+                                  <div class='col-sm-8'></div>       
+                                  <button type="Submit" class="btn btnedited">Prediksi</button>
+                              </div>
+                              </div>        
+                          </div>
+                                    </form>
+          </div>
+</div>
+
+<br>
+<br>
+
+<div class='row'>
+        <div class='col-sm-4'>
+                <div class="card text-white">
+                  <div class="card-body">
+                          <div class='row'>
+                                 
+                         
+          
+          
+                                          <label class='labelmargin'>Prediksi Pendapatan</label>    
+                             
+          
+          
+                                
+                                          <br>
+                                  
+                          </div>
+                                  <form action="{% url 'forecasting:resultforecastingtahunitem' %}"  method="POST">
+                                                  {% csrf_token %}
+                                      <div class='row'>
+                                          <div class='col-sm-6'> 
+                                                          <label class='textedited'>Masukkan Tahun</label>
+          
+                                          </div> 
+                                        <div class='col-sm-5'> 
+                                              <div class="select-wrap">
+                                                      <select name="tahun" style="width: 100%;">
+                                                              <option value="0">Pilih Tahun</option>
+                                                          {% for satuTahun in tahun %}
+                                                              <option value={{satuTahun}}>{{satuTahun}}</option>
+                                                          {% endfor %}
+                                                      </select>
+                                                    </div>
+                                              </div> 
+                                              <div class='col-sm-2'></div>    
+                                         
+                                        </div>
+                                        <br>
+                                              <div class='row'>
+                                                    <div class='col-sm-8'></div>       
+                                                    <button type="Submit" class="btn btnedited">Prediksi</button>
+                                                </div>         
+                                                <div class="select-wrap" style="display:none;">
+                                                        <select name="produk" style="width: 100%;">
+                                                            <option value="21" style="display:none;">Pendapatan</option>
+                                
+                                                        </select>
+                                                      </div>
+                                            </form>
+                  </div>
+          </div></div>
+
+<div class='col-sm-4'>
+      <div class="card text-white">
+        <div class="card-body">
+                <div class='row'>
+                        
+               
+
+               
+
+                                <label class='labelmargin'>Prediksi Client</label>    
+                   
+
+
+                       
+                            
+                        
+                </div>
+                        <form action="{% url 'forecasting:resultforecastingtahunitem' %}"  method="POST">
+                                        {% csrf_token %}
+                            <div class='row'>
+                                <div class='col-sm-6'> 
+                                                <label class='textedited'>Masukkan Tahun</label>
+
+                                </div> 
+                              <div class='col-sm-5'> 
+                                    <div class="select-wrap">
+                                            <select name="tahun" style="width: 100%;">
+                                                    <option value="0">Pilih Tahun</option>
+                                                {% for satuTahun in tahun %}
+                                                    <option value={{satuTahun}}>{{satuTahun}}</option>
+                                                {% endfor %}
+                                            </select>
+                                          </div>
+                                    </div> 
+                                   <br>
+                                   <br>
+                                    <div class='col-sm-6'> 
+                                            <label class='textedited'>Masukkan Client</label>
+                                            </div>
+                                    <div class='col-sm-5'>
+                                            
+                                    <div class="select-wrap">
+                                           
+                                            <select name="produk" style="width: 100%;">
+                                                    <option value="0">Pilih Client</option>
+                                                    <option value="1">Hotel</option>
+                                                    <option value="2">Mall</option>
+                                                    <option value="3">Apartement</option>
+                    
+                                                </select>
+                                          </div>
+                                        </div>
+                                        <div class='col-sm-4'></div>
+                                    
+                                    </div>         
+                                <div class='col-sm-4'></div>
+                                <br>
+                               <div class='row'>
+                                <div class='col-sm-8'></div>       
+                                <button type="Submit" class="btn btnedited">Prediksi</button>
+                            </div>
+                            </div>        
+                        </div>
+                                  </form>
+        </div>
+        
+<div class='col-sm-4'>
+        <div class="card text-white">
+          <div class="card-body">
+                  <div class='row'>
+                          
+                 
+  
+                 
+  
+                                  <label class='labelmargin'>Prediksi Bahan</label>    
+                     
+  
+  
+                  </div>
+                          <form action="{% url 'forecasting:resultforecastingtahunitem' %}"  method="POST">
+                                          {% csrf_token %}
+                              <div class='row'>
+                                  <div class='col-sm-6'> 
+                                                  <label class='textedited'>Masukkan Tahun</label>
+  
+                                  </div> 
+                                <div class='col-sm-5'> 
+                                      <div class="select-wrap">
+                                              <select name="tahun" style="width: 100%;">
+                                                      <option value="0">Pilih Tahun</option>
+                                                  {% for satuTahun in tahun %}
+                                                      <option value={{satuTahun}}>{{satuTahun}}</option>
+                                                  {% endfor %}
+                                              </select>
+                                            </div>
+                                      </div> 
+                                     <br>
+                                     <br>
+                                      <div class='col-sm-6'> 
+                                              <label class='textedited'>Masukkan Bahan</label>
+                                              </div>
+                                      <div class='col-sm-5'>
+                                              
+                                      <div class="select-wrap">
+                                             
+                                              <select name="produk" style="width: 100%;">
+                                                    <option value="0">Pilih Bahan</option>
+                                                    <option value="17">Asam Sulfat</option>
+                                                    <option value="18">Molases</option>
+                                                    <option value="19">HCL</option>
+                                                    <option value="20">ABF</option>
+                                          
+                  
+                                              </select>
+                                            </div>
+                                          </div>
+                                          <div class='col-sm-4'></div>
+                                      
+                                      </div>         
+                                  <div class='col-sm-4'></div>
+                                  <br>
+                                 <div class='row'>
+                                  <div class='col-sm-8'></div>       
+                                  <button type="Submit" class="btn btnedited">Prediksi</button>
+                              </div>
+                              </div>        
+                          </div>
+                                    </form>
+          </div>
+</div>
+{% endblock contents %}

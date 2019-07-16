@@ -7,86 +7,725 @@
 {% endblock app_css %}
 
 {% block contents %}
-
-
-    <form action="{% url 'komparasi:hasilkomparasi' %}"  method="POST">
-            {% csrf_token %}
-<div class="card text-white">
+<div class ='row'>
+        <div class='col-sm-2'>
+        </div>
+    
+        <div class='col-sm-8'>
+                <H3 class='marginlabel'>Halaman Komparasi Berdasarkan Bulan dan Tahun</H3>
+            </div>
+        
+    
+</div>
+<br>
+<br>
 <div class='row'>
-    <div class='col-sm-2'> 
-            <div class="select-wrap">
-                    <label class='labelmargin'>Masukkan Bulan</label>
-                    <select name="bulansatu" style="width: 100%;">
-                        <option value="0">---</option>
-                        <option value="januari">Januari</option>
-                        <option value="februari">Februari</option>
-                        <option value="maret">Maret</option>
-                        <option value="april">April</option>
-                        <option value="mei">Mei</option>
-                        <option value="juni">Juni</option>
-                        <option value="juli">Juli</option>
-                        <option value="agustus">Agustus</option>
-                        <option value="september">September</option>
-                        <option value="oktober">Oktober</option>
-                        <option value="november">November</option>
-                        <option value="desember">Desember</option>
-
-                    </select>
-                  </div>
-        </div> 
-  <div class='col-sm-2'> 
-        <div class="select-wrap">
-                <label class='labelmargin'>Masukkan Tahun</label>
-                <select name="tahunsatu" style="width: 100%;">
-                        <option value="0">---</option>
-                    {% for satuTahun in tahun %}
-                        <option value={{satuTahun}}>{{satuTahun}}</option>
-                    {% endfor %}
-                </select>
-              </div>
-        </div> 
-
-<div class='col-sm-4'> 
-    <label class='labeltext'>    Komparasikan Data Hasil Penjualan Bulanan/Tahun    </label>
-    </div> 
- <div class='col-sm-2'> 
-        <div class="select-wrap">
-                <label class='labelmargin'>Masukkan Bulan</label>
-                <select name="bulandua" style="width: 100%;">
-                        <option value="0">---</option>
-                        <option value="januari">Januari</option>
-                        <option value="februari">Februari</option>
-                        <option value="maret">Maret</option>
-                        <option value="april">April</option>
-                        <option value="mei">Mei</option>
-                        <option value="juni">Juni</option>
-                        <option value="juli">Juli</option>
-                        <option value="agustus">Agustus</option>
-                        <option value="september">September</option>
-                        <option value="oktober">Oktober</option>
-                        <option value="november">November</option>
-                        <option value="desember">Desember</option>
-                </select>
-              </div>
-        </div> 
- <div class='col-sm-2'> 
-        <div class="select-wrap">
-                <label class='labelmargin'>Masukkan Tahun</label>
-                <select name="tahundua" style="width: 100%;">
-                        <option value="0">---</option>
-                        {% for satuTahun in tahun %}
-                            <option value={{satuTahun}}>{{satuTahun}}</option>
-                        {% endfor %}
-                </select>
-              </div>
-        </div>            
-     
+    <div class='col-sm-6'>
+            <form action="{% url 'komparasi:hasilkomparasi' %}"  method="POST">
+                    {% csrf_token %}
+        <div class="card text-white">
+                <div class='row'>
+                        <div class='col-sm-2'> 
+                            </div>
+                            <div class='col-sm-8'> 
+                                    <h4 class='h4margin' > Komparasi Keseluruhan Data</h4>
+                                </div>
+            
+            <div class='col-sm-2'> 
+                </div>
+            </div>
+            <br>
+        <div class='row'>
+                <div class='col-sm-2'> 
+                </div>
+            <div class='col-sm-4'> 
+                    <div class="select-wrap">
+                            <label class='labelmargin'>Masukkan Bulan 1</label>
+                            <select name="bulansatu" style="width: 100%;">
+                                <option value="0">Pilih Bulan</option>
+                                <option value="januari">Januari</option>
+                                <option value="februari">Februari</option>
+                                <option value="maret">Maret</option>
+                                <option value="april">April</option>
+                                <option value="mei">Mei</option>
+                                <option value="juni">Juni</option>
+                                <option value="juli">Juli</option>
+                                <option value="agustus">Agustus</option>
+                                <option value="september">September</option>
+                                <option value="oktober">Oktober</option>
+                                <option value="november">November</option>
+                                <option value="desember">Desember</option>
+        
+                            </select>
+                          </div>
+                </div> 
+          <div class='col-sm-4'> 
+                <div class="select-wrap">
+                        <label class='labelmargin'>Masukkan Tahun 1</label>
+                        <select name="tahunsatu" style="width: 100%;">
+                                <option value="0">Pilih Tahun</option>
+                            {% for satuTahun in tahun %}
+                                <option value={{satuTahun}}>{{satuTahun}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                </div> 
+        
+                <div class='col-sm-2'> 
+                    </div>
+                </div>
+                <br>
+            <div class='row'>
+                    <div class='col-sm-2'> 
+                        </div>
+         <div class='col-sm-4'> 
+                <div class="select-wrap">
+                        <label class='labelmargin'>Masukkan Bulan 2</label>
+                        <select name="bulandua" style="width: 100%;">
+                                <option value="0">Pilih Bulan</option>
+                                <option value="januari">Januari</option>
+                                <option value="februari">Februari</option>
+                                <option value="maret">Maret</option>
+                                <option value="april">April</option>
+                                <option value="mei">Mei</option>
+                                <option value="juni">Juni</option>
+                                <option value="juli">Juli</option>
+                                <option value="agustus">Agustus</option>
+                                <option value="september">September</option>
+                                <option value="oktober">Oktober</option>
+                                <option value="november">November</option>
+                                <option value="desember">Desember</option>
+                        </select>
+                      </div>
+                </div> 
+         <div class='col-sm-4'> 
+                <div class="select-wrap">
+                        <label class='labelmargin'>Masukkan Tahun 2</label>
+                        <select name="tahundua" style="width: 100%;">
+                                <option value="0">Pilih Tahun</option>
+                                {% for satuTahun in tahun %}
+                                    <option value={{satuTahun}}>{{satuTahun}}</option>
+                                {% endfor %}
+                        </select>
+                      </div>
+                </div>            
+             
+            </div>
+        
+            <br>
+            <br>
+                <button type="Submit" class="btn-block">Komparasi Keseluruhan Data</button>
+            </div>             
+         
+              </form>
     </div>
 
+    <div class='col-sm-6'>
+            <form action="{% url 'komparasi:hasilkomparasiitem' %}"  method="POST">
+                    {% csrf_token %}
+        <div class="card text-white">
+                <div class='row'>
+                        <div class='col-sm-2'> 
+                            </div>
+                            <div class='col-sm-8'> 
+                                    <h4 class='h4margin' style="margin-left:82px;" > Komparasi Data</h4>
+                                </div>
+            
+            <div class='col-sm-2'> 
+                </div>
+            </div>
+            <br>
+            <div class='row'>
+                    <div class='col-sm-4'> 
+                    </div>
+                <div class='col-sm-4'> 
+                        <div class="select-wrap">
+                                <label class='labelmargin' style="margin-left:24px;">Masukkan Data</label>
+                                <select class="scrollable-menu" data-toggle="dropdown" name="produk" style="width: 100%;">
+                                        <option value="0">Pilih Data</option>
+                                        <option value="1">Client</option>
+                                        <option value="2">Produk</option>
+                                        <option value="3">Jasa</option>
+                                        <option value="4">Bahan</option>
+                                        <option value="5">Pendapatan</option>
+        
+                                    </select>
+                              </div>
+                    </div> 
+                </div>
+                <br>
+        <div class='row'>
+                <div class='col-sm-2'> 
+                </div>
+            <div class='col-sm-4'> 
+                    <div class="select-wrap">
+                            <label class='labelmargin'>Masukkan Bulan 1</label>
+                            <select name="bulansatu" style="width: 100%;">
+                                <option value="0">Pilih Bulan</option>
+                                <option value="januari">Januari</option>
+                                <option value="februari">Februari</option>
+                                <option value="maret">Maret</option>
+                                <option value="april">April</option>
+                                <option value="mei">Mei</option>
+                                <option value="juni">Juni</option>
+                                <option value="juli">Juli</option>
+                                <option value="agustus">Agustus</option>
+                                <option value="september">September</option>
+                                <option value="oktober">Oktober</option>
+                                <option value="november">November</option>
+                                <option value="desember">Desember</option>
+        
+                            </select>
+                          </div>
+                </div> 
+          <div class='col-sm-4'> 
+                <div class="select-wrap">
+                        <label class='labelmargin'>Masukkan Tahun 1</label>
+                        <select name="tahunsatu" style="width: 100%;">
+                                <option value="0">Pilih Tahun</option>
+                            {% for satuTahun in tahun %}
+                                <option value={{satuTahun}}>{{satuTahun}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                </div> 
+        
+                <div class='col-sm-2'> 
+                    </div>
+                </div>
+                <br>
+            <div class='row'>
+                    <div class='col-sm-2'> 
+                        </div>
+         <div class='col-sm-4'> 
+                <div class="select-wrap">
+                        <label class='labelmargin'>Masukkan Bulan 2</label>
+                        <select name="bulandua" style="width: 100%;">
+                                <option value="0">Pilih Bulan</option>
+                                <option value="januari">Januari</option>
+                                <option value="februari">Februari</option>
+                                <option value="maret">Maret</option>
+                                <option value="april">April</option>
+                                <option value="mei">Mei</option>
+                                <option value="juni">Juni</option>
+                                <option value="juli">Juli</option>
+                                <option value="agustus">Agustus</option>
+                                <option value="september">September</option>
+                                <option value="oktober">Oktober</option>
+                                <option value="november">November</option>
+                                <option value="desember">Desember</option>
+                        </select>
+                      </div>
+                </div> 
+         <div class='col-sm-4'> 
+                <div class="select-wrap">
+                        <label class='labelmargin'>Masukkan Tahun 2</label>
+                        <select name="tahundua" style="width: 100%;">
+                                <option value="0">Pilih Tahun</option>
+                                {% for satuTahun in tahun %}
+                                    <option value={{satuTahun}}>{{satuTahun}}</option>
+                                {% endfor %}
+                        </select>
+                      </div>
+                </div>            
+             
+            </div>
+        
+            <br>
+            <br>
+                <button type="Submit" class="btn-block ">Komparasi Hasil Pendapatan</button>
+            </div>             
+         
+              </form>
+    </div>
+</div>
+
+<!-- <br>
+<br>
+<div class='row'>
+        <div class='col-sm-6'>
+                <form action="{% url 'komparasi:hasilkomparasi' %}"  method="POST">
+                        {% csrf_token %}
+            <div class="card text-white">
+                    <div class='row'>
+                            <div class='col-sm-2'> 
+                                </div>
+                                <div class='col-sm-8'> 
+                                        <h4 class='h4margin' style="margin-left:72px;"> Komparasi Produk</h4>
+                                    </div>
+                
+                <div class='col-sm-2'> 
+                    </div>
+                </div>
+                <br>
+                <div class='row'>
+                        <div class='col-sm-4'> 
+                        </div>
+                    <div class='col-sm-4'> 
+                            <div class="select-wrap">
+                                    <label class='labelmargin'>Masukkan Produk</label>
+                                    <select class="scrollable-menu" data-toggle="dropdown" name="produk" style="width: 100%;">
+                                            <option value="0">Pilih Produk</option>
+                                            <option value="1">C441</option>
+                                            <option value="2">C442</option>
+                                            <option value="3">C443</option>
+                                            <option value="4">C451</option>
+                                            <option value="5">C452</option>
+                                            <option value="6">C453</option>
+                                            <option value="7">C461</option>
+                                            <option value="8">C462</option>
+                                            <option value="9">C463</option>
+            
+                                        </select>
+                                  </div>
+                        </div> 
+                    </div>
+                    <br>
+            <div class='row'>
+                    <div class='col-sm-2'> 
+                    </div>
+                <div class='col-sm-4'> 
+                        <div class="select-wrap">
+                                <label class='labelmargin'>Masukkan Bulan 1</label>
+                                <select name="bulansatu" style="width: 100%;">
+                                    <option value="0">---</option>
+                                    <option value="januari">Januari</option>
+                                    <option value="februari">Februari</option>
+                                    <option value="maret">Maret</option>
+                                    <option value="april">April</option>
+                                    <option value="mei">Mei</option>
+                                    <option value="juni">Juni</option>
+                                    <option value="juli">Juli</option>
+                                    <option value="agustus">Agustus</option>
+                                    <option value="september">September</option>
+                                    <option value="oktober">Oktober</option>
+                                    <option value="november">November</option>
+                                    <option value="desember">Desember</option>
+            
+                                </select>
+                              </div>
+                    </div> 
+              <div class='col-sm-4'> 
+                    <div class="select-wrap">
+                            <label class='labelmargin'>Masukkan Tahun 1</label>
+                            <select name="tahunsatu" style="width: 100%;">
+                                    <option value="0">---</option>
+                                {% for satuTahun in tahun %}
+                                    <option value={{satuTahun}}>{{satuTahun}}</option>
+                                {% endfor %}
+                            </select>
+                          </div>
+                    </div> 
+            
+                    <div class='col-sm-2'> 
+                        </div>
+                    </div>
+                    <br>
+                <div class='row'>
+                        <div class='col-sm-2'> 
+                            </div>
+             <div class='col-sm-4'> 
+                    <div class="select-wrap">
+                            <label class='labelmargin'>Masukkan Bulan 2</label>
+                            <select name="bulandua" style="width: 100%;">
+                                    <option value="0">---</option>
+                                    <option value="januari">Januari</option>
+                                    <option value="februari">Februari</option>
+                                    <option value="maret">Maret</option>
+                                    <option value="april">April</option>
+                                    <option value="mei">Mei</option>
+                                    <option value="juni">Juni</option>
+                                    <option value="juli">Juli</option>
+                                    <option value="agustus">Agustus</option>
+                                    <option value="september">September</option>
+                                    <option value="oktober">Oktober</option>
+                                    <option value="november">November</option>
+                                    <option value="desember">Desember</option>
+                            </select>
+                          </div>
+                    </div> 
+             <div class='col-sm-4'> 
+                    <div class="select-wrap">
+                            <label class='labelmargin'>Masukkan Tahun 2</label>
+                            <select name="tahundua" style="width: 100%;">
+                                    <option value="0">---</option>
+                                    {% for satuTahun in tahun %}
+                                        <option value={{satuTahun}}>{{satuTahun}}</option>
+                                    {% endfor %}
+                            </select>
+                          </div>
+                    </div>            
+                 
+                </div>
+            
+                <br>
+                <br>
+                    <button type="Submit" class="btn-block">Komparasi Keseluruhan Data</button>
+                </div>             
+             
+                  </form>
+        </div>
+    
+        <div class='col-sm-6'>
+                <form action="{% url 'komparasi:hasilkomparasi' %}"  method="POST">
+                        {% csrf_token %}
+            <div class="card text-white">
+                    <div class='row'>
+                            <div class='col-sm-2'> 
+                                </div>
+                                <div class='col-sm-8'> 
+                                        <h4 class='h4margin' style="margin-left:84px;" > Komparasi Jasa</h4>
+                                    </div>
+                
+                <div class='col-sm-2'> 
+                    </div>
+                </div>
+                <br>
+             
+                <div class='row'>
+                        <div class='col-sm-4'> 
+                        </div>
+                    <div class='col-sm-4'> 
+                            <div class="select-wrap">
+                                    <label class='labelmargin'>Masukkan Jasa</label>
+                                    <select class="scrollable-menu" data-toggle="dropdown" name="produk" style="width: 100%;">
+                                            <option value="0">Pilih Jasa</option>
+                                            <option value="1">C441</option>
+                                            <option value="2">C442</option>
+                                            <option value="3">C443</option>
+                 
+                                        </select>
+                                  </div>
+                        </div> 
+                    </div>
+                    <br>
+            <div class='row'>
+                    <div class='col-sm-2'> 
+                    </div>
+                <div class='col-sm-4'> 
+                        <div class="select-wrap">
+                                <label class='labelmargin'>Masukkan Bulan 1</label>
+                                <select name="bulansatu" style="width: 100%;">
+                                    <option value="0">---</option>
+                                    <option value="januari">Januari</option>
+                                    <option value="februari">Februari</option>
+                                    <option value="maret">Maret</option>
+                                    <option value="april">April</option>
+                                    <option value="mei">Mei</option>
+                                    <option value="juni">Juni</option>
+                                    <option value="juli">Juli</option>
+                                    <option value="agustus">Agustus</option>
+                                    <option value="september">September</option>
+                                    <option value="oktober">Oktober</option>
+                                    <option value="november">November</option>
+                                    <option value="desember">Desember</option>
+            
+                                </select>
+                              </div>
+                    </div> 
+              <div class='col-sm-4'> 
+                    <div class="select-wrap">
+                            <label class='labelmargin'>Masukkan Tahun 1</label>
+                            <select name="tahunsatu" style="width: 100%;">
+                                    <option value="0">---</option>
+                                {% for satuTahun in tahun %}
+                                    <option value={{satuTahun}}>{{satuTahun}}</option>
+                                {% endfor %}
+                            </select>
+                          </div>
+                    </div> 
+            
+                    <div class='col-sm-2'> 
+                        </div>
+                    </div>
+                    <br>
+                <div class='row'>
+                        <div class='col-sm-2'> 
+                            </div>
+             <div class='col-sm-4'> 
+                    <div class="select-wrap">
+                            <label class='labelmargin'>Masukkan Bulan 2</label>
+                            <select name="bulandua" style="width: 100%;">
+                                    <option value="0">---</option>
+                                    <option value="januari">Januari</option>
+                                    <option value="februari">Februari</option>
+                                    <option value="maret">Maret</option>
+                                    <option value="april">April</option>
+                                    <option value="mei">Mei</option>
+                                    <option value="juni">Juni</option>
+                                    <option value="juli">Juli</option>
+                                    <option value="agustus">Agustus</option>
+                                    <option value="september">September</option>
+                                    <option value="oktober">Oktober</option>
+                                    <option value="november">November</option>
+                                    <option value="desember">Desember</option>
+                            </select>
+                          </div>
+                    </div> 
+             <div class='col-sm-4'> 
+                    <div class="select-wrap">
+                            <label class='labelmargin'>Masukkan Tahun 2</label>
+                            <select name="tahundua" style="width: 100%;">
+                                    <option value="0">---</option>
+                                    {% for satuTahun in tahun %}
+                                        <option value={{satuTahun}}>{{satuTahun}}</option>
+                                    {% endfor %}
+                            </select>
+                          </div>
+                    </div>            
+                 
+                </div>
+            
+                <br>
+                <br>
+                    <button type="Submit" class="btn-block">Komparasi Hasil Pendapatan</button>
+                </div>             
+             
+                  </form>
+        </div>
+    </div>  
     <br>
     <br>
-        <button type="Submit" class="btn-block">Komparasi Hasil Penjualan</button>
-    </div>             
- 
-      </form>
+    <div class='row'>
+            <div class='col-sm-6'>
+                    <form action="{% url 'komparasi:hasilkomparasi' %}"  method="POST">
+                            {% csrf_token %}
+                <div class="card text-white">
+                        <div class='row'>
+                                <div class='col-sm-2'> 
+                                    </div>
+                                    <div class='col-sm-8'> 
+                                            <h4 class='h4margin'style="margin-left:84px;" > Komparasi Client</h4>
+                                        </div>
+                    
+                    <div class='col-sm-2'> 
+                        </div>
+                    </div>
+                    <br>
+                    <div class='row'>
+                            <div class='col-sm-4'> 
+                            </div>
+                        <div class='col-sm-4'> 
+                                <div class="select-wrap">
+                                        <label class='labelmargin' style="margin-left:22px;">Masukkan Client</label>
+                                        <select class="scrollable-menu" data-toggle="dropdown" name="produk" style="width: 100%;">
+                                                <option value="0">Pilih Produk</option>
+                                                <option value="1">C441</option>
+                                                <option value="2">C442</option>
+                                                <option value="3">C443</option>
+                                                <option value="4">C451</option>
+                                                <option value="5">C452</option>
+                                                <option value="6">C453</option>
+                                                <option value="7">C461</option>
+                                                <option value="8">C462</option>
+                                                <option value="9">C463</option>
+                
+                                            </select>
+                                      </div>
+                            </div> 
+                        </div>
+                        <br>
+                <div class='row'>
+                        <div class='col-sm-2'> 
+                        </div>
+                    <div class='col-sm-4'> 
+                            <div class="select-wrap">
+                                    <label class='labelmargin'>Masukkan Bulan 1</label>
+                                    <select name="bulansatu" style="width: 100%;">
+                                        <option value="0">---</option>
+                                        <option value="januari">Januari</option>
+                                        <option value="februari">Februari</option>
+                                        <option value="maret">Maret</option>
+                                        <option value="april">April</option>
+                                        <option value="mei">Mei</option>
+                                        <option value="juni">Juni</option>
+                                        <option value="juli">Juli</option>
+                                        <option value="agustus">Agustus</option>
+                                        <option value="september">September</option>
+                                        <option value="oktober">Oktober</option>
+                                        <option value="november">November</option>
+                                        <option value="desember">Desember</option>
+                
+                                    </select>
+                                  </div>
+                        </div> 
+                  <div class='col-sm-4'> 
+                        <div class="select-wrap">
+                                <label class='labelmargin'>Masukkan Tahun 1</label>
+                                <select name="tahunsatu" style="width: 100%;">
+                                        <option value="0">---</option>
+                                    {% for satuTahun in tahun %}
+                                        <option value={{satuTahun}}>{{satuTahun}}</option>
+                                    {% endfor %}
+                                </select>
+                              </div>
+                        </div> 
+                
+                        <div class='col-sm-2'> 
+                            </div>
+                        </div>
+                        <br>
+                    <div class='row'>
+                            <div class='col-sm-2'> 
+                                </div>
+                 <div class='col-sm-4'> 
+                        <div class="select-wrap">
+                                <label class='labelmargin'>Masukkan Bulan 2</label>
+                                <select name="bulandua" style="width: 100%;">
+                                        <option value="0">---</option>
+                                        <option value="januari">Januari</option>
+                                        <option value="februari">Februari</option>
+                                        <option value="maret">Maret</option>
+                                        <option value="april">April</option>
+                                        <option value="mei">Mei</option>
+                                        <option value="juni">Juni</option>
+                                        <option value="juli">Juli</option>
+                                        <option value="agustus">Agustus</option>
+                                        <option value="september">September</option>
+                                        <option value="oktober">Oktober</option>
+                                        <option value="november">November</option>
+                                        <option value="desember">Desember</option>
+                                </select>
+                              </div>
+                        </div> 
+                 <div class='col-sm-4'> 
+                        <div class="select-wrap">
+                                <label class='labelmargin'>Masukkan Tahun 2</label>
+                                <select name="tahundua" style="width: 100%;">
+                                        <option value="0">---</option>
+                                        {% for satuTahun in tahun %}
+                                            <option value={{satuTahun}}>{{satuTahun}}</option>
+                                        {% endfor %}
+                                </select>
+                              </div>
+                        </div>            
+                     
+                    </div>
+                
+                    <br>
+                    <br>
+                        <button type="Submit" class="btn-block">Komparasi Keseluruhan Data</button>
+                    </div>             
+                 
+                      </form>
+            </div>
+        
+            <div class='col-sm-6'>
+                    <form action="{% url 'komparasi:hasilkomparasi' %}"  method="POST">
+                            {% csrf_token %}
+                <div class="card text-white">
+                        <div class='row'>
+                                <div class='col-sm-2'> 
+                                    </div>
+                                    <div class='col-sm-8'> 
+                                            <h4 class='h4margin' style="margin-left:74px;" > Komparasi Bahan</h4>
+                                        </div>
+                    
+                    <div class='col-sm-2'> 
+                        </div>
+                    </div>
+                    <br>
+                 
+                    <div class='row'>
+                            <div class='col-sm-4'> 
+                            </div>
+                        <div class='col-sm-4'> 
+                                <div class="select-wrap">
+                                        <label class='labelmargin' style="margin-left:20px;">Masukkan Bahan</label>
+                                        <select class="scrollable-menu" data-toggle="dropdown" name="produk" style="width: 100%;">
+                                                <option value="0">Pilih Bahan</option>
+                                                <option value="1">C441</option>
+                                                <option value="2">C442</option>
+                                                <option value="3">C443</option>
+                     
+                                            </select>
+                                      </div>
+                            </div> 
+                        </div>
+                        <br>
+                <div class='row'>
+                        <div class='col-sm-2'> 
+                        </div>
+                    <div class='col-sm-4'> 
+                            <div class="select-wrap">
+                                    <label class='labelmargin'>Masukkan Bulan 1</label>
+                                    <select name="bulansatu" style="width: 100%;">
+                                        <option value="0">---</option>
+                                        <option value="januari">Januari</option>
+                                        <option value="februari">Februari</option>
+                                        <option value="maret">Maret</option>
+                                        <option value="april">April</option>
+                                        <option value="mei">Mei</option>
+                                        <option value="juni">Juni</option>
+                                        <option value="juli">Juli</option>
+                                        <option value="agustus">Agustus</option>
+                                        <option value="september">September</option>
+                                        <option value="oktober">Oktober</option>
+                                        <option value="november">November</option>
+                                        <option value="desember">Desember</option>
+                
+                                    </select>
+                                  </div>
+                        </div> 
+                  <div class='col-sm-4'> 
+                        <div class="select-wrap">
+                                <label class='labelmargin'>Masukkan Tahun 1</label>
+                                <select name="tahunsatu" style="width: 100%;">
+                                        <option value="0">---</option>
+                                    {% for satuTahun in tahun %}
+                                        <option value={{satuTahun}}>{{satuTahun}}</option>
+                                    {% endfor %}
+                                </select>
+                              </div>
+                        </div> 
+                
+                        <div class='col-sm-2'> 
+                            </div>
+                        </div>
+                        <br>
+                    <div class='row'>
+                            <div class='col-sm-2'> 
+                                </div>
+                 <div class='col-sm-4'> 
+                        <div class="select-wrap">
+                                <label class='labelmargin'>Masukkan Bulan 2</label>
+                                <select name="bulandua" style="width: 100%;">
+                                        <option value="0">---</option>
+                                        <option value="januari">Januari</option>
+                                        <option value="februari">Februari</option>
+                                        <option value="maret">Maret</option>
+                                        <option value="april">April</option>
+                                        <option value="mei">Mei</option>
+                                        <option value="juni">Juni</option>
+                                        <option value="juli">Juli</option>
+                                        <option value="agustus">Agustus</option>
+                                        <option value="september">September</option>
+                                        <option value="oktober">Oktober</option>
+                                        <option value="november">November</option>
+                                        <option value="desember">Desember</option>
+                                </select>
+                              </div>
+                        </div> 
+                 <div class='col-sm-4'> 
+                        <div class="select-wrap">
+                                <label class='labelmargin'>Masukkan Tahun 2</label>
+                                <select name="tahundua" style="width: 100%;">
+                                        <option value="0">---</option>
+                                        {% for satuTahun in tahun %}
+                                            <option value={{satuTahun}}>{{satuTahun}}</option>
+                                        {% endfor %}
+                                </select>
+                              </div>
+                        </div>            
+                     
+                    </div>
+                
+                    <br>
+                    <br>
+                        <button type="Submit" class="btn-block">Komparasi Hasil Pendapatan</button>
+                    </div>             
+                 
+                      </form>
+            </div>
+        </div>     -->
 {% endblock contents %}

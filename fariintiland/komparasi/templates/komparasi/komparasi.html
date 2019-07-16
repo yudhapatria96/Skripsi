@@ -221,7 +221,7 @@ var dataPelangganMall =[all_data_satu[1], all_data_dua[1]]
 var dataPelangganApartemen = [all_data_satu[2],all_data_dua[2] ]
 var tahunLama = '{{ labeling2 }}'
 var tahunPrediksi = '{{ labeling }}'
-var tahun = {{tahunall}}
+var tahun = ['{{satusatu}}', '{{duadua}}']
 
 var ctx3 = document.getElementById('myChart3').getContext('2d');
 var myChart3 = new Chart(ctx3, {
@@ -231,7 +231,7 @@ var myChart3 = new Chart(ctx3, {
         datasets: [{
             label: 'Pelanggan Hotel',
             data: dataPelangganHotel,
-            backgroundColor: 'rgba(255,255,255, 0.1)',
+            backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
                
@@ -241,7 +241,7 @@ var myChart3 = new Chart(ctx3, {
         },{
             label: 'Pelanggan Mall',
             data: dataPelangganMall,
-            backgroundColor: 'rgba(255,255,255, 0.1)',
+            backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(54, 162, 235, 1)'
                
@@ -251,7 +251,7 @@ var myChart3 = new Chart(ctx3, {
         },{ 
             label: 'Pelanggan Apartemen',
             data: dataPelangganApartemen,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(154, 42, 35, 4)'
                
@@ -285,7 +285,7 @@ var myChart4 = new Chart(ctx4, {
         datasets: [{
             label: 'Produk C441',
             data: dataPelangganC441,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
                
@@ -295,7 +295,7 @@ var myChart4 = new Chart(ctx4, {
         },{
             label: 'Produk C442',
             data: dataPelangganC442,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(54, 162, 235, 1)'
                
@@ -305,7 +305,7 @@ var myChart4 = new Chart(ctx4, {
         },{ 
             label: 'Produk C443',
             data: dataPelangganC443,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(154, 42, 35, 4)'
                
@@ -339,7 +339,7 @@ var myChart5 = new Chart(ctx5, {
         datasets: [{
             label: 'Produk C451',
             data: dataPelangganC451,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
                
@@ -349,7 +349,7 @@ var myChart5 = new Chart(ctx5, {
         },{
             label: 'Produk C452',
             data: dataPelangganC452,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(54, 162, 235, 1)'
                
@@ -359,7 +359,7 @@ var myChart5 = new Chart(ctx5, {
         },{ 
             label: 'Produk C453',
             data: dataPelangganC453,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(154, 42, 35, 4)'
                
@@ -393,7 +393,7 @@ var myChart6 = new Chart(ctx6, {
         datasets: [{
             label: 'Produk C461',
             data: dataPelangganC461,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(255, 99, 132, 1)',
                
@@ -403,7 +403,7 @@ var myChart6 = new Chart(ctx6, {
         },{
             label: 'Produk C462',
             data: dataPelangganC462,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(54, 162, 235, 1)'
                
@@ -413,7 +413,7 @@ var myChart6 = new Chart(ctx6, {
         },{ 
             label: 'Produk C463',
             data: dataPelangganC463,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(154, 42, 35, 4)'
                
@@ -448,7 +448,7 @@ var myChart7 = new Chart(ctx7, {
         datasets: [{
             label: 'Jasa Pembersih Air',
             data: dataPelangganPembersihAir,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(255, 99, 132, 1)',          
             ],
@@ -456,7 +456,7 @@ var myChart7 = new Chart(ctx7, {
         },{
             label: 'Jasa Pembersih kerak',
             data: dataPelangganPembersihKerak,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(54, 162, 235, 1)'
                
@@ -466,7 +466,7 @@ var myChart7 = new Chart(ctx7, {
         },{ 
             label: 'Jasa Pembersih Cooling Tower',
             data: dataPelangganPembersihCoolingTower,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(154, 42, 35, 4)'
                
@@ -476,7 +476,7 @@ var myChart7 = new Chart(ctx7, {
         },{ 
             label: 'Jasa Pembersih STP',
             data: dataPelangganPembersihSTP,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(32, 242, 25, 11)'
                
@@ -511,7 +511,7 @@ var myChart8 = new Chart(ctx8, {
         datasets: [{
             label: 'Asam Sulfat Terpakai',
             data: dataPelangganAsamSulfat,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(255, 99, 132, 1)',          
             ],
@@ -519,7 +519,7 @@ var myChart8 = new Chart(ctx8, {
         },{
             label: 'Molases Terpakai',
             data: dataPelangganMolases,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(54, 162, 235, 1)'
                
@@ -529,7 +529,7 @@ var myChart8 = new Chart(ctx8, {
         },{ 
             label: 'HCL Terpakai',
             data: dataPelangganHCL,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(154, 42, 35, 4)'
                
@@ -539,7 +539,7 @@ var myChart8 = new Chart(ctx8, {
         },{ 
             label: 'ABF Terpakai',
             data: dataPelangganABF,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(32, 242, 25, 11)'
                
@@ -568,7 +568,7 @@ var myChart9 = new Chart(ctx9, {
         datasets: [{
             label: 'Pendapatan',
             data: datapendapatan,
-            backgroundColor: ['rgba(255,255,255, 0.1)'],
+            backgroundColor: ['rgba(255,255,255, 0)'],
             borderColor: [
                 'rgba(255, 99, 132, 1)',          
             ],

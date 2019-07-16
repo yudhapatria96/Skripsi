@@ -94,6 +94,31 @@
                             </div>
 
                     <label>note: {{pesan}}</label>
+                  
+{% if hasiladamape %}
+<div class = 'row'>
+    <table class="table table-striped table-dark">
+            <thead>
+            <tr>
+                <th scope="col">Data</th>
+                <th scope="col">Hasil Mape</th>
+            </tr>
+            </thead>
+        
+            <tbody>
+            {% for key, value in infodata.items %}
+            <tr> 
+                <td>{{ key }}</td>
+                <td>{{ value }}%</td>
+                <!-- <td>{{ post.bulan_transaksi }}</td> -->
+        
+           </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+</div>                           
+
+{% endif %}
 {% endblock contents %}
 
 {% block jquery %}
@@ -102,6 +127,7 @@
 bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktomber', 'November', 'Desember']
 var tahun = {{tahun}}
 var datasatu = {{hasilprediksi}}
+var datadua = {{data_tahun}}
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
@@ -113,6 +139,16 @@ var myChart = new Chart(ctx, {
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Pelanggan Hotel Tahun ' + tahun,
+            data: datadua[0],
+            backgroundColor: 'rgba(255,255,255,0)',
+            borderColor: [
+                'rgba(31, 199, 32, 1)',
                
                 
             ],
@@ -146,6 +182,16 @@ var myChart2 = new Chart(ctx2, {
                 
             ],
             borderWidth: 1
+        },{
+            label: 'Pelanggan Mall Tahun ' + tahun,
+            data: datadua[1],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(31, 199, 32, 1)',
+               
+                
+            ],
+            borderWidth: 1
         }]
     },
     options: {
@@ -175,7 +221,18 @@ var myChart3 = new Chart(ctx3, {
                 
             ],
             borderWidth: 1
-        }]
+        },{
+            label: 'Pelanggan Apartemen Tahun ' + tahun,
+            data: datadua[2],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }
+        ]
     },
     options: {
         scales: {
@@ -200,6 +257,16 @@ var myChart4 = new Chart(ctx4, {
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Penjualan C441 Tahun ' + tahun,
+            data: datadua[3],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',
                
                 
             ],
@@ -237,6 +304,16 @@ var myChart5 = new Chart(ctx5, {
                 
             ],
             borderWidth: 1
+        },{
+            label: 'Penjualan C442 Tahun ' + tahun,
+            data: datadua[4],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',
+               
+                
+            ],
+            borderWidth: 1
         }]
     },
     options: {
@@ -270,6 +347,16 @@ var myChart6 = new Chart(ctx6, {
                 
             ],
             borderWidth: 1
+        },{
+            label: 'Penjualan C443 Tahun ' + tahun,
+            data: datadua[5],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',
+               
+                
+            ],
+            borderWidth: 1
         }]
     },
     options: {
@@ -298,6 +385,16 @@ var myChart7 = new Chart(ctx7, {
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }, {
+            label: 'Penjualan C451 Tahun ' + tahun,
+            data: datadua[6],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(31, 199, 32, 1)',
                
                 
             ],
@@ -335,6 +432,16 @@ var myChart8 = new Chart(ctx8, {
                 
             ],
             borderWidth: 1
+        },{
+            label: 'Penjualan C452 Tahun ' + tahun,
+            data: datadua[7],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(31, 199, 32, 1)',
+               
+                
+            ],
+            borderWidth: 1
         }]
     },
     options: {
@@ -364,6 +471,16 @@ var myChart9 = new Chart(ctx9, {
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Penjualan C453 Tahun ' + tahun,
+            data: datadua[8],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                 'rgba(31, 199, 32, 1)',
                
                 
             ],
@@ -401,6 +518,14 @@ var myChart10 = new Chart(ctx10, {
                 
             ],
             borderWidth: 1
+        },{
+            label: 'Penjualan C461 Tahun ' + tahun,
+            data: datadua[9],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(31, 199, 32, 1)',            
+            ],
+            borderWidth: 1
         }]
     },
     options: {
@@ -430,6 +555,16 @@ var myChart11= new Chart(ctx11, {
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        }, {
+            label: 'Penjualan C462 Tahun ' + tahun,
+            data: datadua[10],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(31, 199, 32, 1)',            
                
                 
             ],
@@ -467,6 +602,16 @@ var myChart12 = new Chart(ctx12, {
                 
             ],
             borderWidth: 1
+        },{
+            label: 'Penjualan C463 Tahun ' + tahun,
+            data: datadua[11],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',            
+               
+                
+            ],
+            borderWidth: 1
         }]
     },
     options: {
@@ -496,6 +641,16 @@ var myChart13 = new Chart(ctx13, {
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih Air Tahun ' + tahun,
+            data: datadua[12],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',
                
                 
             ],
@@ -533,6 +688,16 @@ var myChart14= new Chart(ctx14, {
                 
             ],
             borderWidth: 1
+        },{
+            label: 'Jasa Pembersih Kerak Sillica Tahun ' + tahun,
+            data: datadua[13],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',
+               
+                
+            ],
+            borderWidth: 1
         }]
     },
     options: {
@@ -566,6 +731,16 @@ var myChart15 = new Chart(ctx15, {
                 
             ],
             borderWidth: 1
+        },{
+            label: 'Jasa Pembersih Cooling Tower Tahun ' + tahun,
+            data: datadua[14],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',
+               
+                
+            ],
+            borderWidth: 1
         }]
     },
     options: {
@@ -594,6 +769,16 @@ var myChart16 = new Chart(ctx16, {
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jasa Pembersih Cooling Tower Tahun ' + tahun,
+            data: datadua[14],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',
                
                 
             ],
@@ -631,6 +816,16 @@ var myChart17 = new Chart(ctx17, {
                 
             ],
             borderWidth: 1
+        },{
+            label: 'Jumlah Asam Sulfat Tahun ' + tahun,
+            data: datadua[16],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',
+               
+                
+            ],
+            borderWidth: 1
         }]
     },
     options: {
@@ -660,6 +855,16 @@ var myChart18= new Chart(ctx18, {
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jumlah Molases Tahun ' + tahun,
+            data: datadua[17],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',
                
                 
             ],
@@ -697,6 +902,16 @@ var myChart19 = new Chart(ctx19, {
                 
             ],
             borderWidth: 1
+        },{
+            label: 'Jumlah HCL Tahun ' + tahun,
+            data: datadua[18],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',
+               
+                
+            ],
+            borderWidth: 1
         }]
     },
     options: {
@@ -725,6 +940,16 @@ var myChart20 = new Chart(ctx20, {
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Jumlah ABF Tahun ' + tahun,
+            data: datadua[19],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+                'rgba(31, 199, 32, 1)',
                
                 
             ],
@@ -758,6 +983,16 @@ var myChart21 = new Chart(ctx21, {
             backgroundColor: 'rgba(255,255,255, 0)',
             borderColor: [
                 'rgba(255, 99, 132, 1)',
+               
+                
+            ],
+            borderWidth: 1
+        },{
+            label: 'Pendapatan Tahun ' + tahun,
+            data: datadua[20],
+            backgroundColor: 'rgba(255,255,255, 0)',
+            borderColor: [
+            'rgba(31, 199, 32, 1)',
                
                 
             ],

@@ -4,6 +4,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
 # from . import forms
@@ -108,8 +109,6 @@ def hitung_forecasting(post, index_tahun, si_x, thismonth, bulan):
         b = ((n * total_xy)-(total_x * total_y)) / ((n * x_kuadrat) - (total_x * total_x))
         a = (total_y - (b * total_x))/n
         y = a + (b * (si_x ))
-        print(a)
-        print(b)
         rata_rata_penjualan_bulan_tertentu = jumlah_penjualan_bulan_tertentu / jumlah_bulan
         rata_rata_penjualan_total = total_y / x_y
         
@@ -209,12 +208,6 @@ def hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya
     b = 0 
     a = 0
     n = 0
-    jumlah_bulan = 0
-    y_index_musiman= []
-    rata_rata_penjualan_bulan_tertentu = 0 
-    jumlah_penjualan_bulan_tertentu = 0
-    rata_rata_penjualan_total = 0
-    index_musiman = 0
     index_total_break = []
     for posts in post:
         # print(posts.jumlah_hotel)
@@ -473,7 +466,7 @@ def hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya
             data_mape.append(abs(mape))
         for datainmape in data_mape:
             total_mape += datainmape
-        hasil_mape = (total_mape / 12) * 100
+        hasil_mape = (total_mape / len(data_mape)) * 100
         hasil_keselurahan_mape.append(hasil_mape)
     return(hasil_keselurahan_mape)
 
@@ -685,8 +678,6 @@ def hitung_forecasting_tahun(post, si_x):
             xx+=1
             hitung_x = si_x + xx
             y = a + (b * (hitung_x ))
-            print(a)
-            print(b)
             # print((hitung_x + x_y))
             # print(hitung_x + x_y)
             y = round(y * index_musim_satuan[xzz])
@@ -697,15 +688,16 @@ def hitung_forecasting_tahun(post, si_x):
     return(semua_semua_data)
 @login_required(login_url="/accounts/login/")   
 def index(request):
-    post = PenjualanModel.objects.all()
-    post_tahun = PenjualanModel.objects.values_list('tahun_transaksi', flat=True).distinct()
-    tahuntambahan = 1
-    tahunterakhir = post_tahun[len(post_tahun)-1] 
     tahun = []
-    for tahuntambahan in range(10):
-        tahun.append(tahunterakhir+tahuntambahan)
-    tahun.reverse()
-  
+    try:
+        post_tahun = PenjualanModel.objects.values_list('tahun_transaksi', flat=True).order_by('tahun_transaksi').distinct()
+        tahuntambahan = 1
+        tahunterakhir = post_tahun[len(post_tahun)-1] 
+        for tahuntambahan in range(10):
+            tahun.append(tahunterakhir+tahuntambahan)
+        tahun.sort()
+    except Exception as e:
+        print(e)
 
     context = {
         'heading':'Forecasting',
@@ -715,94 +707,118 @@ def index(request):
                 
     return render(request, 'forecasting/index.html',context)
 
+@login_required(login_url="/accounts/login/")   
+def indexitem(request):
+    tahun = []
+    try:
+        post_tahun = PenjualanModel.objects.values_list('tahun_transaksi', flat=True).order_by('tahun_transaksi').distinct()
+        tahuntambahan = 1
+        tahunterakhir = post_tahun[len(post_tahun)-1] 
+        for tahuntambahan in range(10):
+            tahun.append(tahunterakhir+tahuntambahan)
+        tahun.sort()
+    except Exception as e:
+        print(e)
+
+    context = {
+        'heading':'Forecasting',
+        'tahun': tahun,
+    } 
+  
+                
+    return render(request, 'forecasting/indexitem.html',context)
 @login_required(login_url="/accounts/login/")
 def resultForecasting(request):
     
     if request.method == 'POST':
-        post = PenjualanModel.objects.all().order_by('tahun_transaksi', 'bulan_transaksi')
-        hasilnya = 0
-        thismonth= {
-            '1' : "januari",
-            '2' : "februari",
-            '3' : "maret",
-            '4' : "april",
-            '5' : "mei",
-            '6' : "juni",
-            '7' : "juli",
-            '8' : "agustus",
-            '9' : "september",
-            '10' : "oktober",
-            '11' : "november",
-            '12' : "desember"
-        }
         try:
-            years= PenjualanModel.objects.all().order_by('tahun_transaksi')
-            year_int = years[len(years) - 1].tahun_transaksi
-        except ObjectDoesNotExist:
-            year_int = 0
-        index_tahun = 0
-        hasilnya = []
-        pendapatanpredict = 0
-        pendapatanasli = 0
-        data_tahun_sebelumnya = []
-        data_all_tahun_sebelumnya = []
-        hasilakhirmape = 0
-        testhasilmape = []
-        pesan = ""
-        bulan = request.POST['bulan_dan_tahun_prediksi_month'] 
-        tahun = request.POST['bulan_dan_tahun_prediksi_year']   
-        if(bulan != '0' and tahun != '0'):
-            index_tahun = ((int(tahun) - years[0].tahun_transaksi) * 12)
-            si_x = index_tahun + (int(request.POST['bulan_dan_tahun_prediksi_month'] ))
-            hasilnya=(hitung_forecasting(post, index_tahun, si_x, thismonth, bulan))
-            if int(tahun) == year_int:
-                tahuntahunsebelumnya = year_int
-                testhasilmape = hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya)
-                for hasil in testhasilmape :
-                    hasilakhirmape = hasilakhirmape + hasil
-                   
-                hasilakhirmape = round((hasilakhirmape / len(testhasilmape)),3)
-                pesan = "Persentase Error(MAPE) Pada Tahun "+tahun+ " adalah " + str(hasilakhirmape)+"%"
-            else:
-                pesan = "Belum Ada Data Asli Pada tahun "+tahun + " Sehingga Tidak Memiliki Persentase Error(MAPE)"
-            pendapatanpredict = hasilnya[-1]
-            #terakhir ngitung mape
-            
-        else:
-            return redirect('forecasting:index')
-        try:
-            data_tahun_sebelumnya = PenjualanModel.objects.get(bulan_transaksi = thismonth[bulan], tahun_transaksi = year_int)
-            data_all_tahun_sebelumnya = [data_tahun_sebelumnya.jumlah_hotel, data_tahun_sebelumnya.jumlah_mall, data_tahun_sebelumnya.jumlah_apartemen,
-            data_tahun_sebelumnya.jumlah_C441, data_tahun_sebelumnya.jumlah_C442, data_tahun_sebelumnya.jumlah_C443, data_tahun_sebelumnya.jumlah_C451,
-            data_tahun_sebelumnya.jumlah_C452, data_tahun_sebelumnya.jumlah_C453, data_tahun_sebelumnya.jumlah_C461, data_tahun_sebelumnya.jumlah_C462, 
-            data_tahun_sebelumnya.jumlah_C463, data_tahun_sebelumnya.jasa_pembersih_air, data_tahun_sebelumnya.jasa_pembersih_kerak_sillica,
-            data_tahun_sebelumnya.jasa_pembersih_cooling_tower, data_tahun_sebelumnya.jasa_pembersih_stp, data_tahun_sebelumnya.jumlah_asam_sulfat,
-            data_tahun_sebelumnya.jumlah_molases, data_tahun_sebelumnya.jumlah_hcl, data_tahun_sebelumnya.jumlah_abf, data_tahun_sebelumnya.pendapatan]
-            pendapatanasli = data_all_tahun_sebelumnya[-1]
-            
-        except ObjectDoesNotExist:
-            data_tahun_sebelumnya = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
 
-        # if len(hasilnya) != 0 :
-        #     for y in range(len(hasilnya)-1):
-        #         selisihdata = round((hasilnya[y] - data_all_tahun_sebelumnya[y])/data_all_tahun_sebelumnya[y], 3)
-        #         hitungmape = round(((hasilnya[y]-data_all_tahun_sebelumnya[y])/data_all_tahun_sebelumnya[y])*100, 3)
-        #         hasilakhirmape += abs(hitungmape)
-        #         presentasidata.append(selisihdata)
-        #         allhasilmape.append(abs(hitungmape))
-            
-        #     hasilakhirmape = round(hasilakhirmape / (len(hasilnya)-1),3)
-            
-        labeling = "Hasil Prediksi Penjualan pada bulan " +thismonth[bulan]+ " tahun " + tahun    
-        labeling2 = "Hasil Penjualan pada bulan " + thismonth[bulan] + " tahun " + str(year_int)
-        tahunpredict = int(tahun)
-        tahunprediksii = [tahunpredict]
-        del hasilnya[-1]
-        del data_all_tahun_sebelumnya[-1]    
-        
-        # informasidata = ["jumlah client hotel", "jumlah client mall", "jumlah client apartemen", "C441 Terjual", "C442 Terjual", "C443 Terjual", "C451 Terjual", "C452 Terjual", "C453 Terjual", "C461 Terjual", "C462 Terjual", "C463 Terjual", "Jasa Pembersih Air", "Jasa Pembersih Kerak Sillica", "Jasa Pembersih Cooling Tower", "Jasa Pembersih STP", "Asam Sulfat Terpakai", "Molases Terpakai", "HCL Terpakai", "ABF Terpakai", "pendapatan"]           
-        # infodata = dict([informasidata[z], [presentasidata[z], round(testhasilmape[z],3)]] for z in range(len(informasidata)-1))
-        
+            post = PenjualanModel.objects.all().order_by('tahun_transaksi', 'bulan_transaksi')
+            hasilnya = 0
+            thismonth= {
+                '1' : "januari",
+                '2' : "februari",
+                '3' : "maret",
+                '4' : "april",
+                '5' : "mei",
+                '6' : "juni",
+                '7' : "juli",
+                '8' : "agustus",
+                '9' : "september",
+                '10' : "oktober",
+                '11' : "november",
+                '12' : "desember"
+            }
+            try:
+                years= PenjualanModel.objects.all().order_by('tahun_transaksi','bulan_transaksi')
+                year_int = years[len(years) - 1].tahun_transaksi
+            except ObjectDoesNotExist:
+                year_int = 0
+            index_tahun = 0
+            hasilnya = []
+            pendapatanpredict = 0
+            pendapatanasli = 0
+            data_tahun_sebelumnya = []
+            data_all_tahun_sebelumnya = []
+            hasilakhirmape = 0
+            testhasilmape = []
+            pesan = ""
+            bulan = request.POST['bulan_dan_tahun_prediksi_month'] 
+            tahun = request.POST['bulan_dan_tahun_prediksi_year']   
+            if(bulan != '0' and tahun != '0'):
+                index_tahun = ((int(tahun) - years[0].tahun_transaksi) * 12)
+                si_x = index_tahun + (int(request.POST['bulan_dan_tahun_prediksi_month'] ))
+                hasilnya=(hitung_forecasting(post, index_tahun, si_x, thismonth, bulan))
+                if int(tahun) == year_int:
+                    tahuntahunsebelumnya = year_int
+                    testhasilmape = hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya)
+                    for hasil in testhasilmape :
+                        hasilakhirmape = hasilakhirmape + hasil
+
+                    hasilakhirmape = round((hasilakhirmape / len(testhasilmape)),3)
+                    pesan = "Persentase Error(MAPE) Pada Tahun "+tahun+ " adalah " + str(hasilakhirmape)+"%"
+                else:
+                    pesan = "Belum Ada Data Asli Pada tahun "+tahun + " Sehingga Tidak Memiliki Persentase Error(MAPE)"
+                pendapatanpredict = hasilnya[-1]
+                #terakhir ngitung mape
+
+            else:
+                return redirect('forecasting:index')
+            try:
+                data_tahun_sebelumnya = PenjualanModel.objects.get(bulan_transaksi = thismonth[bulan], tahun_transaksi = year_int)
+                data_all_tahun_sebelumnya = [data_tahun_sebelumnya.jumlah_hotel, data_tahun_sebelumnya.jumlah_mall, data_tahun_sebelumnya.jumlah_apartemen,
+                data_tahun_sebelumnya.jumlah_C441, data_tahun_sebelumnya.jumlah_C442, data_tahun_sebelumnya.jumlah_C443, data_tahun_sebelumnya.jumlah_C451,
+                data_tahun_sebelumnya.jumlah_C452, data_tahun_sebelumnya.jumlah_C453, data_tahun_sebelumnya.jumlah_C461, data_tahun_sebelumnya.jumlah_C462, 
+                data_tahun_sebelumnya.jumlah_C463, data_tahun_sebelumnya.jasa_pembersih_air, data_tahun_sebelumnya.jasa_pembersih_kerak_sillica,
+                data_tahun_sebelumnya.jasa_pembersih_cooling_tower, data_tahun_sebelumnya.jasa_pembersih_stp, data_tahun_sebelumnya.jumlah_asam_sulfat,
+                data_tahun_sebelumnya.jumlah_molases, data_tahun_sebelumnya.jumlah_hcl, data_tahun_sebelumnya.jumlah_abf, data_tahun_sebelumnya.pendapatan]
+                pendapatanasli = data_all_tahun_sebelumnya[-1]
+
+            except ObjectDoesNotExist:
+                data_tahun_sebelumnya = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+            # if len(hasilnya) != 0 :
+            #     for y in range(len(hasilnya)-1):
+            #         selisihdata = round((hasilnya[y] - data_all_tahun_sebelumnya[y])/data_all_tahun_sebelumnya[y], 3)
+            #         hitungmape = round(((hasilnya[y]-data_all_tahun_sebelumnya[y])/data_all_tahun_sebelumnya[y])*100, 3)
+            #         hasilakhirmape += abs(hitungmape)
+            #         presentasidata.append(selisihdata)
+            #         allhasilmape.append(abs(hitungmape))
+
+            #     hasilakhirmape = round(hasilakhirmape / (len(hasilnya)-1),3)
+
+            labeling = "Hasil Prediksi Penjualan pada bulan " +thismonth[bulan]+ " tahun " + tahun    
+            labeling2 = "Hasil Penjualan pada bulan " + thismonth[bulan] + " tahun " + str(year_int)
+            tahunpredict = int(tahun)
+            tahunprediksii = [tahunpredict]
+            del hasilnya[-1]
+            del data_all_tahun_sebelumnya[-1]    
+
+            # informasidata = ["jumlah client hotel", "jumlah client mall", "jumlah client apartemen", "C441 Terjual", "C442 Terjual", "C443 Terjual", "C451 Terjual", "C452 Terjual", "C453 Terjual", "C461 Terjual", "C462 Terjual", "C463 Terjual", "Jasa Pembersih Air", "Jasa Pembersih Kerak Sillica", "Jasa Pembersih Cooling Tower", "Jasa Pembersih STP", "Asam Sulfat Terpakai", "Molases Terpakai", "HCL Terpakai", "ABF Terpakai", "pendapatan"]           
+            # infodata = dict([informasidata[z], [presentasidata[z], round(testhasilmape[z],3)]] for z in range(len(informasidata)-1))
+        except Exception as e:
+            return redirect('forecasting:index')
+            print(e)
         context = {
         'heading':'Forecasting',
         'datas': hasilnya,
@@ -825,40 +841,293 @@ def resultForecasting(request):
     return render(request, 'forecasting/forecasting.html', context)
 
 
-
-def resultForecastingTahun(request):
-    hasilprediksi = []
+@login_required(login_url="/accounts/login/")
+def resultForecastingItem(request):
+    
     if request.method == 'POST':
         try:
-            years= PenjualanModel.objects.all().order_by('tahun_transaksi','bulan_transaksi')
-            year_int = years[len(years) - 1].tahun_transaksi
-        except ObjectDoesNotExist:
-            year_int = 0
-        tahun = request.POST['tahun']  
-        post = PenjualanModel.objects.all().order_by('tahun_transaksi')
-        index_tahun = ((int(tahun) - years[0].tahun_transaksi) * 12) 
-        hasilprediksi = hitung_forecasting_tahun(post, index_tahun)
-        hasilakhirmape = 0
-        pesan = ""
-        if int(tahun) == year_int:
-                tahuntahunsebelumnya = year_int
-                testhasilmape = hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya)
-                for hasil in testhasilmape :
-                    hasilakhirmape = hasilakhirmape + hasil
-                   
-                hasilakhirmape = round((hasilakhirmape / len(testhasilmape)),3)
-                pesan = "Persentase Error(MAPE) Pada Tahun "+tahun+ " adalah " + str(hasilakhirmape)+"%"
-        else:
-                pesan = "Belum Ada Data Asli Pada tahun "+tahun + " Sehingga Tidak Memiliki Persentase Error(MAPE)"
+
+            post = PenjualanModel.objects.all().order_by('tahun_transaksi', 'bulan_transaksi')
+            hasilnya = 0
+            thismonth= {
+                '1' : "januari",
+                '2' : "februari",
+                '3' : "maret",
+                '4' : "april",
+                '5' : "mei",
+                '6' : "juni",
+                '7' : "juli",
+                '8' : "agustus",
+                '9' : "september",
+                '10' : "oktober",
+                '11' : "november",
+                '12' : "desember"
+            }
+            thisdata= {
+                '1' : "Hotel",
+                '2' : "Mall",
+                '3' : "Apartement",
+                '4' : "C441",
+                '5' : "C442",
+                '6' : "C443",
+                '7' : "C451",
+                '8' : "C452",
+                '9' : "C453",
+                '10' : "C461",
+                '11' : "C462",
+                '12' : "C463",
+                '13' : "Jasa Pembersih Air",
+                '14' : "Jasa Pembersih Kerak Sillica",
+                '15' : "Jasa Pembersih Cooling Tower",
+                '16' : "Jasa Pembersih STP",
+                '17' : "Asam Sulfat",
+                '18' : "Molases",
+                '19' : "HCL",
+                '20' : "ABF",
+                '21' : "Pendapatan",
+            }
+            try:
+                years= PenjualanModel.objects.all().order_by('tahun_transaksi','bulan_transaksi')
+                year_int = years[len(years) - 1].tahun_transaksi
+            except ObjectDoesNotExist:
+                year_int = 0
+            index_tahun = 0
+            hasilnya = []
+            pendapatanpredict = 0
+            pendapatanasli = 0
+            data_tahun_sebelumnya = []
+            data_all_tahun_sebelumnya = []
+            hasilakhirmape = 0
+            testhasilmape = []
+            pesan = ""
+            dataindex = []
+            bulan = request.POST['bulan_dan_tahun_prediksi_month'] 
+            tahun = request.POST['bulan_dan_tahun_prediksi_year']   
+            angka = 0
+            if(bulan != '0' and tahun != '0'):
+                index_tahun = ((int(tahun) - years[0].tahun_transaksi) * 12)
+                si_x = index_tahun + (int(request.POST['bulan_dan_tahun_prediksi_month'] ))
+                hasilnya=(hitung_forecasting(post, index_tahun, si_x, thismonth, bulan))
+                if int(tahun) == year_int:
+                    tahuntahunsebelumnya = year_int
+                    testhasilmape = hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya)
+                    for hasil in testhasilmape :
+                        hasilakhirmape = hasilakhirmape + hasil
+
+                    hasilakhirmape = round((hasilakhirmape / len(testhasilmape)),3)
+                    pesan = "Persentase Error(MAPE) Pada Tahun "+tahun+ " adalah " + str(hasilakhirmape)+"%"
+                else:
+                    pesan = "Belum Ada Data Asli Pada tahun "+tahun + " Sehingga Tidak Memiliki Persentase Error(MAPE)"
+                pendapatanpredict = hasilnya[-1]
+                angka = int(request.POST['produk'])
+                if(angka != 0 ):
+                    dataindex = hasilnya[angka-1]
+                    labeling = "Hasil Prediksi " + thisdata[request.POST['produk']] + " di Bulan "+thismonth[bulan]+ " Tahun " + tahun    
+                    labeling2 = thisdata[request.POST['produk']]
+                    print(dataindex)
+                else:
+                    return redirect('forecasting:index')
+                #terakhir ngitung mape
+
+            else:
+                return redirect('forecasting:index')
+            try:
+                data_tahun_sebelumnya = PenjualanModel.objects.get(bulan_transaksi = thismonth[bulan], tahun_transaksi = year_int)
+                data_all_tahun_sebelumnya = [data_tahun_sebelumnya.jumlah_hotel, data_tahun_sebelumnya.jumlah_mall, data_tahun_sebelumnya.jumlah_apartemen,
+                data_tahun_sebelumnya.jumlah_C441, data_tahun_sebelumnya.jumlah_C442, data_tahun_sebelumnya.jumlah_C443, data_tahun_sebelumnya.jumlah_C451,
+                data_tahun_sebelumnya.jumlah_C452, data_tahun_sebelumnya.jumlah_C453, data_tahun_sebelumnya.jumlah_C461, data_tahun_sebelumnya.jumlah_C462, 
+                data_tahun_sebelumnya.jumlah_C463, data_tahun_sebelumnya.jasa_pembersih_air, data_tahun_sebelumnya.jasa_pembersih_kerak_sillica,
+                data_tahun_sebelumnya.jasa_pembersih_cooling_tower, data_tahun_sebelumnya.jasa_pembersih_stp, data_tahun_sebelumnya.jumlah_asam_sulfat,
+                data_tahun_sebelumnya.jumlah_molases, data_tahun_sebelumnya.jumlah_hcl, data_tahun_sebelumnya.jumlah_abf, data_tahun_sebelumnya.pendapatan]
+                pendapatanasli = data_all_tahun_sebelumnya[-1]
+
+            except ObjectDoesNotExist:
+                data_tahun_sebelumnya = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+
+            # if len(hasilnya) != 0 :
+            #     for y in range(len(hasilnya)-1):
+            #         selisihdata = round((hasilnya[y] - data_all_tahun_sebelumnya[y])/data_all_tahun_sebelumnya[y], 3)
+            #         hitungmape = round(((hasilnya[y]-data_all_tahun_sebelumnya[y])/data_all_tahun_sebelumnya[y])*100, 3)
+            #         hasilakhirmape += abs(hitungmape)
+            #         presentasidata.append(selisihdata)
+            #         allhasilmape.append(abs(hitungmape))
+
+            #     hasilakhirmape = round(hasilakhirmape / (len(hasilnya)-1),3)
+
+            tahunpredict = int(tahun)
+            tahunprediksii = [tahunpredict]
+            del hasilnya[-1]
+            del data_all_tahun_sebelumnya[-1]    
+
+            # informasidata = ["jumlah client hotel", "jumlah client mall", "jumlah client apartemen", "C441 Terjual", "C442 Terjual", "C443 Terjual", "C451 Terjual", "C452 Terjual", "C453 Terjual", "C461 Terjual", "C462 Terjual", "C463 Terjual", "Jasa Pembersih Air", "Jasa Pembersih Kerak Sillica", "Jasa Pembersih Cooling Tower", "Jasa Pembersih STP", "Asam Sulfat Terpakai", "Molases Terpakai", "HCL Terpakai", "ABF Terpakai", "pendapatan"]           
+            # infodata = dict([informasidata[z], [presentasidata[z], round(testhasilmape[z],3)]] for z in range(len(informasidata)-1))
+        except Exception as e:
+            return redirect('forecasting:index')
+            print(e)
+        context = {
+        'heading':'Forecasting',
+        'datas': dataindex,
+        'data_sebelumnya': data_all_tahun_sebelumnya,
+        'labeling': labeling,
+        'labeling2': labeling2,
+        'tahunprediksii': tahunprediksii,
+        'pendapatanasli': pendapatanasli,
+        'pendapatanpredict': pendapatanpredict,
+        # 'infodata': infodata,
+        'tahunterakhir': year_int,
+        'pesan': pesan,
+        # 'data_form':contact_form,
+        # 'posts' : post,
+
+         }
+    else:
+       return redirect('forecasting:index')
+    
+    return render(request, 'forecasting/forecastingitem.html', context)
+
+def resultForecastingTahun(request):
+    try:
+        hasilprediksi = []
+        data_tahun = []
+        testhasilmape = []
+        hasilmapebulet= []
+        hasiladamape = False
+        z=0
+        y= 0
+        infodata= []
+        datamapesemua=0
+        if request.method == 'POST':
+            try:
+                years= PenjualanModel.objects.all().order_by('tahun_transaksi','bulan_transaksi')
+                year_int = years[len(years) - 1].tahun_transaksi
+            except ObjectDoesNotExist:
+                year_int = 0
+            tahun = request.POST['tahun']  
+            post = PenjualanModel.objects.all().order_by('tahun_transaksi','bulan_transaksi')
+            index_tahun = ((int(tahun) - years[0].tahun_transaksi) * 12) 
+            hasilprediksi = hitung_forecasting_tahun(post, index_tahun)
+           
+            pesan = ""
+            if int(tahun) == year_int:
+                    tahuntahunsebelumnya = year_int
+                    data_tahun=hitung_data_tahun_sebelumnya(tahuntahunsebelumnya)
+                    testhasilmape = hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya)
+                    for y in range(len(testhasilmape)) :
+                        hasilmapebulet.append(round(testhasilmape[y], 3))
+                    for hasil in hasilmapebulet:
+                        datamapesemua += hasil
+                    datamapesemua = round(datamapesemua / len(hasilmapebulet),3)
+                    pesan = "Persentase Rata-Rata Error(MAPE) Pada Tahun "+tahun+ " adalah " + str(datamapesemua)+"%"
+                    informasidata = ["jumlah client hotel", "jumlah client mall", "jumlah client apartemen", "C441 Terjual", "C442 Terjual", "C443 Terjual", "C451 Terjual", "C452 Terjual", "C453 Terjual", "C461 Terjual", "C462 Terjual", "C463 Terjual", "Jasa Pembersih Air", "Jasa Pembersih Kerak Sillica", "Jasa Pembersih Cooling Tower", "Jasa Pembersih STP", "Asam Sulfat Terpakai", "Molases Terpakai", "HCL Terpakai", "ABF Terpakai", "Pendapatan"]           
+                    infodata = dict([informasidata[z], hasilmapebulet[z]] for z in range(len(informasidata)))        
+                    hasiladamape = True
+            else:
+                    pesan = "Belum Ada Data Asli Pada tahun "+tahun + " Sehingga Tidak Memiliki Persentase Error(MAPE)"
+    except Exception as e:
+        return redirect('forecasting:index')
+        print(e)
     context = {
         'heading':'Forecasting',
         'hasilprediksi': hasilprediksi,
         'tahun': int(tahun),
         'pesan': pesan,
+        'data_tahun': data_tahun,
+        'hasil_mape': hasilmapebulet,
+        'infodata': infodata,
+        'hasiladamape':  hasiladamape,
     }
 
 
     return render(request, 'forecasting/forecastingtahun.html', context)
+
+def resultForecastingTahunItem(request):
+    try:
+        hasilprediksi = []
+        data_tahun = []
+        testhasilmape = []
+        hasilmapebulet= []
+        hasiladamape = False
+        z=0
+        y= 0
+        infodata= []
+        datamapesemua=0
+        angka = 0
+        labeling=""
+        thisdata= {
+                '1' : "Hotel",
+                '2' : "Mall",
+                '3' : "Apartement",
+                '4' : "C441",
+                '5' : "C442",
+                '6' : "C443",
+                '7' : "C451",
+                '8' : "C452",
+                '9' : "C453",
+                '10' : "C461",
+                '11' : "C462",
+                '12' : "C463",
+                '13' : "Jasa Pembersih Air",
+                '14' : "Jasa Pembersih Kerak Sillica",
+                '15' : "Jasa Pembersih Cooling Tower",
+                '16' : "Jasa Pembersih STP",
+                '17' : "Asam Sulfat",
+                '18' : "Molases",
+                '19' : "HCL",
+                '20' : "ABF",
+                '21' : "Pendapatan",
+            }
+        if request.method == 'POST':
+            try:
+                years= PenjualanModel.objects.all().order_by('tahun_transaksi','bulan_transaksi')
+                year_int = years[len(years) - 1].tahun_transaksi
+            except ObjectDoesNotExist:
+                year_int = 0
+            tahun = request.POST['tahun']  
+            post = PenjualanModel.objects.all().order_by('tahun_transaksi','bulan_transaksi')
+            index_tahun = ((int(tahun) - years[0].tahun_transaksi) * 12) 
+            hasilprediksi = hitung_forecasting_tahun(post, index_tahun)
+            pesan = ""
+            angka = int(request.POST['produk'])
+            if(angka != 0 and int(tahun) !=0 ):
+                dataindex = hasilprediksi[angka-1]
+                labeling = "Hasil Prediksi " + thisdata[request.POST['produk']] + " Tahun " + tahun    
+                # labeling2 = thisdata[request.POST['produk']]
+                print(dataindex)
+            else:
+                    return redirect('forecasting:indextahun')   
+            if int(tahun) == year_int:
+                    tahuntahunsebelumnya = year_int
+                    data_tahun=hitung_data_tahun_sebelumnya(tahuntahunsebelumnya)
+                    testhasilmape = hitung_forecasting_tahun_sebelumnya(post, index_tahun,  tahuntahunsebelumnya)
+                    for y in range(len(testhasilmape)) :
+                        hasilmapebulet.append(round(testhasilmape[y], 3))
+                    for hasil in hasilmapebulet:
+                        datamapesemua += hasil
+                    datamapesemua = round(datamapesemua / len(hasilmapebulet),3)
+                    pesan = "Persentase Rata-Rata Error(MAPE) Pada Tahun "+tahun+ " adalah " + str(datamapesemua)+"%"
+                    informasidata = ["jumlah client hotel", "jumlah client mall", "jumlah client apartemen", "C441 Terjual", "C442 Terjual", "C443 Terjual", "C451 Terjual", "C452 Terjual", "C453 Terjual", "C461 Terjual", "C462 Terjual", "C463 Terjual", "Jasa Pembersih Air", "Jasa Pembersih Kerak Sillica", "Jasa Pembersih Cooling Tower", "Jasa Pembersih STP", "Asam Sulfat Terpakai", "Molases Terpakai", "HCL Terpakai", "ABF Terpakai", "Pendapatan"]           
+                    infodata = dict([informasidata[z], hasilmapebulet[z]] for z in range(len(informasidata)))        
+                    hasiladamape = True
+            else:
+                    pesan = "Belum Ada Data Asli Pada tahun "+tahun + " Sehingga Tidak Memiliki Persentase Error(MAPE)"
+    except Exception as e:
+        return redirect('forecasting:indextahun')
+        print(e)
+    context = {
+        'heading':'Forecasting',
+        'hasilprediksi': hasilprediksi,
+        'tahun': int(tahun),
+        'pesan': pesan,
+        'data_tahun': data_tahun,
+        'hasil_mape': hasilmapebulet,
+        'infodata': infodata,
+        'hasiladamape':  hasiladamape,
+        'labeling': labeling,
+        'datas': dataindex,
+    }
+
+
+    return render(request, 'forecasting/forecastingtahunitem.html', context)
 # class ListForecasting(APIView):
 #     authentication_classes = []
 #     permission_classes = []

@@ -1,9 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
 
-{% block app_css %}
-
-{% endblock app_css %}
 
 {% block contents %}
 <div class ='row'>
@@ -15,168 +12,181 @@
 <br>
 <div class = 'row'>
         <div class='col-sm-12'>
-                <canvas id="myChart21" width="400" height="400"></canvas>
+                <canvas id="myChart21"  style="display:none;"  width="400" height="400"></canvas>
         </div>  
 </div>
-<br>
-<br>
+
 <div class ='row'>
     
         <div class='col-sm-4'>
-            <canvas id="myChart" width="400" height="400"></canvas>
+            <canvas id="myChart"  style="display:none;"  width="400" height="400"></canvas>
         </div>
         <div class='col-sm-4'>
-                <canvas id="myChart2" width="400" height="400"></canvas>
+                <canvas id="myChart2"  style="display:none;"  width="400" height="400"></canvas>
             </div>
         <div class='col-sm-4'>
-            <canvas id="myChart3" width="400" height="400"></canvas>
+            <canvas id="myChart3"  style="display:none;"  width="400" height="400"></canvas>
         </div>         
 </div>
 
 
-<br>
-<br>
 
 <div class = 'row'>
         <div class='col-sm-4'>
-                <canvas id="myChart4" width="400" height="400"></canvas>
+                <canvas id="myChart4"  style="display:none;"  width="400" height="400"></canvas>
         </div> 
         <div class='col-sm-4'>
-                <canvas id="myChart5" width="400" height="400"></canvas>
+                <canvas id="myChart5"  style="display:none;"  width="400" height="400"></canvas>
         </div> 
         <div class='col-sm-4'>
-                <canvas id="myChart6" width="400" height="400"></canvas>
+                <canvas id="myChart6"  style="display:none;"  width="400" height="400"></canvas>
         </div>
          
 </div>
 
-<br>
-<br>
+
 
 <div class = 'row'>
         <div class='col-sm-4'>
-                <canvas id="myChart7" width="400" height="400"></canvas>
+                <canvas id="myChart7" style="display:none;"   width="400" height="400"></canvas>
         </div> 
         <div class='col-sm-4'>
-                <canvas id="myChart8" width="400" height="400"></canvas>
+                <canvas id="myChart8" style="display:none;"   width="400" height="400"></canvas>
         </div> 
         <div class='col-sm-4'>
-                <canvas id="myChart9" width="400" height="400"></canvas>
+                <canvas id="myChart9" style="display:none;"   width="400" height="400"></canvas>
         </div>
          
 </div>
 
-<br>
-<br>
+
 
 <div class = 'row'>
         <div class='col-sm-4'>
-                <canvas id="myChart10" width="400" height="400"></canvas>
+                <canvas id="myChart10" style="display:none;"   width="400" height="400"></canvas>
         </div> 
         <div class='col-sm-4'>
-                <canvas id="myChart11" width="400" height="400"></canvas>
+                <canvas id="myChart11" style="display:none;"   width="400" height="400"></canvas>
         </div> 
         <div class='col-sm-4'>
-                <canvas id="myChart12" width="400" height="400"></canvas>
+                <canvas id="myChart12" style="display:none;"   width="400" height="400"></canvas>
         </div>
          
 </div>
 
-<br>
-<br>
+
 
 <div class = 'row'>
-        <div class='col-sm-4'>
-                <canvas id="myChart13" width="400" height="400"></canvas>
+        <div class='col-sm-5'>
+                <canvas id="myChart13" style="display:none;"   width="400" height="400"></canvas>
         </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart14" width="400" height="400"></canvas>
+        <div class='col-sm-5'>
+                <canvas id="myChart14" style="display:none;"   width="400" height="400"></canvas>
         </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart15" width="400" height="400"></canvas>
+        <div class='col-sm-5'>
+                <canvas id="myChart15" style="display:none;"   width="400" height="400"></canvas>
         </div>
-         
+        <div class='col-sm-5'>
+                <canvas id="myChart16" style="display:none;"   width="400" height="400"></canvas>
+        </div> 
 </div>
 
-<br>
-<br>
+
 
 <div class = 'row'>
-        <div class='col-sm-4'>
-                <canvas id="myChart16" width="400" height="400"></canvas>
+       
+        <div class='col-sm-5'>
+                <canvas id="myChart17" style="display:none;"   width="400" height="400"></canvas>
         </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart17" width="400" height="400"></canvas>
-        </div> 
-        <div class='col-sm-4'>
-                <canvas id="myChart18" width="400" height="400"></canvas>
+        <div class='col-sm-5'>
+                <canvas id="myChart18" style="display:none;"   width="400" height="400"></canvas>
         </div>
-         
-</div>
-<br>
-<br>
-<div class = 'row'>
-        <div class='col-sm-4'>
-                <canvas id="myChart19" width="400" height="400"></canvas>
+        <div class='col-sm-5'>
+                <canvas id="myChart19" style="display:none;"   width="400" height="400"></canvas>
         </div>  
-        <div class='col-sm-4'>
-        </div>  
-        <div class='col-sm-4'>  
-                <canvas id="myChart20" width="400" height="400"></canvas>
+        <div class='col-sm-5'>  
+                <canvas id="myChart20" style="display:none;"   width="400" height="400"></canvas>
 
         </div>  
+</div>
+
+<div class = 'row'>
+       
        
         
 </div>
 
-<label>Tabel Selisih Persentase Penjualan Tahun {{tahunsatu}} dan {{tahundua}}</label>
-<div class = 'row'>
-    <table class="table table-striped table-dark">
-            <thead>
-            <tr>
-                <th scope="col">No</th>
-                <th scope="col">Data</th>
-                <th scope="col">Januari</th>
-                <th scope="col">Februari</th>
-                <th scope="col">Maret</th>
-                <th scope="col">April</th>
-                <th scope="col">Mei</th>
-                <th scope="col">Juni</th>
-                <th scope="col">Juli</th>
-                <th scope="col">Agustus</th>
-                <th scope="col">September</th>
-                <th scope="col">Oktober</th>
-                <th scope="col">November</th>
-                <th scope="col">Desember</th>
 
-            </tr>
-            </thead>
-        
-            <tbody>
-            {% for key, value in infodata.items %}
-            <tr> 
-                <td>{{forloop.counter}}</td> 
-                <td>{{ key }}</td>
-                {% for values in value %}
-                    <td>{{ values }}%</td>
-                {% endfor %}
-                <!-- <td>{{ post.bulan_transaksi }}</td> -->
-        
-           </tr>
-            {% endfor %}
-            </tbody>
-        </table>
-</div>
-<label>Note: tanda -(minus) pada tabel mengartikan bahwa terjadi penurunan pada penjualan tersebut</label>
 
 {% endblock contents %}
+
 {% block jquery %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
 <script>
-bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktomber', 'November', 'Desember']
-var tahun = {{tahunall}}
+var angka = {{angka}}
+if(angka === 1){
+    var a = document.getElementById("myChart");
+    a.style.display = "block";
+    var b = document.getElementById("myChart2");
+    b.style.display = "block";
+    var c = document.getElementById("myChart3");
+    c.style.display = "block";
+}
+if(angka === 2){
+    var d = document.getElementById("myChart4");
+    d.style.display = "block";
+    var e = document.getElementById("myChart5");
+    e.style.display = "block";
+    var f = document.getElementById("myChart6");
+    f.style.display = "block";
+    var g = document.getElementById("myChart7");
+    g.style.display = "block";
+    var h = document.getElementById("myChart8");
+    h.style.display = "block";
+    var i = document.getElementById("myChart9");
+    i.style.display = "block";
+    var j = document.getElementById("myChart10");
+    j.style.display = "block";
+    var k = document.getElementById("myChart11");
+    k.style.display = "block";
+    var l = document.getElementById("myChart12");
+    l.style.display = "block";
+
+}
+
+if(angka === 3){
+    var m = document.getElementById("myChart13");
+    m.style.display = "block";
+    var n = document.getElementById("myChart14");
+    n.style.display = "block";
+    var o = document.getElementById("myChart15");
+    o.style.display = "block";
+    var p = document.getElementById("myChart16");
+    p.style.display = "block";
+}
+
+if(angka === 4){
+    var q = document.getElementById("myChart17");
+    q.style.display = "block";
+    var r = document.getElementById("myChart18");
+    r.style.display = "block";
+    var s = document.getElementById("myChart19");
+    s.style.display = "block";
+    var t = document.getElementById("myChart20");
+    t.style.display = "block";
+}
+
+if(angka === 5){
+    var u = document.getElementById("myChart21");
+    u.style.display = "block";
+}
 var datasatu = {{semuasatu}}
 var datadua = {{semuadua}}
+var tahunLama = '{{ labeling2 }}'
+var tahunPrediksi = '{{ labeling }}'
+var bulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktomber', 'November', 'Desember']
+var tahun = {{tahunall}}
+
 var ctx = document.getElementById('myChart').getContext('2d');
 var myChart = new Chart(ctx, {
     type: 'line',
@@ -1066,4 +1076,5 @@ var myChart21 = new Chart(ctx21, {
     }
 });
 </script>
+
 {% endblock jquery %}

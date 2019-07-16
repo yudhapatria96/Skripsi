@@ -1,0 +1,19 @@
+1. virtualenv .
+2. .\Scripts\activate
+3. heroku login
+3. pip freeze(check your pip installed)
+4. pip install Django==2.2 (condition version)
+5. pip install djangorestframework
+6. pip install --upgrade django-crispy-forms
+7. pip install mysqlclient-1.4.2-cp36-cp36m-win_amd64.whl
+8. run(python manage.py runserver)
+9. create Procfile
+10. create requirements
+11. pip install gunicorn
+12. pip install django-heroku
+13. in settings.py add import django_heroku and in the bottom of settings.py add django_heroku.settings(locals())
+14. pip freeze > requirements.txt
+15. heroku create peramalanpenjualan(nama bebas)
+16. heroku git:remote -a namaapp
+17. heroku run bash
+18. python manage.py migrate

@@ -8,46 +8,434 @@
 
 {% block contents %}
 
-
-    <form action="{% url 'komparasi:hasilkomparasitahun' %}"  method="POST">
-            {% csrf_token %}
-<div class="card text-white">
 <div class='row'>
-    <div class='col-sm-2'> 
-    </div> 
-  <div class='col-sm-2'> 
-        <div class="select-wrap">
-                <label class='labelmargin'>Masukkan Tahun</label>
-                <select name="tahunsatu" style="width: 100%;">
-                        <option value="0">---</option>
-                    {% for satuTahun in tahun %}
-                        <option value={{satuTahun}}>{{satuTahun}}</option>
-                    {% endfor %}
-                </select>
-              </div>
-        </div> 
-
-<div class='col-sm-4'> 
-    <label class='labeltext2'>    Komparasikan Data Hasil Penjualan Tahunan    </label>
-    </div> 
- 
- <div class='col-sm-2'> 
-        <div class="select-wrap">
-                <label class='labelmargin'>Masukkan Tahun</label>
-                <select name="tahundua" style="width: 100%;">
-                        <option value="0">---</option>
-                        {% for satuTahun in tahun %}
-                            <option value={{satuTahun}}>{{satuTahun}}</option>
-                        {% endfor %}
-                </select>
-              </div>
-        </div>            
-     
+    <div class='col-sm-6'>
+        
+            <form action="{% url 'komparasi:hasilkomparasitahun' %}"  method="POST">
+                    {% csrf_token %}
+        <div class="card text-white">
+                <div class='row'>
+                        <div class='col-sm-2'> 
+                            </div>
+                            <div class='col-sm-8'> 
+                                    <h4 class='h4margin' > Komparasi Keseluruhan Data</h4>
+                                </div>
+            
+            <div class='col-sm-2'> 
+                </div>
+            </div>
+            <br>
+        <div class='row'>
+                <div class='col-sm-2'> 
+                </div>
+          <div class='col-sm-4'> 
+                <div class="select-wrap">
+                        <label class='labelmargin'>Masukkan Tahun 1</label>
+                        <select name="tahunsatu" style="width: 100%;">
+                                <option value="0">Pilih Tahun</option>
+                            {% for satuTahun in tahun %}
+                                <option value={{satuTahun}}>{{satuTahun}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                </div> 
+        
+         <div class='col-sm-4'> 
+                <div class="select-wrap">
+                        <label class='labelmargin'>Masukkan Tahun 2</label>
+                        <select name="tahundua" style="width: 100%;">
+                                <option value="0">Pilih Tahun</option>
+                                {% for satuTahun in tahun %}
+                                    <option value={{satuTahun}}>{{satuTahun}}</option>
+                                {% endfor %}
+                        </select>
+                      </div>
+                </div>            
+             
+            </div>
+            <br>
+            <br>
+                <button type="Submit" class="btn-block">Komparasi Hasil Penjualan</button>
+            </div>               
+         
+              </form>
     </div>
+
+    <div class='col-sm-6'>
+        
+            <form action="{% url 'komparasi:hasilkomparasitahunitem' %}"  method="POST">
+                    {% csrf_token %}
+        <div class="card text-white">
+                <div class='row'>
+                        <div class='col-sm-2'> 
+                            </div>
+                            <div class='col-sm-8'> 
+                                    <h4 class='h4margin' style="margin-left:82px;"> Komparasi Data</h4>
+                                </div>
+            
+            <div class='col-sm-2'> 
+                </div>
+            </div>
+            <br>
+            <div class='row'>
+                    <div class='col-sm-4'> 
+                    </div>
+                <div class='col-sm-4'> 
+                        <div class="select-wrap">
+                                <label class='labelmargin' style="margin-left:24px;">Masukkan Data</label>
+                                <select class="scrollable-menu" data-toggle="dropdown" name="produk" style="width: 100%;">
+                                        <option value="0">Pilih Data</option>
+                                        <option value="1">Client</option>
+                                        <option value="2">Produk</option>
+                                        <option value="3">Jasa</option>
+                                        <option value="4">Bahan</option>
+                                        <option value="5">Pendapatan</option>
+        
+                                    </select>
+                              </div>
+                    </div> 
+                </div>
+                    <br>
+        <div class='row'>
+                <div class='col-sm-2'> 
+                </div>
+          <div class='col-sm-4'> 
+                <div class="select-wrap">
+                        <label class='labelmargin'>Masukkan Tahun 1</label>
+                        <select name="tahunsatu" style="width: 100%;">
+                                <option value="0">Pilih Tahun</option>
+                            {% for satuTahun in tahun %}
+                                <option value={{satuTahun}}>{{satuTahun}}</option>
+                            {% endfor %}
+                        </select>
+                      </div>
+                </div> 
+        
+         <div class='col-sm-4'> 
+                <div class="select-wrap">
+                        <label class='labelmargin'>Masukkan Tahun 2</label>
+                        <select name="tahundua" style="width: 100%;">
+                                <option value="0">Pilih Tahun</option>
+                                {% for satuTahun in tahun %}
+                                    <option value={{satuTahun}}>{{satuTahun}}</option>
+                                {% endfor %}
+                        </select>
+                      </div>
+                </div>            
+             
+            </div>
+            <br>
+            <br>
+                <button type="Submit" class="btn-block">Komparasi Hasil Penjualan</button>
+            </div>               
+         
+              </form>
+    </div>
+</div>
+ <br>
+ <br>
+ <!-- <div class='row'>
+        <div class='col-sm-6'>
+            
+                <form action="{% url 'komparasi:hasilkomparasitahun' %}"  method="POST">
+                        {% csrf_token %}
+            <div class="card text-white">
+                    <div class='row'>
+                            <div class='col-sm-2'> 
+                                </div>
+                                <div class='col-sm-8'> 
+                                        <h4 class='h4margin' > Komparasi Produk</h4>
+                                    </div>
+                
+                <div class='col-sm-2'> 
+                    </div>
+                </div>
+                <br>
+                <div class='row'>
+                        <div class='col-sm-4'> 
+                        </div>
+                    <div class='col-sm-4'> 
+                            <div class="select-wrap">
+                                    <label class='labelmargin'>Masukkan Produk</label>
+                                    <select class="scrollable-menu" data-toggle="dropdown" name="produk" style="width: 100%;">
+                                            <option value="0">Pilih Produk</option>
+                                            <option value="1">C441</option>
+                                            <option value="2">C442</option>
+                                            <option value="3">C443</option>
+                                            <option value="4">C451</option>
+                                            <option value="5">C452</option>
+                                            <option value="6">C453</option>
+                                            <option value="7">C461</option>
+                                            <option value="8">C462</option>
+                                            <option value="9">C463</option>
+            
+                                        </select>
+                                  </div>
+                        </div> 
+                    </div>
+                    <br>
+            <div class='row'>
+                    <div class='col-sm-2'> 
+                    </div>
+              <div class='col-sm-4'> 
+                    <div class="select-wrap">
+                            <label class='labelmargin'>Masukkan Tahun 1</label>
+                            <select name="tahunsatu" style="width: 100%;">
+                                    <option value="0">---</option>
+                                {% for satuTahun in tahun %}
+                                    <option value={{satuTahun}}>{{satuTahun}}</option>
+                                {% endfor %}
+                            </select>
+                          </div>
+                    </div> 
+            
+             <div class='col-sm-4'> 
+                    <div class="select-wrap">
+                            <label class='labelmargin'>Masukkan Tahun 2</label>
+                            <select name="tahundua" style="width: 100%;">
+                                    <option value="0">---</option>
+                                    {% for satuTahun in tahun %}
+                                        <option value={{satuTahun}}>{{satuTahun}}</option>
+                                    {% endfor %}
+                            </select>
+                          </div>
+                    </div>            
+                 
+                </div>
+                <br>
+                <br>
+                    <button type="Submit" class="btn-block">Komparasi Hasil Penjualan</button>
+                </div>               
+             
+                  </form>
+        </div>
+    
+        <div class='col-sm-6'>
+            
+                <form action="{% url 'komparasi:hasilkomparasitahun' %}"  method="POST">
+                        {% csrf_token %}
+            <div class="card text-white">
+                    <div class='row'>
+                            <div class='col-sm-2'> 
+                                </div>
+                                <div class='col-sm-8'> 
+                                        <h4 class='h4margin' > Komparasi Jasa</h4>
+                                    </div>
+                
+                <div class='col-sm-2'> 
+                    </div>
+                </div>
+                <br>
+                <div class='row'>
+                        <div class='col-sm-4'> 
+                        </div>
+                    <div class='col-sm-4'> 
+                            <div class="select-wrap">
+                                    <label class='labelmargin'>Masukkan Produk</label>
+                                    <select class="scrollable-menu" data-toggle="dropdown" name="produk" style="width: 100%;">
+                                            <option value="0">Pilih Produk</option>
+                                            <option value="1">C441</option>
+                                            <option value="2">C442</option>
+                                            <option value="3">C443</option>
+                                            <option value="4">C451</option>
+                                            <option value="5">C452</option>
+                                            <option value="6">C453</option>
+                                            <option value="7">C461</option>
+                                            <option value="8">C462</option>
+                                            <option value="9">C463</option>
+            
+                                        </select>
+                                  </div>
+                        </div> 
+                    </div>
+                    <br>
+            <div class='row'>
+                    <div class='col-sm-2'> 
+                    </div>
+              <div class='col-sm-4'> 
+                    <div class="select-wrap">
+                            <label class='labelmargin'>Masukkan Tahun 1</label>
+                            <select name="tahunsatu" style="width: 100%;">
+                                    <option value="0">---</option>
+                                {% for satuTahun in tahun %}
+                                    <option value={{satuTahun}}>{{satuTahun}}</option>
+                                {% endfor %}
+                            </select>
+                          </div>
+                    </div> 
+            
+             <div class='col-sm-4'> 
+                    <div class="select-wrap">
+                            <label class='labelmargin'>Masukkan Tahun 2</label>
+                            <select name="tahundua" style="width: 100%;">
+                                    <option value="0">---</option>
+                                    {% for satuTahun in tahun %}
+                                        <option value={{satuTahun}}>{{satuTahun}}</option>
+                                    {% endfor %}
+                            </select>
+                          </div>
+                    </div>            
+                 
+                </div>
+                <br>
+                <br>
+                    <button type="Submit" class="btn-block">Komparasi Hasil Penjualan</button>
+                </div>               
+             
+                  </form>
+        </div>
+    </div>   
     <br>
     <br>
-        <button type="Submit" class="btn-block">Komparasi Hasil Penjualan</button>
-    </div>               
- 
-      </form>
+    <div class='row'>
+           <div class='col-sm-6'>
+               
+                   <form action="{% url 'komparasi:hasilkomparasitahun' %}"  method="POST">
+                           {% csrf_token %}
+               <div class="card text-white">
+                       <div class='row'>
+                               <div class='col-sm-2'> 
+                                   </div>
+                                   <div class='col-sm-8'> 
+                                           <h4 class='h4margin' > Komparasi Client</h4>
+                                       </div>
+                   
+                   <div class='col-sm-2'> 
+                       </div>
+                   </div>
+                   <br>
+                   <div class='row'>
+                           <div class='col-sm-4'> 
+                           </div>
+                       <div class='col-sm-4'> 
+                               <div class="select-wrap">
+                                       <label class='labelmargin'>Masukkan Client</label>
+                                       <select class="scrollable-menu" data-toggle="dropdown" name="produk" style="width: 100%;">
+                                               <option value="0">Pilih Produk</option>
+                                               <option value="1">C441</option>
+                                               <option value="2">C442</option>
+                                               <option value="3">C443</option>
+                                               <option value="4">C451</option>
+                                               <option value="5">C452</option>
+                                               <option value="6">C453</option>
+                                               <option value="7">C461</option>
+                                               <option value="8">C462</option>
+                                               <option value="9">C463</option>
+               
+                                           </select>
+                                     </div>
+                           </div> 
+                       </div>
+                       <br>
+               <div class='row'>
+                       <div class='col-sm-2'> 
+                       </div>
+                 <div class='col-sm-4'> 
+                       <div class="select-wrap">
+                               <label class='labelmargin'>Masukkan Tahun 1</label>
+                               <select name="tahunsatu" style="width: 100%;">
+                                       <option value="0">---</option>
+                                   {% for satuTahun in tahun %}
+                                       <option value={{satuTahun}}>{{satuTahun}}</option>
+                                   {% endfor %}
+                               </select>
+                             </div>
+                       </div> 
+               
+                <div class='col-sm-4'> 
+                       <div class="select-wrap">
+                               <label class='labelmargin'>Masukkan Tahun 2</label>
+                               <select name="tahundua" style="width: 100%;">
+                                       <option value="0">---</option>
+                                       {% for satuTahun in tahun %}
+                                           <option value={{satuTahun}}>{{satuTahun}}</option>
+                                       {% endfor %}
+                               </select>
+                             </div>
+                       </div>            
+                    
+                   </div>
+                   <br>
+                   <br>
+                       <button type="Submit" class="btn-block">Komparasi Hasil Penjualan</button>
+                   </div>               
+                
+                     </form>
+           </div>
+       
+           <div class='col-sm-6'>
+               
+                   <form action="{% url 'komparasi:hasilkomparasitahun' %}"  method="POST">
+                           {% csrf_token %}
+               <div class="card text-white">
+                       <div class='row'>
+                               <div class='col-sm-2'> 
+                                   </div>
+                                   <div class='col-sm-8'> 
+                                           <h4 class='h4margin' > Komparasi Bahan</h4>
+                                       </div>
+                   
+                   <div class='col-sm-2'> 
+                       </div>
+                   </div>
+                   <br>
+                   <div class='row'>
+                           <div class='col-sm-4'> 
+                           </div>
+                       <div class='col-sm-4'> 
+                               <div class="select-wrap">
+                                       <label class='labelmargin'>Masukkan Bahan</label>
+                                       <select class="scrollable-menu" data-toggle="dropdown" name="produk" style="width: 100%;">
+                                               <option value="0">Pilih Bahan</option>
+                                               <option value="1">C441</option>
+                                               <option value="2">C442</option>
+                                               <option value="3">C443</option>
+                                               <option value="4">C451</option>
+                                               <option value="5">C452</option>
+                                               <option value="6">C453</option>
+                                               <option value="7">C461</option>
+                                               <option value="8">C462</option>
+                                               <option value="9">C463</option>
+               
+                                           </select>
+                                     </div>
+                           </div> 
+                       </div>
+                       <br>
+               <div class='row'>
+                       <div class='col-sm-2'> 
+                       </div>
+                 <div class='col-sm-4'> 
+                       <div class="select-wrap">
+                               <label class='labelmargin'>Masukkan Tahun 1</label>
+                               <select name="tahunsatu" style="width: 100%;">
+                                       <option value="0">---</option>
+                                   {% for satuTahun in tahun %}
+                                       <option value={{satuTahun}}>{{satuTahun}}</option>
+                                   {% endfor %}
+                               </select>
+                             </div>
+                       </div> 
+               
+                <div class='col-sm-4'> 
+                       <div class="select-wrap">
+                               <label class='labelmargin'>Masukkan Tahun 2</label>
+                               <select name="tahundua" style="width: 100%;">
+                                       <option value="0">---</option>
+                                       {% for satuTahun in tahun %}
+                                           <option value={{satuTahun}}>{{satuTahun}}</option>
+                                       {% endfor %}
+                               </select>
+                             </div>
+                       </div>            
+                    
+                   </div>
+                   <br>
+                   <br>
+                       <button type="Submit" class="btn-block">Komparasi Hasil Penjualan</button>
+                   </div>               
+                
+                     </form>
+           </div>
+       </div>    -->
 {% endblock contents %}

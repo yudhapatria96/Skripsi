@@ -1,5 +1,6 @@
 body {
-	font-size: .875rem;
+  font-size: .875rem;
+  background: #d6d6d6;
   }
   
   .feather {
@@ -110,4 +111,20 @@ body {
     margin: 20px 0 0 0;
     padding: 10px;
 
+}
+
+.marginmenu{
+  margin-left: 54 px;
+}
+
+.marginlabel{
+  margin-left: 54px;
+}
+.tab-content>.pill-pane {
+  display: block;
+  height: 0;
+  overflow: hidden;
+}
+.tab-content>.pill-pane.active {
+  height: auto;
 }

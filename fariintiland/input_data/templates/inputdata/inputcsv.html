@@ -5,6 +5,8 @@
 
 
 {% block contents %}
+{% if request.user.is_staff %}
+
     <!-- {% if messages %}
         {% for message in messages %}
             <div>
@@ -30,10 +32,42 @@
     <br>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <label>Update a file </label>
+        <label>Upload a file </label>
         <input type="file" name="file">
-        <p>Only accepts CSV files</p>
-        <button type="submit">Upload</button>
+        <p style="color: red">Hanya Menerima File Berformat .CSV</p>
+        <button type="Submit" class="btn btn-primary">Upload</button>
+        <a href="{% url "inputdata:index" %}" role="button" class="btn btn-info">Kembali</a>
     </form>
-    
+    <br>
+    <p class="alert alert-danger">Untuk membuat format .csv bisa menggunakan Excel atau Text Editor seperti notepad++, atom dan visual studio code</p>
+    {% else %}
+    <div class='row'>
+
+            <div class='col-sm-1'></div>
+            <div class='col-sm-10'>        
+                    <h4 style='margin-left: 36px;'>Hanya User Yang Telah Terkonfirmasi Yang Dapat Mengakses Halaman Ini</h4>
+                    </div>
+
+    </div>
+    <br>
+    <br>
+    <div class='row'>
+
+                    <div class='col-sm-2'></div>
+                    <div class='col-sm-10'>        
+                    <h4 style='margin-left: 20px; color: red;'>Hubungi Administrator Untuk Mengkonfirmasi Akun Anda</h4>
+                    </div>
+                    
+            </div>
+            <br>
+            <br>
+            <div class='row'>
+
+                            <div class='col-sm-5'></div>
+                            <div class='col-sm-7'>        
+                            <a href="{% url "index"%}" style='margin-left: 20px; font-size:26px'>Kembali</a>
+                            </div>
+                            
+                    </div>
+    {% endif %}
 {% endblock contents %}

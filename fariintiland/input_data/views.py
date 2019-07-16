@@ -27,8 +27,13 @@ def index(request):
 def create(request):
     contact_form = forms.ContactForm(request.POST or None)
     if request.method == 'POST':
-        if contact_form.is_valid():
-            contact_form.save()
+        if models.PenjualanModel.objects.filter(bulan_transaksi = request.POST.get('bulan_transaksi'), tahun_transaksi =request.POST.get('tahun_transaksi')):
+            print("masuk")
+            return redirect('input_data:index')
+        else:
+
+            if contact_form.is_valid():
+                contact_form.save()
 
 
             return redirect('input_data:index')
@@ -92,7 +97,7 @@ def inputcsv(request):
   
     prompt = {
         'order': 'Urutan data pada CSV yaitu id_penjualan, bulan_transaksi, tahun_transaksi, jumlah_hotel, jumlah_mall, jumlah_apartemen, jumlah_c441, jumlahc442, jumlah_c443, jumlah_c451, jumlahc452, jumlahc453, jumlahc461, jumlahc462, jumlahc463, jasa_pembersih_air, jasa_pembersih_kerak_silica, jasa_pembersih_cooling_tower, jasa_pembersih_stp, jumlah_asam_sulfat, jumlah_molases, jumlah_hcl, jumlah_abf, pendapatan',
-        'order2': 'Apabila menggunakan Excel, gunakan format save .CSV(Comma delimited)'
+        'order2': 'Contoh Penggunaan Pada Excel, gunakan format save .CSV(Comma delimited)'
     }
     
     if request.method == "GET":
@@ -142,7 +147,6 @@ def inputcsv(request):
                 else:
                     try:   
                         _, created = models.PenjualanModel.objects.update_or_create(
-                        id_penjualan = column[0],
                         bulan_transaksi = column[1],
                         tahun_transaksi = column[2],
                         jumlah_hotel = column[3],

@@ -6,6 +6,7 @@ class ContactForm(forms.ModelForm):
     TAHUN= range(2000, 2050, 1)
     
     fields = [
+'id_penjualan',
 'bulan_transaksi',        
 'tahun_transaksi',
 'jumlah_hotel',
